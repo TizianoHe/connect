@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { Logo } from "@/components/shared/Logo";
+import { Footer } from "@/components/shared/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -295,6 +296,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
