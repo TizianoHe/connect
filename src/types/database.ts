@@ -1,0 +1,143 @@
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
+export interface Database {
+  public: {
+    Tables: {
+      service_categories: {
+        Row: {
+          id: string;
+          name: string;
+          slug: string;
+          icon_name: string | null;
+          sort_order: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          slug: string;
+          icon_name?: string | null;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          slug?: string;
+          icon_name?: string | null;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      sme_profiles: {
+        Row: {
+          id: string;
+          business_name: string;
+          tagline: string | null;
+          description: string | null;
+          website_url: string | null;
+          phone: string | null;
+          email_public: string | null;
+          location_city: string | null;
+          location_country: string;
+          avatar_url: string | null;
+          onboarding_step: number;
+          is_published: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          business_name: string;
+          tagline?: string | null;
+          description?: string | null;
+          website_url?: string | null;
+          phone?: string | null;
+          email_public?: string | null;
+          location_city?: string | null;
+          location_country?: string;
+          avatar_url?: string | null;
+          onboarding_step?: number;
+          is_published?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          business_name?: string;
+          tagline?: string | null;
+          description?: string | null;
+          website_url?: string | null;
+          phone?: string | null;
+          email_public?: string | null;
+          location_city?: string | null;
+          location_country?: string;
+          avatar_url?: string | null;
+          onboarding_step?: number;
+          is_published?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      sme_services: {
+        Row: {
+          id: string;
+          sme_id: string;
+          category_id: string;
+          title: string;
+          description: string | null;
+          price_from: number | null;
+          price_currency: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          sme_id: string;
+          category_id: string;
+          title: string;
+          description?: string | null;
+          price_from?: number | null;
+          price_currency?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          sme_id?: string;
+          category_id?: string;
+          title?: string;
+          description?: string | null;
+          price_from?: number | null;
+          price_currency?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "sme_services_sme_id_fkey";
+            columns: ["sme_id"];
+            isOneToOne: false;
+            referencedRelation: "sme_profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "sme_services_category_id_fkey";
+            columns: ["category_id"];
+            isOneToOne: false;
+            referencedRelation: "service_categories";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+    };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+  };
+}
