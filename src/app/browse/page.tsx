@@ -13,84 +13,33 @@ interface BrowsePageProps {
   searchParams: Promise<{
     search?: string;
     category?: string;
-    location?: string;
-    sort?: string;
-    price?: string;
   }>;
 }
 
 async function BrowseContent({
   search,
   categoryId,
-  location,
-  sort,
-  price,
 }: {
   search: string;
   categoryId: string;
-  location: string;
-  sort: string;
-  price: string;
 }) {
   const supabase = await createClient();
-  const hasFilters = !!(search || categoryId || location || price);
+  const hasFilters = !!(search || categoryId);
 
   // ── Category pre-filter ──────────────────────────────────────────────────
-  let categoryFilteredIds: string[] | null = null;
+  let filteredIds: string[] | null = null;
   if (categoryId) {
     const { data } = await supabase
       .from("sme_services")
       .select("sme_id")
       .eq("category_id", categoryId);
-    categoryFilteredIds = [...new Set(data?.map((r) => r.sme_id) ?? [])];
-    if (categoryFilteredIds.length === 0) {
+    filteredIds = [...new Set(data?.map((r) => r.sme_id) ?? [])];
+    if (filteredIds.length === 0) {
       return <EmptyState hasFilters />;
     }
   }
 
-  // ── Price pre-filter ─────────────────────────────────────────────────────
-  let priceFilteredIds: string[] | null = null;
-  if (price && price !== "any") {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let priceQuery: any = supabase
-      .from("sme_services")
-      .select("sme_id")
-      .not("price_from", "is", null);
-
-    if (price === "under100") {
-      priceQuery = priceQuery.lt("price_from", 100);
-    } else if (price === "100-500") {
-      priceQuery = priceQuery.gte("price_from", 100).lte("price_from", 500);
-    } else if (price === "500-1000") {
-      priceQuery = priceQuery.gte("price_from", 500).lte("price_from", 1000);
-    } else if (price === "over1000") {
-      priceQuery = priceQuery.gt("price_from", 1000);
-    }
-
-    const { data: priceData } = await priceQuery;
-    const priceRows = (priceData ?? []) as Array<{ sme_id: string }>;
-    const priceIds = [...new Set(priceRows.map((r) => r.sme_id))];
-    if (priceIds.length === 0) return <EmptyState hasFilters />;
-    priceFilteredIds = priceIds;
-  }
-
-  // ── Intersect ID filters ─────────────────────────────────────────────────
-  let filteredIds: string[] | null = null;
-  if (categoryFilteredIds && priceFilteredIds) {
-    const priceSet = new Set(priceFilteredIds);
-    filteredIds = categoryFilteredIds.filter((id) => priceSet.has(id));
-    if (filteredIds.length === 0) return <EmptyState hasFilters />;
-  } else {
-    filteredIds = categoryFilteredIds ?? priceFilteredIds;
-  }
-
   // ── Main query ───────────────────────────────────────────────────────────
-  type SortColumn = "created_at" | "business_name" | "updated_at";
-  let orderColumn: SortColumn = "created_at";
-  let ascending = false;
-  if (sort === "alpha") { orderColumn = "business_name"; ascending = true; }
-  else if (sort === "updated") { orderColumn = "updated_at"; ascending = false; }
-
   let query = supabase
     .from("sme_profiles")
     .select(
@@ -98,16 +47,11 @@ async function BrowseContent({
        sme_services(category_id, service_categories(id, name))`
     )
     .eq("is_published", true)
-    .order(orderColumn, { ascending });
+    .order("created_at", { ascending: false });
 
   if (search) {
     query = query.or(
       `business_name.ilike.%${search}%,tagline.ilike.%${search}%`
-    );
-  }
-  if (location) {
-    query = query.or(
-      `location_city.ilike.%${location}%,location_country.ilike.%${location}%`
     );
   }
   if (filteredIds) {
@@ -228,9 +172,6 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   const params = await searchParams;
   const search = params.search ?? "";
   const categoryId = params.category ?? "";
-  const location = params.location ?? "";
-  const sort = params.sort ?? "";
-  const price = params.price ?? "";
 
   const supabase = await createClient();
   const [{ data: categories }, { data: { user } = { user: null } }] =
@@ -281,7 +222,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
         </div>
 
         {/* Filters */}
-        <div className="mb-6">
+        <div className="mb-4">
           <Suspense fallback={null}>
             <BrowseFilters categories={categories ?? []} />
           </Suspense>
@@ -297,13 +238,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
             </div>
           }
         >
-          <BrowseContent
-            search={search}
-            categoryId={categoryId}
-            location={location}
-            sort={sort}
-            price={price}
-          />
+          <BrowseContent search={search} categoryId={categoryId} />
         </Suspense>
       </main>
 

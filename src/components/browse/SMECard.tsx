@@ -44,7 +44,7 @@ function LargeAvatarFallback({ name }: { name: string }) {
   );
 }
 
-// Small square fallback for the horizontal card (48 px target)
+// Small square fallback for the horizontal card (64 px)
 function SmallAvatarFallback({ name }: { name: string }) {
   const initials = name
     .split(" ")
@@ -59,7 +59,7 @@ function SmallAvatarFallback({ name }: { name: string }) {
       className="w-full h-full flex items-center justify-center"
       style={{ background: `hsl(${hue}, 60%, 92%)` }}
     >
-      <span className="text-base font-semibold" style={{ color: `hsl(${hue}, 50%, 35%)` }}>
+      <span className="text-lg font-semibold" style={{ color: `hsl(${hue}, 50%, 35%)` }}>
         {initials}
       </span>
     </div>

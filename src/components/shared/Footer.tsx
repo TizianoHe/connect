@@ -1,31 +1,14 @@
 import Link from "next/link";
 import { Logo } from "@/components/shared/Logo";
 
-const productLinks = [
-  { label: "Browse businesses", href: "/browse" },
-  { label: "List your business", href: "/signup" },
-  { label: "How it works", href: "/how-it-works" },
-  { label: "Pricing", href: "/pricing" },
-];
-
-const companyLinks = [
-  { label: "About us", href: "/about" },
-  { label: "Contact us", href: "/contact" },
-];
-
-const legalLinks = [
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms of Service", href: "/terms" },
-  { label: "Imprint", href: "/imprint" },
-];
-
 export function Footer() {
   return (
     <footer className="bg-white border-t border-neutral-100">
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
+
           {/* Brand */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             <Logo />
             <p className="text-sm text-neutral-500 leading-relaxed">
               A clean directory connecting SMEs with clients who need them.
@@ -35,57 +18,74 @@ export function Footer() {
 
           {/* Product */}
           <div>
-            <h4 className="text-sm font-semibold text-neutral-900 mb-4">Product</h4>
-            <ul className="flex flex-col gap-2.5">
-              {productLinks.map(({ label, href }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
+            <p className="text-sm font-semibold text-neutral-900 mb-4">Product</p>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <Link href="/browse" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                  Browse businesses
+                </Link>
+              </li>
+              <li>
+                <Link href="/signup" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                  List your business
+                </Link>
+              </li>
+              <li>
+                <Link href="/how-it-works" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                  How it works
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                  Pricing
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h4 className="text-sm font-semibold text-neutral-900 mb-4">Company</h4>
-            <ul className="flex flex-col gap-2.5">
-              {companyLinks.map(({ label, href }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
+            <p className="text-sm font-semibold text-neutral-900 mb-4">Company</p>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <Link href="/about" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                  About us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                  Contact us
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h4 className="text-sm font-semibold text-neutral-900 mb-4">Legal</h4>
-            <ul className="flex flex-col gap-2.5">
-              {legalLinks.map(({ label, href }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
+            <p className="text-sm font-semibold text-neutral-900 mb-4">Legal</p>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <Link href="/privacy" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/imprint" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                  Imprint
+                </Link>
+              </li>
             </ul>
           </div>
+
         </div>
       </div>
 
+      {/* Bottom strip */}
       <div className="border-t border-neutral-100">
         <div className="max-w-6xl mx-auto px-6 py-5">
           <p className="text-xs text-neutral-400">
