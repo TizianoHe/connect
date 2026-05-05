@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "How it works — Connect" };
+export const metadata = { title: "How it works — Spotted" };
 
 export default function HowItWorksPage() {
   return (
@@ -34,7 +34,7 @@ export default function HowItWorksPage() {
         <h1 className="text-3xl font-semibold text-neutral-900 mb-4">How it works</h1>
         <p className="text-neutral-500 leading-relaxed">
           Content coming soon. Check back shortly — we&apos;re working on a full
-          walkthrough of how Connect helps SMEs get discovered and how clients
+          walkthrough of how Spotted helps SMEs get discovered and how clients
           find the right service providers.
         </p>
       </main>

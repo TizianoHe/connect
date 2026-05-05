@@ -1,7 +1,7 @@
 import { Logo } from "@/components/shared/Logo";
 import { SignupForm } from "@/components/auth/SignupForm";
 
-export const metadata = { title: "Create account — Connect" };
+export const metadata = { title: "Create account — Spotted" };
 
 export default function SignupPage() {
   return (

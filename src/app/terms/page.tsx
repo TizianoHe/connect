@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Terms of Service — Connect" };
+export const metadata = { title: "Terms of Service — Spotted" };
 
 export default function TermsPage() {
   return (

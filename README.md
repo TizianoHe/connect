@@ -1,4 +1,4 @@
-# Connect
+# Spotted
 
 A two-sided discovery platform connecting SMEs with potential clients.
 

@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Privacy Policy — Connect" };
+export const metadata = { title: "Privacy Policy — Spotted" };
 
 export default function PrivacyPage() {
   return (

@@ -5,7 +5,7 @@ import { ProfileCompletenessCard } from "@/components/dashboard/ProfileCompleten
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Pencil, Plus } from "lucide-react";
 
-export const metadata = { title: "Dashboard — Connect" };
+export const metadata = { title: "Dashboard — Spotted" };
 
 export default async function DashboardPage() {
   const supabase = await createClient();

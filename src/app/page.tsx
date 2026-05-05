@@ -144,7 +144,7 @@ export default async function HomePage() {
             Ready to get found?
           </h2>
           <p className="text-neutral-500 mb-7 leading-relaxed">
-            Join Connect for free. Build your profile in minutes and start
+            Join Spotted for free. Build your profile in minutes and start
             appearing in front of clients looking for exactly what you offer.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

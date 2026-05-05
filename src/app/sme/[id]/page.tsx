@@ -54,9 +54,9 @@ export async function generateMetadata({ params }: ProfilePageProps) {
     .eq("id", id)
     .eq("is_published", true)
     .single();
-  if (!data) return { title: "Business not found — Connect" };
+  if (!data) return { title: "Business not found — Spotted" };
   return {
-    title: `${data.business_name} — Connect`,
+    title: `${data.business_name} — Spotted`,
     description: data.tagline ?? undefined,
   };
 }

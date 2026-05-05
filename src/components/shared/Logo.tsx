@@ -13,9 +13,9 @@ export function Logo({ className, href = "/" }: LogoProps) {
       className={cn("inline-flex items-center gap-2 font-semibold text-neutral-900", className)}
     >
       <div className="w-8 h-8 bg-neutral-900 rounded-lg flex items-center justify-center">
-        <span className="text-white text-sm font-bold">C</span>
+        <span className="text-white text-sm font-bold">S</span>
       </div>
-      <span className="text-lg tracking-tight">connect</span>
+      <span className="text-lg tracking-tight">spotted</span>
     </Link>
   );
 }

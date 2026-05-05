@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "About us — Connect" };
+export const metadata = { title: "About us — Spotted" };
 
 export default function AboutPage() {
   return (
@@ -33,7 +33,7 @@ export default function AboutPage() {
         </Link>
         <h1 className="text-3xl font-semibold text-neutral-900 mb-4">About us</h1>
         <p className="text-neutral-500 leading-relaxed">
-          Connect is a directory for small and medium-sized businesses in
+          Spotted is a directory for small and medium-sized businesses in
           Switzerland. We believe every SME deserves a clean, professional
           presence online — and that clients should be able to find the right
           service provider without wading through paid ads or platforms that

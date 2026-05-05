@@ -89,7 +89,7 @@ export function Footer() {
       <div className="border-t border-neutral-100">
         <div className="max-w-6xl mx-auto px-6 py-5">
           <p className="text-xs text-neutral-400">
-            © {new Date().getFullYear()} Connect. All rights reserved.
+            © {new Date().getFullYear()} Spotted. All rights reserved.
           </p>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Contact us — Connect" };
+export const metadata = { title: "Contact us — Spotted" };
 
 export default function ContactPage() {
   return (
@@ -37,11 +37,11 @@ export default function ContactPage() {
           to hear from you.
         </p>
         <a
-          href="mailto:hello@connect.ch"
+          href="mailto:hello@spotted.ch"
           className="inline-flex items-center gap-2.5 bg-neutral-900 text-white text-sm font-semibold px-5 py-3 rounded-xl hover:bg-neutral-800 transition-colors"
         >
           <Mail size={15} />
-          hello@connect.ch
+          hello@spotted.ch
         </a>
       </main>
 

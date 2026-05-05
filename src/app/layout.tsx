@@ -8,7 +8,7 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Connect — Discover local SMEs",
+  title: "Spotted — Discover local SMEs",
   description: "A modern directory connecting businesses with clients.",
 };
 

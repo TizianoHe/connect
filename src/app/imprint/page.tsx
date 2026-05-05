@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Imprint — Connect" };
+export const metadata = { title: "Imprint — Spotted" };
 
 export default function ImprintPage() {
   return (

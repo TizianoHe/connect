@@ -7,7 +7,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Browse businesses — Connect" };
+export const metadata = { title: "Browse businesses — Spotted" };
 
 interface BrowsePageProps {
   searchParams: Promise<{

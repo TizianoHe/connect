@@ -4,7 +4,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Pricing — Connect" };
+export const metadata = { title: "Pricing — Spotted" };
 
 export default function PricingPage() {
   return (
@@ -34,7 +34,7 @@ export default function PricingPage() {
         <h1 className="text-3xl font-semibold text-neutral-900 mb-4">Pricing</h1>
         <p className="text-neutral-500 leading-relaxed mb-4">
           <strong className="text-neutral-900">Free during early access.</strong> Listing
-          your business on Connect is completely free while we&apos;re in early access.
+          your business on Spotted is completely free while we&apos;re in early access.
         </p>
         <p className="text-neutral-500 leading-relaxed">
           Subscription plans are coming soon. We&apos;ll introduce optional paid tiers
