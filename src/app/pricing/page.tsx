@@ -31,16 +31,31 @@ export default function PricingPage() {
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
           Back to home
         </Link>
-        <h1 className="text-3xl font-semibold text-neutral-900 mb-4">Pricing</h1>
-        <p className="text-neutral-500 leading-relaxed mb-4">
-          <strong className="text-neutral-900">Free during early access.</strong> Listing
-          your business on Spotted is completely free while we&apos;re in early access.
-        </p>
-        <p className="text-neutral-500 leading-relaxed">
-          Subscription plans are coming soon. We&apos;ll introduce optional paid tiers
-          with enhanced visibility and features — early adopters will receive
-          special pricing when they launch.
-        </p>
+
+        <h1 className="text-3xl font-semibold text-neutral-900 mb-12">Pricing</h1>
+
+        <div className="space-y-10">
+          <section>
+            <h2 className="text-lg font-semibold text-neutral-900 mb-3">Free during early access</h2>
+            <p className="text-neutral-500 leading-relaxed">
+              Spotted is currently in early access, and listing your business is completely free. There are no fees, no commissions, and no paid placements that bury other businesses.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-lg font-semibold text-neutral-900 mb-3">What&apos;s coming later</h2>
+            <p className="text-neutral-500 leading-relaxed">
+              In the future, Spotted will introduce optional subscription plans for businesses who want additional features. Pricing details will be communicated well in advance, and any changes will be announced directly to all current users before they take effect.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-lg font-semibold text-neutral-900 mb-3">What stays free, always</h2>
+            <p className="text-neutral-500 leading-relaxed">
+              Browsing Spotted will always be free for clients. There will never be hidden fees, paywalls, or pay-to-contact systems on the client side.
+            </p>
+          </section>
+        </div>
       </main>
 
       <Footer />

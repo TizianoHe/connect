@@ -65,13 +65,12 @@ export default async function HomePage() {
             Now in early access
           </div>
           <h1 className="text-5xl sm:text-6xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-4">
-            Connect your business
+            Be discovered for the work you do,
             <br />
-            <span className="text-neutral-600 italic">with clients who need you</span>
+            <span className="text-neutral-600 italic">not the ads you run.</span>
           </h1>
           <p className="text-lg text-neutral-500 mb-8 max-w-lg mx-auto leading-relaxed">
-            A clean, searchable directory of SMEs. Build your profile once, get
-            discovered by clients looking for exactly what you offer.
+            Spotted is a directory of Swiss small businesses — built for clients who want clarity, and businesses that want to be found for the right reasons.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/signup">

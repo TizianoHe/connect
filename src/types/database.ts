@@ -87,6 +87,39 @@ export interface Database {
         };
         Relationships: [];
       };
+      contact_submissions: {
+        Row: {
+          id: string;
+          created_at: string;
+          name: string;
+          email: string;
+          user_type: string | null;
+          subject: string;
+          message: string;
+          status: string;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string;
+          name: string;
+          email: string;
+          user_type?: string | null;
+          subject: string;
+          message: string;
+          status?: string;
+        };
+        Update: {
+          id?: string;
+          created_at?: string;
+          name?: string;
+          email?: string;
+          user_type?: string | null;
+          subject?: string;
+          message?: string;
+          status?: string;
+        };
+        Relationships: [];
+      };
       sme_services: {
         Row: {
           id: string;
