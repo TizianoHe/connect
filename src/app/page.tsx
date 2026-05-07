@@ -75,7 +75,7 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/signup">
               <Button size="lg" className="w-full sm:w-auto px-8">
-                List your business — it&apos;s free
+                List your business
               </Button>
             </Link>
             <Link href="/browse">
@@ -149,7 +149,7 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/signup">
               <Button size="lg" className="w-full sm:w-auto px-8">
-                List your business — it&apos;s free
+                List your business
               </Button>
             </Link>
             <Link href="/browse">
