@@ -12,7 +12,7 @@ export default async function OnboardingStep1() {
 
   const { data: profile } = await supabase
     .from("sme_profiles")
-    .select("business_name, tagline, description, website_url")
+    .select("business_name, tagline, description, website_url, positioning_line, best_suited_for, how_they_work, clients_appreciate, team_size")
     .eq("id", user.id)
     .single();
 
@@ -33,6 +33,11 @@ export default async function OnboardingStep1() {
             tagline: profile.tagline ?? undefined,
             description: profile.description ?? undefined,
             website_url: profile.website_url ?? undefined,
+            positioning_line: profile.positioning_line ?? undefined,
+            best_suited_for: profile.best_suited_for ?? undefined,
+            how_they_work: profile.how_they_work ?? undefined,
+            clients_appreciate: profile.clients_appreciate ?? undefined,
+            team_size: (profile.team_size as "solo" | "2-5" | "6-20" | "21-50" | "50+" | undefined) ?? undefined,
           } : undefined}
         />
       </div>

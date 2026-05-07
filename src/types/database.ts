@@ -52,6 +52,11 @@ export interface Database {
           is_published: boolean;
           created_at: string;
           updated_at: string;
+          positioning_line: string | null;
+          best_suited_for: string | null;
+          how_they_work: string | null;
+          clients_appreciate: string | null;
+          team_size: string | null;
         };
         Insert: {
           id: string;
@@ -68,6 +73,11 @@ export interface Database {
           is_published?: boolean;
           created_at?: string;
           updated_at?: string;
+          positioning_line?: string | null;
+          best_suited_for?: string | null;
+          how_they_work?: string | null;
+          clients_appreciate?: string | null;
+          team_size?: string | null;
         };
         Update: {
           id?: string;
@@ -84,6 +94,11 @@ export interface Database {
           is_published?: boolean;
           created_at?: string;
           updated_at?: string;
+          positioning_line?: string | null;
+          best_suited_for?: string | null;
+          how_they_work?: string | null;
+          clients_appreciate?: string | null;
+          team_size?: string | null;
         };
         Relationships: [];
       };

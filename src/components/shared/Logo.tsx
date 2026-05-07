@@ -10,11 +10,11 @@ export function Logo({ className, href = "/" }: LogoProps) {
   return (
     <Link
       href={href}
-      className={cn("inline-flex items-center gap-2 font-semibold text-neutral-900", className)}
+      className={cn("inline-flex items-center gap-1.5 font-semibold text-neutral-900", className)}
     >
-      <div className="w-8 h-8 bg-neutral-900 rounded-lg flex items-center justify-center">
-        <span className="text-white text-sm font-bold">S</span>
-      </div>
+      <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
+        <circle cx="4" cy="4" r="4" fill="currentColor" />
+      </svg>
       <span className="text-lg tracking-tight">spotted</span>
     </Link>
   );

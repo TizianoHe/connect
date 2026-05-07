@@ -19,6 +19,30 @@ export const step1Schema = z.object({
     .url("Please enter a valid URL (e.g. https://example.com)")
     .optional()
     .or(z.literal("")),
+  positioning_line: z
+    .string()
+    .max(200, "Must be 200 characters or fewer")
+    .optional()
+    .or(z.literal("")),
+  best_suited_for: z
+    .string()
+    .max(500, "Must be 500 characters or fewer")
+    .optional()
+    .or(z.literal("")),
+  how_they_work: z
+    .string()
+    .max(500, "Must be 500 characters or fewer")
+    .optional()
+    .or(z.literal("")),
+  clients_appreciate: z
+    .string()
+    .max(500, "Must be 500 characters or fewer")
+    .optional()
+    .or(z.literal("")),
+  team_size: z
+    .enum(["solo", "2-5", "6-20", "21-50", "50+"])
+    .optional()
+    .or(z.literal("")),
 });
 
 export const step2ServiceSchema = z.object({
