@@ -26,12 +26,30 @@ export default async function DashboardPage() {
     .select("*", { count: "exact", head: true })
     .eq("sme_id", user.id);
 
-  const { data: photos } = await supabase
+  const { data: rawPhotos } = await supabase
     .from("sme_photos")
     .select("id, photo_url, is_primary, display_order")
     .eq("sme_profile_id", user.id)
     .order("display_order", { ascending: true })
     .order("created_at", { ascending: true });
+
+  // One-time backfill: if the profile has avatar_url but no primary row in sme_photos,
+  // insert one so the dashboard and public page both have a consistent source of truth.
+  let photos = rawPhotos ?? [];
+  const hasPrimary = photos.some((p) => p.is_primary);
+  if (profile.avatar_url && !hasPrimary) {
+    const { data: inserted } = await supabase
+      .from("sme_photos")
+      .insert({
+        sme_profile_id: user.id,
+        photo_url: profile.avatar_url,
+        is_primary: true,
+        display_order: 0,
+      })
+      .select("id, photo_url, is_primary, display_order")
+      .single();
+    if (inserted) photos = [inserted, ...photos];
+  }
 
   return (
     <div className="flex flex-col gap-8">
