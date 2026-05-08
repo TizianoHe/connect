@@ -13,8 +13,9 @@ export function Logo({ className, href = "/" }: LogoProps) {
       <Image
         src="/spotted-logo.png"
         alt="Spotted"
-        height={30}
-        width={45}
+        height={48}
+        width={72}
+        className="h-12 w-auto"
         priority
       />
     </Link>
