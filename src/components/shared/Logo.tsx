@@ -5,17 +5,18 @@ import { cn } from "@/lib/utils";
 interface LogoProps {
   className?: string;
   href?: string;
+  size?: string;
 }
 
-export function Logo({ className, href = "/" }: LogoProps) {
+export function Logo({ className, href = "/", size = "h-12" }: LogoProps) {
   return (
     <Link href={href} className={cn("inline-flex items-center", className)}>
       <Image
         src="/spotted-logo.png"
         alt="Spotted"
-        height={56}
-        width={259}
-        className="h-14 w-auto"
+        height={48}
+        width={222}
+        className={cn(size, "w-auto")}
         priority
       />
     </Link>

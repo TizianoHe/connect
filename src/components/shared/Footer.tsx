@@ -9,7 +9,7 @@ export function Footer() {
 
           {/* Brand */}
           <div className="flex flex-col gap-4">
-            <Logo />
+            <Logo size="h-14" />
             <p className="text-sm text-neutral-500 leading-relaxed">
               A clean directory connecting SMEs with clients who need them.
             </p>
