@@ -265,7 +265,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
                     {services.map((svc) => (
                       <div
                         key={svc.id}
-                        className="bg-white rounded-xl border border-neutral-200 px-5 py-4 flex items-start justify-between gap-4"
+                        className="bg-white rounded-xl border border-neutral-200 px-5 py-4 flex items-center justify-between gap-4"
                       >
                         <div className="flex-1 min-w-0">
                           <p className="font-medium text-neutral-900 text-sm">{svc.title}</p>
