@@ -154,22 +154,22 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
         <div className="flex flex-col gap-6">
           {/* Hero */}
           <div className="bg-white rounded-2xl border border-neutral-200 p-6">
-            <div className="flex items-start gap-5">
-              <div className="relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden bg-neutral-100">
+            <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-start sm:gap-6">
+              <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-xl overflow-hidden bg-neutral-100">
                 {profile.avatar_url ? (
                   <Image
                     src={profile.avatar_url}
                     alt={profile.business_name}
                     fill
                     className="object-cover"
-                    sizes="96px"
+                    sizes="(max-width: 768px) 128px, 160px"
                     priority
                   />
                 ) : (
                   <AvatarFallback name={profile.business_name} />
                 )}
               </div>
-              <div className="flex-1 min-w-0 pt-1">
+              <div className="flex-1 min-w-0 text-center sm:text-left sm:pt-1">
                 <h1 className="text-2xl font-semibold text-neutral-900 leading-tight">
                   {profile.business_name}
                 </h1>
@@ -179,13 +179,13 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
                   </p>
                 )}
                 {location && (
-                  <div className="flex items-center gap-1.5 mt-3 text-sm text-neutral-500">
+                  <div className="flex items-center justify-center sm:justify-start gap-1.5 mt-3 text-sm text-neutral-500">
                     <MapPin size={13} className="flex-shrink-0 text-neutral-400" />
                     <span>{location}</span>
                   </div>
                 )}
                 {categoryNames.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mt-3">
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mt-3">
                     {categoryNames.map((name) => (
                       <Badge key={name} variant="muted">{name}</Badge>
                     ))}
