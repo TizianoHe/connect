@@ -155,14 +155,14 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           {/* Hero */}
           <div className="bg-white rounded-2xl border border-neutral-200 p-6">
             <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-start sm:gap-6">
-              <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-xl overflow-hidden bg-neutral-100">
+              <div className="relative w-36 h-36 md:w-48 md:h-48 flex-shrink-0 rounded-xl overflow-hidden bg-neutral-100">
                 {profile.avatar_url ? (
                   <Image
                     src={profile.avatar_url}
                     alt={profile.business_name}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 128px, 160px"
+                    sizes="(max-width: 768px) 144px, 192px"
                     priority
                   />
                 ) : (
