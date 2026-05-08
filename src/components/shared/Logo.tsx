@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -8,14 +9,14 @@ interface LogoProps {
 
 export function Logo({ className, href = "/" }: LogoProps) {
   return (
-    <Link
-      href={href}
-      className={cn("inline-flex items-center gap-1.5 font-semibold text-neutral-900", className)}
-    >
-      <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
-        <circle cx="4" cy="4" r="4" fill="currentColor" />
-      </svg>
-      <span className="text-lg tracking-tight">spotted</span>
+    <Link href={href} className={cn("inline-flex items-center", className)}>
+      <Image
+        src="/spotted-logo.png"
+        alt="Spotted"
+        height={30}
+        width={45}
+        priority
+      />
     </Link>
   );
 }
