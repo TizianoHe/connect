@@ -102,6 +102,41 @@ export interface Database {
         };
         Relationships: [];
       };
+      sme_photos: {
+        Row: {
+          id: string;
+          sme_profile_id: string;
+          photo_url: string;
+          is_primary: boolean;
+          display_order: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          sme_profile_id: string;
+          photo_url: string;
+          is_primary?: boolean;
+          display_order?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          sme_profile_id?: string;
+          photo_url?: string;
+          is_primary?: boolean;
+          display_order?: number;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "sme_photos_sme_profile_id_fkey";
+            columns: ["sme_profile_id"];
+            isOneToOne: false;
+            referencedRelation: "sme_profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
       contact_submissions: {
         Row: {
           id: string;

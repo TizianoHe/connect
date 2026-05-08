@@ -84,6 +84,28 @@ export function Step4AvatarUpload({
       return;
     }
 
+    // Keep sme_photos in sync: replace any existing primary, or insert the first row.
+    const { data: existingPrimary } = await supabase
+      .from("sme_photos")
+      .select("id")
+      .eq("sme_profile_id", userId)
+      .eq("is_primary", true)
+      .maybeSingle();
+
+    if (existingPrimary) {
+      await supabase
+        .from("sme_photos")
+        .update({ photo_url: publicUrl })
+        .eq("id", existingPrimary.id);
+    } else {
+      await supabase.from("sme_photos").insert({
+        sme_profile_id: userId,
+        photo_url: publicUrl,
+        is_primary: true,
+        display_order: 0,
+      });
+    }
+
     router.push("/dashboard");
   }
 

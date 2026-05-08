@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   MapPin,
   Globe,
-  Mail,
   Phone,
   ArrowLeft,
   ChevronRight,
@@ -15,6 +14,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { PhotoGallery } from "@/components/sme/PhotoGallery";
 
 export const dynamic = "force-dynamic";
 
@@ -78,13 +78,22 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
     .from("sme_profiles")
     .select(
       `*, sme_services(id, title, description, price_from, price_currency,
-        service_categories(id, name))`
+        service_categories(id, name)),
+      sme_photos(id, photo_url, is_primary, display_order)`
     )
     .eq("id", id)
     .eq("is_published", true)
     .single();
 
   if (!profile) notFound();
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const rawPhotos = (profile.sme_photos as any[]) ?? [];
+  const primaryPhoto = rawPhotos.find((p: any) => p.is_primary);
+  const heroImageUrl: string | null = primaryPhoto?.photo_url ?? profile.avatar_url;
+  const galleryPhotos: { id: string; photo_url: string }[] = rawPhotos
+    .filter((p: any) => !p.is_primary)
+    .sort((a: any, b: any) => a.display_order - b.display_order);
 
   type Service = {
     id: string;
@@ -156,9 +165,9 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           <div className="bg-white rounded-2xl border border-neutral-200 p-6">
             <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-start sm:gap-6">
               <div className="relative w-36 h-36 md:w-48 md:h-48 flex-shrink-0 rounded-xl overflow-hidden bg-neutral-100">
-                {profile.avatar_url ? (
+                {heroImageUrl ? (
                   <Image
-                    src={profile.avatar_url}
+                    src={heroImageUrl}
                     alt={profile.business_name}
                     fill
                     className="object-cover"
@@ -232,6 +241,14 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
               <p className="text-sm text-neutral-600 leading-relaxed whitespace-pre-line italic">
                 {profile.clients_appreciate}
               </p>
+            </div>
+          )}
+
+          {/* Photo gallery — shown only when there are non-primary photos */}
+          {galleryPhotos.length > 0 && (
+            <div className="bg-white rounded-2xl border border-neutral-200 p-6">
+              <h2 className="text-sm font-semibold text-neutral-900 mb-4">Photos</h2>
+              <PhotoGallery photos={galleryPhotos} />
             </div>
           )}
 

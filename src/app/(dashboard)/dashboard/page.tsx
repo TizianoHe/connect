@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { ProfileCompletenessCard } from "@/components/dashboard/ProfileCompletenessCard";
+import { PhotosManager } from "@/components/dashboard/PhotosManager";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Pencil, Plus } from "lucide-react";
 
@@ -24,6 +25,13 @@ export default async function DashboardPage() {
     .from("sme_services")
     .select("*", { count: "exact", head: true })
     .eq("sme_id", user.id);
+
+  const { data: photos } = await supabase
+    .from("sme_photos")
+    .select("id, photo_url, is_primary, display_order")
+    .eq("sme_profile_id", user.id)
+    .order("display_order", { ascending: true })
+    .order("created_at", { ascending: true });
 
   return (
     <div className="flex flex-col gap-8">
@@ -66,6 +74,7 @@ export default async function DashboardPage() {
           profile={profile}
           serviceCount={serviceCount ?? 0}
         />
+
 
         {/* Quick actions */}
         <div className="bg-white rounded-2xl border border-neutral-200 p-6">
@@ -115,6 +124,8 @@ export default async function DashboardPage() {
           </div>
         </div>
       </div>
+
+      <PhotosManager userId={user.id} initialPhotos={photos ?? []} />
     </div>
   );
 }

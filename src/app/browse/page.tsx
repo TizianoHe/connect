@@ -44,7 +44,8 @@ async function BrowseContent({
     .from("sme_profiles")
     .select(
       `id, business_name, tagline, description, avatar_url, location_city, location_country,
-       sme_services(category_id, service_categories(id, name))`
+       sme_services(category_id, service_categories(id, name)),
+       sme_photos(photo_url, is_primary)`
     )
     .eq("is_published", true)
     .order("created_at", { ascending: false });
@@ -77,12 +78,15 @@ async function BrowseContent({
       }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const primaryPhotoUrl = ((p.sme_photos as any[]) ?? []).find((ph: any) => ph.is_primary)?.photo_url ?? p.avatar_url;
+
     return {
       id: p.id,
       business_name: p.business_name,
       tagline: p.tagline,
       description: p.description,
-      avatar_url: p.avatar_url,
+      avatar_url: primaryPhotoUrl,
       location_city: p.location_city,
       location_country: p.location_country,
       categories,
