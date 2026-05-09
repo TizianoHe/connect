@@ -1,26 +1,17 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  MapPin,
-  Globe,
-  Phone,
-  ArrowLeft,
-  ChevronRight,
-  Users,
-  Eye,
-} from "lucide-react";
+import { ArrowLeft, MapPin, Globe, Phone, Users, ChevronRight } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { Logo } from "@/components/shared/Logo";
-import { Footer } from "@/components/shared/Footer";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { AdminReviewPanel } from "@/components/admin/AdminReviewPanel";
 import { PhotoGallery } from "@/components/sme/PhotoGallery";
 
 export const dynamic = "force-dynamic";
 
-interface ProfilePageProps {
-  params: Promise<{ id: string }>;
+interface AdminProfilePageProps {
+  params: Promise<{ profileId: string }>;
 }
 
 const TEAM_SIZE_LABELS: Record<string, string> = {
@@ -45,34 +36,22 @@ function AvatarFallback({ name }: { name: string }) {
       className="w-full h-full flex items-center justify-center"
       style={{ background: `hsl(${hue}, 60%, 92%)` }}
     >
-      <span
-        className="text-3xl font-semibold"
-        style={{ color: `hsl(${hue}, 50%, 35%)` }}
-      >
+      <span className="text-3xl font-semibold" style={{ color: `hsl(${hue}, 50%, 35%)` }}>
         {initials}
       </span>
     </div>
   );
 }
 
-export async function generateMetadata({ params }: ProfilePageProps) {
-  const { id } = await params;
+export default async function AdminProfilePage({ params }: AdminProfilePageProps) {
+  const { profileId } = await params;
   const supabase = await createClient();
-  const { data } = await supabase
-    .from("sme_profiles")
-    .select("business_name, positioning_line, tagline, status")
-    .eq("id", id)
-    .single();
-  if (!data || data.status !== "published") return { title: "Business not found — Spotted" };
-  return {
-    title: `${data.business_name} — Spotted`,
-    description: data.positioning_line ?? data.tagline ?? undefined,
-  };
-}
 
-export default async function SMEProfilePage({ params }: ProfilePageProps) {
-  const { id } = await params;
-  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/login");
+
+  const { data: isAdmin } = await supabase.rpc("is_admin");
+  if (!isAdmin) redirect("/dashboard");
 
   const { data: profile } = await supabase
     .from("sme_profiles")
@@ -81,17 +60,10 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
         service_categories(id, name)),
       sme_photos(id, photo_url, is_primary, display_order)`
     )
-    .eq("id", id)
+    .eq("id", profileId)
     .single();
 
   if (!profile) notFound();
-
-  const { data: { user } } = await supabase.auth.getUser();
-
-  // Non-published profiles are only accessible to their owner or admins (enforced by RLS).
-  // If someone else somehow reaches this URL, RLS returns null and notFound() fires above.
-  const isOwner = user?.id === id;
-  const isPreview = profile.status !== "published";
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const rawPhotos = (profile.sme_photos as any[]) ?? [];
@@ -124,67 +96,38 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
   }, new Map());
 
   const categoryNames = [...byCategory.values()].map((c) => c.categoryName);
-
-  const location = [profile.location_city, profile.location_country]
-    .filter(Boolean)
-    .join(", ");
+  const location = [profile.location_city, profile.location_country].filter(Boolean).join(", ");
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Nav */}
       <header className="bg-white border-b border-neutral-100 sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
           <Logo />
-          <div className="flex items-center gap-3">
-            {user ? (
-              <Link href="/dashboard">
-                <Button variant="secondary" size="sm">Dashboard</Button>
-              </Link>
-            ) : (
-              <>
-                <Link href="/login">
-                  <Button variant="ghost" size="sm">Sign in</Button>
-                </Link>
-                <Link href="/signup">
-                  <Button size="sm">List your business</Button>
-                </Link>
-              </>
-            )}
-          </div>
+          <span className="text-xs font-medium bg-neutral-900 text-white px-2.5 py-1 rounded-full">
+            Admin
+          </span>
         </div>
       </header>
 
-      {/* Preview banner for non-published profiles */}
-      {isPreview && (
-        <div className="bg-neutral-900 text-white">
-          <div className="max-w-3xl mx-auto px-6 py-3 flex items-center gap-2.5">
-            <Eye size={15} className="flex-shrink-0 text-neutral-400" />
-            <p className="text-sm text-neutral-300">
-              {profile.status === "pending_review" && "Preview — this profile is under review and not yet visible to the public."}
-              {profile.status === "rejected" && "Preview — this profile has been rejected and is not visible to the public."}
-              {profile.status === "unpublished" && "Preview — this profile has been unpublished and is not visible to the public."}
-              {profile.status === "draft" && "Preview — this profile is a draft and not yet visible to the public."}
-            </p>
-            {isOwner && (
-              <Link href="/dashboard" className="ml-auto text-xs text-neutral-400 hover:text-white flex-shrink-0">
-                Go to dashboard →
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
-
       <main className="max-w-3xl mx-auto px-6 py-8">
-        {/* Back link */}
         <Link
-          href="/browse"
+          href="/admin"
           className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 mb-8 group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
-          Back to browse
+          Back to admin
         </Link>
 
         <div className="flex flex-col gap-6">
+          {/* Admin review panel */}
+          <AdminReviewPanel
+            profileId={profileId}
+            profileStatus={profile.status}
+            businessName={profile.business_name}
+            rejectionReason={profile.rejection_reason}
+            adminUserId={user.id}
+          />
+
           {/* Hero */}
           <div className="bg-white rounded-2xl border border-neutral-200 p-6">
             <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-start sm:gap-6">
@@ -224,6 +167,41 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
                     ))}
                   </div>
                 )}
+              </div>
+            </div>
+          </div>
+
+          {/* Metadata strip for admin reference */}
+          <div className="bg-white rounded-2xl border border-neutral-200 p-5">
+            <p className="text-xs font-medium text-neutral-400 uppercase tracking-wide mb-3">Profile metadata</p>
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div>
+                <p className="text-xs text-neutral-400">Profile ID</p>
+                <p className="font-mono text-xs text-neutral-700 mt-0.5 break-all">{profileId}</p>
+              </div>
+              <div>
+                <p className="text-xs text-neutral-400">Email (account)</p>
+                <p className="text-neutral-700 mt-0.5">{profile.email_public ?? "—"}</p>
+              </div>
+              <div>
+                <p className="text-xs text-neutral-400">Submitted</p>
+                <p className="text-neutral-700 mt-0.5">
+                  {profile.submitted_at
+                    ? new Date(profile.submitted_at).toLocaleDateString("en-GB", {
+                        day: "numeric", month: "short", year: "numeric",
+                      })
+                    : "—"}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-neutral-400">Last reviewed</p>
+                <p className="text-neutral-700 mt-0.5">
+                  {profile.reviewed_at
+                    ? new Date(profile.reviewed_at).toLocaleDateString("en-GB", {
+                        day: "numeric", month: "short", year: "numeric",
+                      })
+                    : "—"}
+                </p>
               </div>
             </div>
           </div>
@@ -268,7 +246,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
             </div>
           )}
 
-          {/* Photo gallery — shown only when there are non-primary photos */}
+          {/* Photo gallery */}
           {galleryPhotos.length > 0 && (
             <div className="bg-white rounded-2xl border border-neutral-200 p-6">
               <h2 className="text-sm font-semibold text-neutral-900 mb-4">Photos</h2>
@@ -315,9 +293,9 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
             </div>
           )}
 
-          {/* Team size + location details */}
-          {(profile.team_size || location) && (
-            <div className="flex items-center gap-5 px-1">
+          {/* Team + contact */}
+          {(profile.team_size || location || profile.website_url || profile.phone) && (
+            <div className="flex flex-wrap items-center gap-5 px-1">
               {profile.team_size && (
                 <div className="flex items-center gap-1.5 text-xs text-neutral-500">
                   <Users size={13} className="text-neutral-400" />
@@ -335,7 +313,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
                   href={profile.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-900 transition-colors"
+                  className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-900"
                 >
                   <Globe size={13} className="text-neutral-400" />
                   <span>{profile.website_url.replace(/^https?:\/\//, "")}</span>
@@ -344,7 +322,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
               {profile.phone && (
                 <a
                   href={`tel:${profile.phone}`}
-                  className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-900 transition-colors"
+                  className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-900"
                 >
                   <Phone size={13} className="text-neutral-400" />
                   <span>{profile.phone}</span>
@@ -353,14 +331,12 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
             </div>
           )}
 
-          {/* Contact */}
+          {/* Contact CTA */}
           {profile.email_public && (
             <div className="bg-neutral-900 rounded-2xl p-6 text-white flex items-center justify-between">
               <div>
                 <p className="font-semibold">Interested in working together?</p>
-                <p className="text-sm text-neutral-400 mt-0.5">
-                  Reach out directly — no middleman.
-                </p>
+                <p className="text-sm text-neutral-400 mt-0.5">Reach out directly — no middleman.</p>
               </div>
               <a
                 href={`mailto:${profile.email_public}`}
@@ -372,7 +348,6 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           )}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

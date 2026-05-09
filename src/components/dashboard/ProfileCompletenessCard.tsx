@@ -6,11 +6,13 @@ import { cn } from "@/lib/utils";
 interface ProfileCompletenessCardProps {
   profile: SMEProfile;
   serviceCount: number;
+  hasPhoto: boolean;
 }
 
 export function ProfileCompletenessCard({
   profile,
   serviceCount,
+  hasPhoto,
 }: ProfileCompletenessCardProps) {
   const checks = [
     {
@@ -30,12 +32,7 @@ export function ProfileCompletenessCard({
     },
     {
       label: "Logo / photo",
-      done: !!profile.avatar_url,
-      href: "/onboarding/step-4",
-    },
-    {
-      label: "Profile published",
-      done: profile.is_published,
+      done: hasPhoto,
       href: "/onboarding/step-4",
     },
   ];

@@ -74,7 +74,6 @@ export function Step4AvatarUpload({
       .update({
         avatar_url: `${publicUrl}?t=${Date.now()}`,
         onboarding_step: 5,
-        is_published: true,
       })
       .eq("id", userId);
 
@@ -114,7 +113,7 @@ export function Step4AvatarUpload({
     const supabase = createClient();
     await supabase
       .from("sme_profiles")
-      .update({ onboarding_step: 5, is_published: true })
+      .update({ onboarding_step: 5 })
       .eq("id", userId);
     router.push("/dashboard");
   }
@@ -201,7 +200,7 @@ export function Step4AvatarUpload({
             loading={uploading}
             onClick={handleUpload}
           >
-            Upload & publish profile
+            Upload & submit for review
           </Button>
         ) : (
           <Button

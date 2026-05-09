@@ -136,12 +136,6 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
       setPrimaryPhoto(newRow as Photo);
     }
 
-    // Keep legacy avatar_url field in sync
-    await supabase
-      .from("sme_profiles")
-      .update({ avatar_url: uploaded.url })
-      .eq("id", userId);
-
     setPrimaryUploading(false);
   }
 

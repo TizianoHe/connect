@@ -47,6 +47,9 @@ export default function AboutPage() {
             <p className="text-neutral-500 leading-relaxed">
               Spotted is a platform for Swiss SMEs to present who they are, what they do, and how people can reach them. Businesses create a profile that shows their work, their services, and who they actually are. Clients can browse by category and location, discover businesses that fit their needs, and contact them directly. Spotted is not an advertising platform, a marketplace, or a system built around paid reach. It&apos;s a place for businesses to present themselves clearly — once, properly, on their own terms.
             </p>
+            <p className="text-neutral-500 leading-relaxed mt-4">
+              Every profile is reviewed before it appears on the platform — for clarity and quality, not for marketing polish.
+            </p>
           </section>
 
           <section>

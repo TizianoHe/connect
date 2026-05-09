@@ -1,5 +1,12 @@
 export type { Database } from "./database";
 
+export type ProfileStatus =
+  | "draft"
+  | "pending_review"
+  | "published"
+  | "rejected"
+  | "unpublished";
+
 import type { Database } from "./database";
 
 export type ServiceCategory =

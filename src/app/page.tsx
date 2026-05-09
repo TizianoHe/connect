@@ -15,7 +15,7 @@ export default async function HomePage() {
        sme_services(category_id, service_categories(id, name)),
        sme_photos(photo_url, is_primary)`
     )
-    .eq("is_published", true)
+    .eq("status", "published")
     .order("created_at", { ascending: false })
     .limit(4);
 
@@ -88,6 +88,9 @@ export default async function HomePage() {
               </Button>
             </Link>
           </div>
+          <p className="text-xs text-neutral-400 mt-4">
+            Every profile is reviewed before publication.
+          </p>
         </div>
       </section>
 

@@ -57,6 +57,11 @@ export interface Database {
           how_they_work: string | null;
           clients_appreciate: string | null;
           team_size: string | null;
+          status: string;
+          submitted_at: string | null;
+          reviewed_at: string | null;
+          rejection_reason: string | null;
+          reviewed_by: string | null;
         };
         Insert: {
           id: string;
@@ -78,6 +83,11 @@ export interface Database {
           how_they_work?: string | null;
           clients_appreciate?: string | null;
           team_size?: string | null;
+          status?: string;
+          submitted_at?: string | null;
+          reviewed_at?: string | null;
+          rejection_reason?: string | null;
+          reviewed_by?: string | null;
         };
         Update: {
           id?: string;
@@ -99,6 +109,11 @@ export interface Database {
           how_they_work?: string | null;
           clients_appreciate?: string | null;
           team_size?: string | null;
+          status?: string;
+          submitted_at?: string | null;
+          reviewed_at?: string | null;
+          rejection_reason?: string | null;
+          reviewed_by?: string | null;
         };
         Relationships: [];
       };
@@ -136,6 +151,24 @@ export interface Database {
             referencedColumns: ["id"];
           }
         ];
+      };
+      app_admins: {
+        Row: {
+          id: string;
+          user_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          created_at?: string;
+        };
+        Relationships: [];
       };
       contact_submissions: {
         Row: {

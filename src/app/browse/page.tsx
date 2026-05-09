@@ -47,7 +47,7 @@ async function BrowseContent({
        sme_services(category_id, service_categories(id, name)),
        sme_photos(photo_url, is_primary)`
     )
-    .eq("is_published", true)
+    .eq("status", "published")
     .order("created_at", { ascending: false });
 
   if (search) {
