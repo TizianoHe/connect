@@ -91,7 +91,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Stats strip */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         {[
           { label: "Services listed", value: serviceCount ?? 0 },
           {
@@ -101,7 +101,6 @@ export default async function DashboardPage() {
               year: "numeric",
             }),
           },
-          { label: "Profile views", value: "—" },
         ].map(({ label, value }) => (
           <div key={label} className="bg-white rounded-2xl border border-neutral-200 px-5 py-4">
             <p className="text-2xl font-semibold text-neutral-900">{value}</p>
