@@ -30,6 +30,8 @@ export function Step2ServicesForm({
   const [selectedIds, setSelectedIds] = useState<string[]>(defaultSelectedIds);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
+  const [servicesError, setServicesError] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -59,6 +61,7 @@ export function Step2ServicesForm({
   }
 
   function addService(categoryId: string) {
+    setServicesError(null);
     append({
       category_id: categoryId,
       title: "",
@@ -70,6 +73,11 @@ export function Step2ServicesForm({
   }
 
   const onSubmit: SubmitHandler<Step2FormData> = async (data) => {
+    setServicesError(null);
+    if (fields.length === 0) {
+      setServicesError("Add at least one service before continuing.");
+      return;
+    }
     setServerError(null);
     const supabase = createClient();
 
@@ -263,13 +271,23 @@ export function Step2ServicesForm({
             })}
           </div>
           {fields.length === 0 && (
-            <button
-              type="button"
-              onClick={() => addService(selectedIds[0])}
-              className="w-full border-2 border-dashed border-neutral-200 rounded-xl py-6 text-sm text-neutral-400 hover:border-neutral-300 hover:text-neutral-600 transition-colors flex items-center justify-center gap-2"
-            >
-              <Plus size={14} /> Add your first service
-            </button>
+            <div className="flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={() => addService(selectedIds[0])}
+                className={cn(
+                  "w-full border-2 border-dashed rounded-xl py-6 text-sm transition-colors flex items-center justify-center gap-2",
+                  servicesError
+                    ? "border-red-300 text-red-500 hover:border-red-400"
+                    : "border-neutral-200 text-neutral-400 hover:border-neutral-300 hover:text-neutral-600"
+                )}
+              >
+                <Plus size={14} /> Add your first service
+              </button>
+              {servicesError && (
+                <p className="text-xs text-red-500">{servicesError}</p>
+              )}
+            </div>
           )}
         </div>
       )}

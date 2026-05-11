@@ -25,7 +25,6 @@ export function Step4AvatarUpload({
   const [preview, setPreview] = useState<string | null>(currentAvatarUrl ?? null);
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
-  const [completing, setCompleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
@@ -108,16 +107,6 @@ export function Step4AvatarUpload({
     router.push("/dashboard");
   }
 
-  async function handleSkip() {
-    setCompleting(true);
-    const supabase = createClient();
-    await supabase
-      .from("sme_profiles")
-      .update({ onboarding_step: 5 })
-      .eq("id", userId);
-    router.push("/dashboard");
-  }
-
   const initials = businessName
     .split(" ")
     .slice(0, 2)
@@ -168,11 +157,7 @@ export function Step4AvatarUpload({
 
         {!preview && (
           <p className="text-sm text-neutral-500 text-center">
-            Or your profile will show{" "}
-            <span className="font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded-lg">
-              {initials}
-            </span>{" "}
-            as a placeholder
+            A photo is required to submit your profile for review.
           </p>
         )}
       </div>
@@ -200,7 +185,7 @@ export function Step4AvatarUpload({
             loading={uploading}
             onClick={handleUpload}
           >
-            Upload & submit for review
+            Upload & continue
           </Button>
         ) : (
           <Button
@@ -214,21 +199,13 @@ export function Step4AvatarUpload({
           </Button>
         )}
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-start">
           <button
             type="button"
             onClick={() => router.push("/onboarding/step-3")}
             className="text-sm text-neutral-500 hover:text-neutral-900"
           >
             ← Back
-          </button>
-          <button
-            type="button"
-            onClick={handleSkip}
-            disabled={completing}
-            className="text-sm text-neutral-500 hover:text-neutral-900 disabled:opacity-50"
-          >
-            {completing ? "Saving..." : "Skip for now →"}
           </button>
         </div>
       </div>

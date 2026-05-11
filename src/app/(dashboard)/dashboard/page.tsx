@@ -1,11 +1,12 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { getProfileCompleteness } from "@/lib/profile-validation";
 import { ProfileCompletenessCard } from "@/components/dashboard/ProfileCompletenessCard";
 import { PhotosManager } from "@/components/dashboard/PhotosManager";
 import { SubmitForReviewButton } from "@/components/dashboard/SubmitForReviewButton";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Pencil, Plus, AlertTriangle, Clock, CheckCircle2, EyeOff } from "lucide-react";
+import { ExternalLink, Pencil, Plus, AlertTriangle, Clock, CheckCircle2, EyeOff, Circle } from "lucide-react";
 
 export const metadata = { title: "Dashboard — Spotted" };
 
@@ -58,10 +59,11 @@ export default async function DashboardPage() {
   const status = profile.status as string;
   const isEditable = EDITABLE_STATUSES.includes(status);
 
-  const step1Done = !!profile.business_name && !!profile.description;
-  const step2Done = (serviceCount ?? 0) > 0;
-  const step3Done = !!profile.location_city;
-  const isReadyToSubmit = step1Done && step2Done && step3Done && hasPhoto;
+  const { isComplete, missingItems } = getProfileCompleteness(
+    { business_name: profile.business_name, description: profile.description, location_city: profile.location_city },
+    serviceCount ?? 0,
+    hasPhoto
+  );
 
   const statusBadgeVariant =
     status === "published" ? "success" :
@@ -170,8 +172,34 @@ export default async function DashboardPage() {
         </div>
       )}
 
+      {/* ── Missing items banner (draft or rejected/unpublished + incomplete) ── */}
+      {(status === "draft" || status === "rejected" || status === "unpublished") && !isComplete && (
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4">
+          <p className="font-medium text-amber-900 text-sm mb-1">Your profile is almost ready</p>
+          <p className="text-sm text-amber-700 mb-3">
+            Before you can submit for review, please complete:
+          </p>
+          <ul className="flex flex-col gap-2">
+            {missingItems.map((item) => (
+              <li key={item.label} className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Circle size={12} className="text-amber-400 flex-shrink-0" />
+                  <span className="text-sm text-amber-800">{item.label}</span>
+                </div>
+                <Link
+                  href={item.href}
+                  className="text-xs font-medium text-amber-900 hover:underline flex-shrink-0"
+                >
+                  Fix this →
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* ── Submit for review ────────────────────────────────────────────────── */}
-      {status === "draft" && isReadyToSubmit && (
+      {status === "draft" && isComplete && (
         <div className="bg-white border border-neutral-200 rounded-2xl px-5 py-4 flex items-center justify-between gap-4">
           <div>
             <p className="font-medium text-neutral-900 text-sm">Ready to submit for review</p>
@@ -183,7 +211,7 @@ export default async function DashboardPage() {
         </div>
       )}
 
-      {(status === "rejected" || status === "unpublished") && (
+      {(status === "rejected" || status === "unpublished") && isComplete && (
         <div className="flex items-center gap-3">
           <SubmitForReviewButton
             userId={user.id}
