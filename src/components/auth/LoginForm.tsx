@@ -74,9 +74,9 @@ export function LoginForm() {
       </div>
 
       <div className="flex justify-end">
-        <span className="text-sm text-neutral-400 cursor-not-allowed" title="Coming soon">
-          Forgot password?
-        </span>
+        <Link href="/forgot-password" className="text-sm text-neutral-500 hover:text-neutral-700">
+          Forgot your password?
+        </Link>
       </div>
 
       {serverError && (
