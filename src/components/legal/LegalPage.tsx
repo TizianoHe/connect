@@ -20,7 +20,10 @@ interface LegalPageProps {
  */
 export function LegalPage({ title, intro, children }: LegalPageProps) {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    // lang="de" is set here rather than on <html> because the rest of the app
+    // is still English. It also enables correct German hyphenation on the
+    // headings below — without it, `hyphens: auto` is a no-op.
+    <div lang="de" className="min-h-screen bg-white flex flex-col">
       <header className="border-b border-neutral-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Logo />
@@ -57,7 +60,10 @@ export function LegalPage({ title, intro, children }: LegalPageProps) {
           </div>
         )}
 
-        <h1 className="text-3xl font-semibold text-neutral-900 mb-4 tracking-tight">
+        {/* German compound nouns like "Datenschutzerklärung" are wider than a
+            320px content column at text-3xl and force the whole page to scroll
+            sideways. Hyphenate and allow a hard break as a last resort. */}
+        <h1 className="text-2xl sm:text-3xl font-semibold text-neutral-900 mb-4 tracking-tight hyphens-auto break-words">
           {title}
         </h1>
 
