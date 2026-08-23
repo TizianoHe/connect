@@ -32,7 +32,6 @@ export default async function OnboardingStep4() {
         </p>
         <Step4AvatarUpload
           userId={user.id}
-          businessName={profile.business_name}
           currentAvatarUrl={profile.avatar_url}
         />
       </div>

@@ -1,54 +1,106 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { Logo } from "@/components/shared/Logo";
-import { Footer } from "@/components/shared/Footer";
-import { Button } from "@/components/ui/button";
+import { LegalPage, LegalSection } from "@/components/legal/LegalPage";
+import { OPERATOR } from "@/lib/legal";
 
-export const metadata = { title: "Imprint — Spotted" };
+export const metadata = {
+  title: "Impressum — Spotted",
+  description:
+    "Angaben zum Betreiber von Spotted gemäss Art. 3 Abs. 1 lit. s UWG.",
+};
 
 export default function ImprintPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <header className="border-b border-neutral-100">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Logo />
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="ghost" size="sm">Sign in</Button>
-            </Link>
-            <Link href="/signup">
-              <Button size="sm">List your business</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+    <LegalPage
+      title="Impressum"
+      intro="Angaben zum Betreiber dieser Website gemäss Art. 3 Abs. 1 lit. s des Bundesgesetzes gegen den unlauteren Wettbewerb (UWG)."
+    >
+      <LegalSection heading="Verantwortlich für den Inhalt">
+        <address className="not-italic">
+          <span className="block font-medium text-neutral-900">
+            {OPERATOR.legalName}
+          </span>
+          {OPERATOR.legalForm && <span className="block">{OPERATOR.legalForm}</span>}
+          <span className="block">{OPERATOR.street}</span>
+          <span className="block">
+            {OPERATOR.postalCode} {OPERATOR.city}
+          </span>
+          <span className="block">{OPERATOR.country}</span>
+        </address>
+      </LegalSection>
 
-      <main className="flex-1 max-w-2xl mx-auto px-6 py-16">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-10 group"
-        >
-          <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
-          Back to home
-        </Link>
-
-        {/* Placeholder notice */}
-        <div className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 mb-10">
-          <p className="text-sm font-semibold text-amber-800 mb-1">Draft — not ready for launch</p>
-          <p className="text-sm text-amber-700">
-            Swiss law (Art. 3 UWG) requires a commercial imprint disclosing the
-            operator&apos;s legal name, address, and contact information. Fill
-            this in before the site goes live.
-          </p>
-        </div>
-
-        <h1 className="text-3xl font-semibold text-neutral-900 mb-4">Imprint</h1>
-        <p className="text-neutral-500 leading-relaxed">
-          Operator details and contact information to be added before launch.
+      <LegalSection heading="Kontakt">
+        <p>
+          E-Mail:{" "}
+          <a
+            href={`mailto:${OPERATOR.email}`}
+            className="text-neutral-900 underline underline-offset-2 hover:no-underline"
+          >
+            {OPERATOR.email}
+          </a>
         </p>
-      </main>
+        {OPERATOR.phone && <p>Telefon: {OPERATOR.phone}</p>}
+        <p>
+          Für Anfragen steht auch das{" "}
+          <Link
+            href="/contact"
+            className="text-neutral-900 underline underline-offset-2 hover:no-underline"
+          >
+            Kontaktformular
+          </Link>{" "}
+          zur Verfügung.
+        </p>
+      </LegalSection>
 
-      <Footer />
-    </div>
+      {OPERATOR.uid && (
+        <LegalSection heading="Handelsregister">
+          <p>Unternehmens-Identifikationsnummer (UID): {OPERATOR.uid}</p>
+        </LegalSection>
+      )}
+
+      <LegalSection heading="Haftungsausschluss">
+        <p>
+          Die Inhalte dieser Website werden mit Sorgfalt erstellt. Für die
+          Richtigkeit, Vollständigkeit und Aktualität der Angaben zu den
+          aufgeführten Unternehmen wird keine Gewähr übernommen. Die Angaben zu
+          einem Unternehmen stammen vom jeweiligen Unternehmen selbst.
+        </p>
+        <p>
+          Spotted prüft aufgenommene Unternehmen vor der Veröffentlichung
+          redaktionell. Diese Prüfung ist keine Zusicherung bestimmter
+          Eigenschaften und begründet kein Vertragsverhältnis zwischen Spotted
+          und den Nutzerinnen und Nutzern dieser Website.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="Haftung für Links">
+        <p>
+          Diese Website enthält Links zu Websites Dritter. Für deren Inhalte ist
+          ausschliesslich der jeweilige Anbieter verantwortlich. Zum Zeitpunkt
+          der Verlinkung waren keine Rechtsverstösse erkennbar.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="Urheberrecht">
+        <p>
+          Die auf dieser Website veröffentlichten Inhalte, Texte und
+          Illustrationen sind urheberrechtlich geschützt. Jede Verwendung
+          ausserhalb der Grenzen des Urheberrechts bedarf der vorherigen
+          schriftlichen Zustimmung.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="Datenschutz">
+        <p>
+          Informationen zur Bearbeitung von Personendaten finden Sie in der{" "}
+          <Link
+            href="/privacy"
+            className="text-neutral-900 underline underline-offset-2 hover:no-underline"
+          >
+            Datenschutzerklärung
+          </Link>
+          .
+        </p>
+      </LegalSection>
+    </LegalPage>
   );
 }

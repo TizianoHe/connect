@@ -66,17 +66,17 @@ export function Footer() {
             <ul className="flex flex-col gap-3">
               <li>
                 <Link href="/privacy" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  Privacy Policy
+                  Datenschutz
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  Terms of Service
+                  Nutzungsbedingungen
                 </Link>
               </li>
               <li>
                 <Link href="/imprint" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  Imprint
+                  Impressum
                 </Link>
               </li>
             </ul>

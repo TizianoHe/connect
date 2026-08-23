@@ -65,13 +65,12 @@ export default async function AdminProfilePage({ params }: AdminProfilePageProps
 
   if (!profile) notFound();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const rawPhotos = (profile.sme_photos as any[]) ?? [];
-  const primaryPhoto = rawPhotos.find((p: any) => p.is_primary);
-  const heroImageUrl: string | null = primaryPhoto?.photo_url ?? profile.avatar_url;
-  const galleryPhotos: { id: string; photo_url: string }[] = rawPhotos
-    .filter((p: any) => !p.is_primary)
-    .sort((a: any, b: any) => a.display_order - b.display_order);
+  type PhotoRow = {
+    id: string;
+    photo_url: string;
+    is_primary: boolean;
+    display_order: number;
+  };
 
   type Service = {
     id: string;
@@ -82,8 +81,14 @@ export default async function AdminProfilePage({ params }: AdminProfilePageProps
     service_categories: { id: string; name: string } | null;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const rawServices = (profile.sme_services as any[]) as Service[];
+  const rawPhotos = (profile.sme_photos ?? []) as unknown as PhotoRow[];
+  const primaryPhoto = rawPhotos.find((p) => p.is_primary);
+  const heroImageUrl: string | null = primaryPhoto?.photo_url ?? profile.avatar_url;
+  const galleryPhotos: { id: string; photo_url: string }[] = rawPhotos
+    .filter((p) => !p.is_primary)
+    .sort((a, b) => a.display_order - b.display_order);
+
+  const rawServices = (profile.sme_services ?? []) as unknown as Service[];
 
   const byCategory = rawServices.reduce<
     Map<string, { categoryName: string; services: Service[] }>

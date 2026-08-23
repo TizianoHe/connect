@@ -1,54 +1,151 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { Logo } from "@/components/shared/Logo";
-import { Footer } from "@/components/shared/Footer";
-import { Button } from "@/components/ui/button";
+import { LegalPage, LegalSection } from "@/components/legal/LegalPage";
+import { OPERATOR } from "@/lib/legal";
 
-export const metadata = { title: "Terms of Service — Spotted" };
+export const metadata = {
+  title: "Nutzungsbedingungen — Spotted",
+  description:
+    "Bedingungen für die Nutzung von Spotted und für die Aufnahme eines Unternehmens.",
+};
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <header className="border-b border-neutral-100">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Logo />
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="ghost" size="sm">Sign in</Button>
-            </Link>
-            <Link href="/signup">
-              <Button size="sm">List your business</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex-1 max-w-2xl mx-auto px-6 py-16">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-10 group"
-        >
-          <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
-          Back to home
-        </Link>
-
-        {/* Placeholder notice */}
-        <div className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 mb-10">
-          <p className="text-sm font-semibold text-amber-800 mb-1">Draft — not ready for launch</p>
-          <p className="text-sm text-amber-700">
-            This page needs real Terms of Service before the site goes live.
-            Replace this placeholder with terms that cover user accounts,
-            business listings, acceptable use, and governing law (Swiss law).
-          </p>
-        </div>
-
-        <h1 className="text-3xl font-semibold text-neutral-900 mb-4">Terms of Service</h1>
-        <p className="text-neutral-500 leading-relaxed">
-          Full terms of service content to be written before launch.
+    <LegalPage
+      title="Nutzungsbedingungen"
+      intro="Diese Bedingungen regeln die Nutzung von Spotted sowie die Aufnahme und Darstellung von Unternehmen auf der Plattform."
+    >
+      <LegalSection heading="1. Geltungsbereich">
+        <p>
+          Betreiberin der Plattform ist {OPERATOR.legalName}. Diese Bedingungen
+          gelten für alle Besucherinnen und Besucher der Website sowie für
+          Unternehmen, die ein Profil erstellen. Mit der Registrierung
+          akzeptieren Sie diese Bedingungen.
         </p>
-      </main>
+      </LegalSection>
 
-      <Footer />
-    </div>
+      <LegalSection heading="2. Was Spotted ist — und was nicht">
+        <p>
+          Spotted ist eine kuratierte Auswahl von Unternehmen. Wir prüfen jedes
+          eingereichte Profil redaktionell, bevor es veröffentlicht wird. Diese
+          Prüfung betrifft Vollständigkeit, Verständlichkeit und Plausibilität
+          der Angaben.
+        </p>
+        <p>
+          Spotted vermittelt keine Verträge und wird nicht Partei von
+          Vereinbarungen zwischen Nutzerinnen, Nutzern und aufgeführten
+          Unternehmen. Die Aufnahme in die Auswahl ist keine Zusicherung von
+          Qualität, Verfügbarkeit oder Eignung für einen bestimmten Zweck.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="3. Benutzerkonto">
+        <p>
+          Für die Erstellung eines Unternehmensprofils ist ein Konto
+          erforderlich. Sie sind verpflichtet, wahrheitsgetreue Angaben zu
+          machen, Ihre Zugangsdaten vertraulich zu behandeln und uns über eine
+          unbefugte Nutzung Ihres Kontos zu informieren.
+        </p>
+        <p>
+          Sie können Ihr Konto jederzeit löschen. Wenden Sie sich dafür an{" "}
+          <a
+            href={`mailto:${OPERATOR.email}`}
+            className="text-neutral-900 underline underline-offset-2 hover:no-underline"
+          >
+            {OPERATOR.email}
+          </a>
+          .
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="4. Inhalte der Unternehmen">
+        <p>
+          Für die Inhalte eines Unternehmensprofils ist ausschliesslich das
+          jeweilige Unternehmen verantwortlich. Sie sichern zu, dass Sie über
+          die erforderlichen Rechte an den hochgeladenen Texten, Logos und Fotos
+          verfügen und dass die Angaben nicht irreführend sind.
+        </p>
+        <p>
+          Sie räumen uns das nicht ausschliessliche, räumlich unbeschränkte
+          Recht ein, diese Inhalte zum Zweck der Darstellung auf Spotted zu
+          nutzen. Dieses Recht endet mit der Löschung des Profils.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="5. Aufnahme, Ablehnung und Entfernung">
+        <p>
+          Es besteht kein Anspruch auf Aufnahme in die Auswahl. Wir können die
+          Veröffentlichung eines Profils ohne Angabe von Gründen ablehnen oder
+          ein veröffentlichtes Profil wieder entfernen, insbesondere wenn
+          Angaben unrichtig sind, Rechte Dritter verletzt werden oder das
+          Unternehmen nicht mehr aktiv ist.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="6. Unzulässige Nutzung">
+        <p>
+          Untersagt sind insbesondere das automatisierte Auslesen von Inhalten,
+          das systematische Kopieren der Auswahl, Versuche, Sicherheitsmassnahmen
+          zu umgehen, sowie jede Nutzung, die den Betrieb der Plattform
+          beeinträchtigt.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="7. Kosten">
+        <p>
+          Die Aufnahme eines Unternehmens ist derzeit kostenlos. Sollten künftig
+          kostenpflichtige Leistungen eingeführt werden, werden bestehende
+          Nutzerinnen und Nutzer vorgängig informiert; kostenpflichtige
+          Leistungen setzen eine ausdrückliche Zustimmung voraus.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="8. Verfügbarkeit und Haftung">
+        <p>
+          Wir bemühen uns um einen zuverlässigen Betrieb, schulden aber keine
+          bestimmte Verfügbarkeit. Wartungsarbeiten und Störungen können zu
+          Unterbrüchen führen.
+        </p>
+        <p>
+          Die Haftung für leichte Fahrlässigkeit ist im gesetzlich zulässigen
+          Rahmen ausgeschlossen. Für Schäden aus der Nutzung von Angaben Dritter
+          oder aus Verträgen mit aufgeführten Unternehmen wird keine Haftung
+          übernommen.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="9. Änderungen dieser Bedingungen">
+        <p>
+          Wir können diese Bedingungen anpassen. Über wesentliche Änderungen
+          informieren wir registrierte Nutzerinnen und Nutzer per E-Mail. Die
+          fortgesetzte Nutzung nach Inkrafttreten gilt als Zustimmung.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="10. Anwendbares Recht und Gerichtsstand">
+        <p>
+          Es gilt ausschliesslich schweizerisches Recht unter Ausschluss der
+          Kollisionsnormen und des UN-Kaufrechts. Gerichtsstand ist{" "}
+          {OPERATOR.city}, Schweiz, soweit nicht zwingende gesetzliche
+          Bestimmungen einen anderen Gerichtsstand vorsehen.
+        </p>
+        <p>
+          Angaben zum Betreiber finden Sie im{" "}
+          <Link
+            href="/imprint"
+            className="text-neutral-900 underline underline-offset-2 hover:no-underline"
+          >
+            Impressum
+          </Link>
+          , Informationen zur Datenbearbeitung in der{" "}
+          <Link
+            href="/privacy"
+            className="text-neutral-900 underline underline-offset-2 hover:no-underline"
+          >
+            Datenschutzerklärung
+          </Link>
+          .
+        </p>
+      </LegalSection>
+    </LegalPage>
   );
 }

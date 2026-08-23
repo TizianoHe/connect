@@ -11,13 +11,11 @@ import { MAX_AVATAR_SIZE, ACCEPTED_IMAGE_TYPES } from "@/lib/constants";
 
 interface Step4AvatarUploadProps {
   userId: string;
-  businessName: string;
   currentAvatarUrl?: string | null;
 }
 
 export function Step4AvatarUpload({
   userId,
-  businessName,
   currentAvatarUrl,
 }: Step4AvatarUploadProps) {
   const router = useRouter();
@@ -106,13 +104,6 @@ export function Step4AvatarUpload({
 
     router.push("/dashboard");
   }
-
-  const initials = businessName
-    .split(" ")
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase();
 
   return (
     <div className="flex flex-col gap-6">
