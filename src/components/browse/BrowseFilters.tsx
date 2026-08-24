@@ -38,7 +38,7 @@ export function BrowseFilters({ categories }: { categories: ServiceCategory[] })
         <input
           type="search"
           defaultValue={search}
-          placeholder="Search businesses..."
+          placeholder="Unternehmen suchen …"
           onChange={(e) => setParam("search", e.target.value)}
           className="w-full h-10 pl-9 pr-4 rounded-xl border border-neutral-200 bg-white text-sm placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900 hover:border-neutral-300 transition-colors"
         />

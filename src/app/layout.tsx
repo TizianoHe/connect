@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Newsreader, Karla } from "next/font/google";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const karla = Karla({
+  variable: "--font-karla",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Spotted — Discover local SMEs",
-  description: "A modern directory connecting businesses with clients.",
+  title: "Spotted — Unternehmen, die man kennen sollte",
+  description:
+    "Eine kuratierte Auswahl von Schweizer KMU. Jedes Unternehmen wird vor der Aufnahme persönlich geprüft.",
 };
 
 export default function RootLayout({
@@ -18,10 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-[family-name:var(--font-geist)]">
-        {children}
-      </body>
+    <html
+      lang="de"
+      className={`${newsreader.variable} ${karla.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col font-serif">{children}</body>
     </html>
   );
 }

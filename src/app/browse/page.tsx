@@ -3,11 +3,14 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { BrowseFilters } from "@/components/browse/BrowseFilters";
 import { SMECard, type SMECardData } from "@/components/browse/SMECard";
-import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
+import { SiteHeader } from "@/components/shared/SiteHeader";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Browse businesses — Spotted" };
+export const metadata = {
+  title: "Auswahl ansehen — Spotted",
+  description: "Geprüfte Schweizer KMU nach Kategorie und Ort durchsuchen.",
+};
 
 interface BrowsePageProps {
   searchParams: Promise<{
@@ -137,15 +140,15 @@ function EmptyState({ hasFilters = false }: { hasFilters?: boolean }) {
           />
         </svg>
       </div>
-      <h3 className="font-semibold text-neutral-900 mb-1">No businesses found</h3>
-      <p className="text-sm text-neutral-500 mb-5">
+      <h3 className="text-lg text-neutral-900 mb-1">Nichts gefunden</h3>
+      <p className="font-sans text-sm text-neutral-500 mb-5">
         {hasFilters
-          ? "No results match your current filters."
-          : "No businesses are listed yet — check back soon."}
+          ? "Zu diesen Filtern gibt es noch keine Treffer."
+          : "Die Auswahl wird gerade aufgebaut — schauen Sie bald wieder vorbei."}
       </p>
       {hasFilters && (
         <Link href="/browse">
-          <Button variant="secondary" size="sm">Clear all filters</Button>
+          <Button variant="secondary" size="sm">Filter zurücksetzen</Button>
         </Link>
       )}
     </div>
@@ -185,43 +188,22 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
     ]);
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex flex-col">
-      {/* Nav */}
-      <header className="bg-white border-b border-neutral-100 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Logo />
-          <div className="flex items-center gap-3">
-            {user ? (
-              <>
-                <Link href="/dashboard">
-                  <Button variant="ghost" size="sm">Dashboard</Button>
-                </Link>
-                <Link href="/signup">
-                  <Button size="sm">List your business</Button>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link href="/login">
-                  <Button variant="ghost" size="sm">Sign in</Button>
-                </Link>
-                <Link href="/signup">
-                  <Button size="sm">List your business</Button>
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-cream flex flex-col">
+      <SiteHeader
+        signedIn={!!user}
+        width="max-w-7xl"
+        className="sticky top-0 z-10"
+      />
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-8">
         {/* Page title */}
         <div className="mb-5">
-          <h1 className="text-2xl font-semibold text-neutral-900">
-            Find a service provider
+          <h1 className="text-3xl text-neutral-900 tracking-tight">
+            Die Auswahl
           </h1>
-          <p className="text-sm text-neutral-500 mt-1">
-            Browse local businesses and connect directly — no middleman.
+          <p className="font-sans text-sm text-neutral-500 mt-1">
+            Geprüfte Schweizer Unternehmen — Kontakt läuft direkt, ohne
+            Zwischenstelle.
           </p>
         </div>
 

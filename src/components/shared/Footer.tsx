@@ -3,79 +3,80 @@ import { Logo } from "@/components/shared/Logo";
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-neutral-100">
+    <footer className="bg-white border-t border-neutral-100 font-sans">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
 
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <Logo size="h-14" />
-            <p className="text-sm text-neutral-500 leading-relaxed">
-              A clean directory connecting SMEs with clients who need them.
+            <p className="text-sm text-neutral-600 leading-relaxed">
+              Eine kuratierte Auswahl von Schweizer KMU. Jedes Unternehmen
+              persönlich geprüft.
             </p>
-            <p className="text-xs text-neutral-400">Made in St. Gallen, Switzerland</p>
+            <p className="text-xs text-neutral-400">Gemacht in St. Gallen</p>
           </div>
 
-          {/* Product */}
+          {/* Entdecken */}
           <div>
-            <p className="text-sm font-semibold text-neutral-900 mb-4">Product</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-4">Entdecken</p>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/browse" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  Browse businesses
+                <Link href="/browse" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                  Auswahl ansehen
                 </Link>
               </li>
               <li>
-                <Link href="/signup" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  List your business
+                <Link href="/signup" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                  Unternehmen vorstellen
                 </Link>
               </li>
               <li>
-                <Link href="/how-it-works" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  How it works
+                <Link href="/how-it-works" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                  So funktioniert es
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  Pricing
+                <Link href="/pricing" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                  Preise
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Über uns */}
           <div>
-            <p className="text-sm font-semibold text-neutral-900 mb-4">Company</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-4">Über uns</p>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/about" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  About us
+                <Link href="/about" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                  Über Spotted
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  Contact us
+                <Link href="/contact" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                  Kontakt
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Rechtliches */}
           <div>
-            <p className="text-sm font-semibold text-neutral-900 mb-4">Legal</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-4">Rechtliches</p>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/privacy" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                <Link href="/privacy" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
                   Datenschutz
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                <Link href="/terms" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
                   Nutzungsbedingungen
                 </Link>
               </li>
               <li>
-                <Link href="/imprint" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+                <Link href="/imprint" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
                   Impressum
                 </Link>
               </li>
@@ -89,7 +90,7 @@ export function Footer() {
       <div className="border-t border-neutral-100">
         <div className="max-w-6xl mx-auto px-6 py-5">
           <p className="text-xs text-neutral-400">
-            © {new Date().getFullYear()} Spotted. All rights reserved.
+            © {new Date().getFullYear()} Spotted. Alle Rechte vorbehalten.
           </p>
         </div>
       </div>

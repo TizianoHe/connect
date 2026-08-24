@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
+import { SiteHeader } from "@/components/shared/SiteHeader";
 import { Button } from "@/components/ui/button";
 import { createPublicClient } from "@/lib/supabase/public";
 import { SMECard, type SMECardData } from "@/components/browse/SMECard";
@@ -52,51 +52,40 @@ export default async function HomePage() {
   });
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      {/* Nav */}
-      <header className="border-b border-neutral-100">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Logo />
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="ghost" size="sm">Sign in</Button>
-            </Link>
-            <Link href="/signup">
-              <Button size="sm">List your business</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-cream flex flex-col">
+      <SiteHeader />
 
       {/* Hero */}
-      <section className="flex flex-col items-center px-6 py-12 sm:py-16 text-center">
+      <section className="flex flex-col items-center px-6 py-16 sm:py-24 text-center">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-neutral-100 text-neutral-600 text-sm px-4 py-1.5 rounded-full mb-6">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
-            Now in early access
+          <div className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-swiss mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-swiss inline-block" />
+            Aufnahme läuft
           </div>
-          <h1 className="text-5xl sm:text-6xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-4">
-            Be discovered for the work you do,
-            <br />
-            <span className="text-neutral-600 italic">not the ads you run.</span>
+          <h1 className="text-4xl sm:text-6xl text-neutral-900 tracking-tight leading-[1.08] mb-6">
+            Unternehmen, die man
+            <br className="hidden sm:block" />{" "}
+            <span className="italic">kennen sollte.</span>
           </h1>
-          <p className="text-lg text-neutral-500 mb-8 max-w-lg mx-auto leading-relaxed">
-            Spotted is a directory of Swiss small businesses — built for clients who want clarity, and businesses that want to be found for the right reasons.
+          <p className="text-lg text-neutral-600 mb-9 max-w-xl mx-auto leading-relaxed">
+            Spotted ist kein Verzeichnis. Es ist eine kuratierte Auswahl von
+            Schweizer KMU — jedes einzelne persönlich geprüft, bevor es hier
+            steht.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/signup">
               <Button size="lg" className="w-full sm:w-auto px-8">
-                List your business
+                Unternehmen vorstellen
               </Button>
             </Link>
             <Link href="/browse">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto px-8">
-                Find a service
+                Auswahl ansehen
               </Button>
             </Link>
           </div>
-          <p className="text-xs text-neutral-400 mt-4">
-            Every profile is reviewed before publication.
+          <p className="font-sans text-xs text-neutral-400 mt-5">
+            Jedes Profil wird vor der Veröffentlichung persönlich geprüft.
           </p>
         </div>
       </section>
@@ -106,21 +95,21 @@ export default async function HomePage() {
         <div className="max-w-4xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
           {[
             {
-              title: "Build your profile",
-              body: "Company name, description, services, location, and contact — all in one place.",
+              title: "Persönlich geprüft",
+              body: "Jedes Unternehmen wird angeschaut, bevor es aufgenommen wird. Keine automatischen Einträge, keine gekauften Plätze.",
             },
             {
-              title: "Get discovered",
-              body: "Clients search and filter by service category and location to find the right fit.",
+              title: "Kuratiert, nicht vollständig",
+              body: "Wir führen nicht alle Unternehmen. Wir führen die, die man kennen sollte — das ist der ganze Unterschied.",
             },
             {
-              title: "No commissions",
-              body: "Connect directly with clients. We don't take a cut of your contracts.",
+              title: "Keine Provisionen",
+              body: "Sie arbeiten direkt mit Ihren Kundinnen und Kunden. Wir nehmen keinen Anteil an Ihren Aufträgen.",
             },
           ].map(({ title, body }) => (
             <div key={title}>
-              <h3 className="font-semibold text-neutral-900 mb-2">{title}</h3>
-              <p className="text-sm text-neutral-500 leading-relaxed">{body}</p>
+              <h3 className="text-lg text-neutral-900 mb-2">{title}</h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">{body}</p>
             </div>
           ))}
         </div>
@@ -131,14 +120,14 @@ export default async function HomePage() {
         <section className="border-t border-neutral-100 py-16 px-6">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-neutral-900">
-                Recently joined
+              <h2 className="text-2xl text-neutral-900">
+                Neu in der Auswahl
               </h2>
               <Link
                 href="/browse"
-                className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
+                className="font-sans text-sm text-neutral-500 hover:text-swiss transition-colors"
               >
-                View all →
+                Alle ansehen →
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -151,24 +140,24 @@ export default async function HomePage() {
       )}
 
       {/* Closing CTA */}
-      <section className="border-t border-neutral-100 py-16 px-6 bg-neutral-50">
+      <section className="border-t border-neutral-100 py-20 px-6 bg-olive-soft">
         <div className="max-w-lg mx-auto text-center">
-          <h2 className="text-2xl font-semibold text-neutral-900 mb-3">
-            Ready to get found?
+          <h2 className="text-3xl text-neutral-900 mb-3">
+            Gehören Sie dazu?
           </h2>
-          <p className="text-neutral-500 mb-7 leading-relaxed">
-            Join Spotted for free. Build your profile in minutes and start
-            appearing in front of clients looking for exactly what you offer.
+          <p className="text-neutral-600 mb-7 leading-relaxed">
+            Die Aufnahme ist kostenlos. Stellen Sie Ihr Unternehmen vor — wir
+            melden uns für die persönliche Prüfung.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/signup">
               <Button size="lg" className="w-full sm:w-auto px-8">
-                List your business
+                Unternehmen vorstellen
               </Button>
             </Link>
             <Link href="/browse">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto px-8">
-                Browse the directory
+                Auswahl ansehen
               </Button>
             </Link>
           </div>

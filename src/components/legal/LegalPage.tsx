@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
-import { Button } from "@/components/ui/button";
+import { SiteHeader } from "@/components/shared/SiteHeader";
 import { LEGAL_DETAILS_COMPLETE, OPERATOR } from "@/lib/legal";
 
 interface LegalPageProps {
@@ -20,23 +19,8 @@ interface LegalPageProps {
  */
 export function LegalPage({ title, intro, children }: LegalPageProps) {
   return (
-    // lang="de" is set here rather than on <html> because the rest of the app
-    // is still English. It also enables correct German hyphenation on the
-    // headings below — without it, `hyphens: auto` is a no-op.
-    <div lang="de" className="min-h-screen bg-white flex flex-col">
-      <header className="border-b border-neutral-100">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Logo />
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="ghost" size="sm">Sign in</Button>
-            </Link>
-            <Link href="/signup">
-              <Button size="sm">List your business</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-cream flex flex-col">
+      <SiteHeader />
 
       <main className="flex-1 w-full max-w-2xl mx-auto px-6 py-16">
         <Link
