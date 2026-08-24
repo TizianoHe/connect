@@ -17,21 +17,21 @@
 
 export const OPERATOR = {
   /** Legal name. A sole proprietorship uses the natural person's full name. */
-  legalName: "TODO: Vor- und Nachname oder Firma",
+  legalName: "Tiziano Hediger",
 
   /**
    * Legal form, shown in the Impressum.
    * e.g. "Einzelunternehmen", "GmbH", "Einfache Gesellschaft".
    * Set to null if you are operating as a private individual.
    */
-  legalForm: "TODO: Rechtsform" as string | null,
+  legalForm: null as string | null,
 
-  street: "TODO: Strasse und Hausnummer",
-  postalCode: "TODO: PLZ",
-  city: "TODO: Ort",
+  street: "Guisanstrasse 1",
+  postalCode: "9010",
+  city: "St. Gallen",
   country: "Schweiz",
 
-  email: "TODO: kontakt@spotted.ch",
+  email: "tiziano.hediger@student.unisg.ch",
 
   /** Optional. Leave as null if you do not want a public phone number. */
   phone: null as string | null,
@@ -44,7 +44,7 @@ export const OPERATOR = {
   uid: null as string | null,
 
   /** Shown as "Stand: …" at the bottom of both legal pages. */
-  lastUpdated: "TODO: Monat Jahr",
+  lastUpdated: "August 2026",
 } as const;
 
 /**
