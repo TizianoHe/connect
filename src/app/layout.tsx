@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+/**
+ * Plus Jakarta Sans is the closest widely-available match to the reference:
+ * a geometric grotesque that stays tight and confident at heavy weights,
+ * which is what the display type on the home page depends on.
+ */
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
   display: "swap",
 });
@@ -20,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${manrope.variable} h-full antialiased`}>
+    <html lang="de" className={`${jakarta.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );

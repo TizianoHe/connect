@@ -33,7 +33,7 @@ export function ContentPage({ title, intro, sections, children }: ContentPagePro
       <main className="flex-1 w-full max-w-2xl mx-auto px-6 py-16">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-accent transition-colors mb-10 group"
+          className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-10 group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
           Zurück zur Startseite

@@ -31,7 +31,7 @@ export function SiteHeader({
     <header className={cn("border-b border-neutral-100 bg-white", className)}>
       <div
         className={cn(
-          "mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3",
+          "mx-auto px-4 sm:px-6 h-[4.5rem] flex items-center justify-between gap-3",
           width
         )}
       >
@@ -44,10 +44,11 @@ export function SiteHeader({
           </Link>
         ) : (
           <div className="flex items-center gap-2 sm:gap-3">
-            <Link href="/login" className="hidden sm:block">
-              <Button variant="ghost" size="sm">
-                Anmelden
-              </Button>
+            <Link
+              href="/login"
+              className="hidden sm:block text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors px-2"
+            >
+              Anmelden
             </Link>
             <Link href="/signup">
               <Button size="sm" className="whitespace-nowrap">

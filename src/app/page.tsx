@@ -95,9 +95,8 @@ export default async function HomePage() {
               re-flows lines to even out their length, which fights the deliberate
               break between the two sentences and produced a stray one-word line.
             */}
-            <h1 className="text-[2.25rem] sm:text-5xl lg:text-[3.25rem] font-extrabold text-neutral-900 leading-[1.06] [text-wrap:normal]">
-              Gefunden werden für Ihre Arbeit
-              <span className="text-accent">.</span>
+            <h1 className="text-[2.5rem] sm:text-5xl lg:text-[3.5rem] font-extrabold text-neutral-900 leading-[1.05] [text-wrap:normal]">
+              Gefunden werden für Ihre Arbeit.
               <br />
               <span className="text-neutral-400">Nicht für Ihre Werbung.</span>
             </h1>
@@ -109,7 +108,7 @@ export default async function HomePage() {
 
             <form
               action="/browse"
-              className="mt-9 flex items-center gap-2 bg-white border border-neutral-200 rounded-2xl p-2 pl-4 max-w-lg focus-within:border-neutral-400 transition-colors"
+              className="mt-9 flex items-center gap-3 bg-neutral-100 rounded-full p-2 pl-5 max-w-xl focus-within:bg-neutral-200/70 transition-colors"
             >
               <Search size={18} className="text-neutral-400 flex-shrink-0" />
               <input
@@ -117,7 +116,7 @@ export default async function HomePage() {
                 name="search"
                 placeholder="Unternehmen, Dienstleistung oder Ort"
                 aria-label="Auswahl durchsuchen"
-                className="flex-1 min-w-0 bg-transparent text-[15px] text-neutral-900 placeholder:text-neutral-400 outline-none py-2"
+                className="flex-1 min-w-0 bg-transparent text-[0.9375rem] text-neutral-900 placeholder:text-neutral-400 outline-none py-2.5"
               />
               <Button type="submit" size="sm" className="flex-shrink-0 px-4 py-2.5">
                 Suchen
@@ -134,14 +133,14 @@ export default async function HomePage() {
                     <Link
                       key={c.id}
                       href={`/browse?category=${c.id}`}
-                      className="px-3.5 py-2 rounded-full border border-neutral-200 text-sm text-neutral-700 hover:border-accent hover:text-accent transition-colors"
+                      className="px-4 py-2 rounded-full bg-neutral-100 text-sm font-medium text-neutral-700 hover:bg-neutral-200 hover:text-neutral-900 transition-colors"
                     >
                       {c.name}
                     </Link>
                   ))}
                   <Link
                     href="/browse"
-                    className="px-3.5 py-2 rounded-full border border-neutral-200 text-sm text-neutral-500 hover:border-neutral-400 transition-colors"
+                    className="px-4 py-2 rounded-full text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors"
                   >
                     Alle
                   </Link>
@@ -160,7 +159,7 @@ export default async function HomePage() {
             {spotlight ? (
               <Link
                 href={`/sme/${spotlight.id}`}
-                className="block rounded-3xl overflow-hidden border border-neutral-200 bg-white hover:border-neutral-300 transition-colors group"
+                className="block rounded-3xl overflow-hidden bg-neutral-50 hover:bg-neutral-100 transition-colors group"
               >
                 <div className="relative aspect-[4/3] bg-neutral-100">
                   {spotlight.avatar_url ? (
@@ -181,10 +180,10 @@ export default async function HomePage() {
                   )}
                 </div>
                 <div className="p-5">
-                  <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-accent mb-2">
+                  <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-neutral-400 mb-2">
                     Spotted
                   </p>
-                  <p className="text-xl font-bold text-neutral-900 group-hover:text-accent transition-colors">
+                  <p className="text-xl font-bold text-neutral-900 transition-colors">
                     {spotlight.business_name}
                   </p>
                   {spotlight.location_city && (
@@ -200,8 +199,8 @@ export default async function HomePage() {
                 </div>
               </Link>
             ) : (
-              <div className="rounded-3xl border border-neutral-200 bg-sand p-7">
-                <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-accent mb-4">
+              <div className="rounded-3xl bg-neutral-50 p-7">
+                <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-neutral-400 mb-4">
                   Die Auswahl entsteht gerade
                 </p>
                 <p className="text-xl font-bold text-neutral-900 leading-snug mb-4">
@@ -223,14 +222,14 @@ export default async function HomePage() {
 
       {/* ── Neu in der Auswahl ──────────────────────────────────── */}
       {featuredSMEs.length > 1 && (
-        <section className="w-full max-w-6xl mx-auto px-6 py-14 border-t border-neutral-100">
+        <section className="w-full max-w-6xl mx-auto px-6 py-14">
           <div className="flex items-end justify-between mb-7 gap-4">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900">
-              Neu in der Auswahl<span className="text-accent">.</span>
+              Neu in der Auswahl
             </h2>
             <Link
               href="/browse"
-              className="text-sm text-accent hover:text-accent-dark transition-colors whitespace-nowrap"
+              className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors whitespace-nowrap"
             >
               Alle ansehen →
             </Link>
@@ -244,11 +243,11 @@ export default async function HomePage() {
       )}
 
       {/* ── For businesses ──────────────────────────────────────── */}
-      <section className="bg-sand border-y border-neutral-100">
+      <section className="bg-neutral-50">
         <div className="w-full max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mb-4">
-              Gehören Sie dazu<span className="text-accent">?</span>
+              Gehören Sie dazu?
             </h2>
             <p className="text-neutral-600 leading-relaxed max-w-md">
               Die Aufnahme ist kostenlos. Stellen Sie Ihr Unternehmen vor — wir
@@ -279,7 +278,7 @@ export default async function HomePage() {
               <Icon
                 size={20}
                 strokeWidth={1.75}
-                className="text-accent flex-shrink-0 mt-0.5"
+                className="text-neutral-900 flex-shrink-0 mt-0.5"
               />
               <div>
                 <p className="font-bold text-neutral-900 text-[15px] mb-1">{title}</p>

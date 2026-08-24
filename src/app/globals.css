@@ -1,46 +1,66 @@
 @import "tailwindcss";
 
 /*
-  Spotted — clean, confident, photo-ready.
+  Spotted — monochrome, soft-edged.
 
-  White ground, near-black ink, one warm accent. The neutral scale overrides
-  Tailwind's default greys with very slightly warm equivalents, so the several
-  hundred existing `text-neutral-500` / `border-neutral-100` usages pick up the
-  palette without a site-wide class rewrite, and anything written later stays
-  on-system by default.
+  Modelled on the Mobbin reference: an essentially colourless system where
+  hierarchy comes from weight, size and quiet grey fills rather than from hue.
+  Surfaces are light grey tiles with generous radius and no border; controls
+  are pills; nothing is tinted.
 
-  The accent is used sparingly and always to mean the same thing: this is the
-  primary action, or this is the thing to look at.
+  Two token overrides do most of the work, so the rest of the app follows
+  without a class rewrite:
+
+  1. The neutral scale becomes a pure grey ramp, so every existing
+     `text-neutral-500` / `bg-neutral-100` lands on-system.
+  2. The radius scale opens up — `rounded-2xl` is a real 18px tile, and
+     controls use `rounded-full`.
+
+  There is deliberately no accent colour. Reintroducing one means choosing a
+  single element and committing to it, not sprinkling it around.
 */
 @theme {
-  /* Warm-leaning neutrals */
+  /* Soft edges */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-2xl: 18px;
+  --radius-3xl: 22px;
+  --radius-4xl: 28px;
+
+  /* Pure greys */
   --color-white: #ffffff;
-  --color-neutral-50: #faf9f8;
-  --color-neutral-100: #f1efec;
-  --color-neutral-200: #e4e1dc;
-  --color-neutral-300: #cbc6bf;
-  --color-neutral-400: #9d968d;
-  --color-neutral-500: #6f6862;
-  --color-neutral-600: #504a45;
-  --color-neutral-700: #3a3531;
-  --color-neutral-800: #26221f;
-  --color-neutral-900: #161412;
+  --color-neutral-50: #f7f7f7;
+  --color-neutral-100: #f1f1f1;
+  --color-neutral-200: #e6e6e6;
+  --color-neutral-300: #d2d2d2;
+  --color-neutral-400: #8e8e8e;
+  --color-neutral-500: #6e6e6e;
+  --color-neutral-600: #4a4a4a;
+  --color-neutral-700: #333333;
+  --color-neutral-800: #1f1f1f;
+  --color-neutral-900: #0d0d0d;
 
-  /* Surfaces */
   --color-canvas: #ffffff;
-  --color-sand: #f7f5f2;
-
-  /* Accent */
-  --color-accent: #e2603c;
-  --color-accent-dark: #c94e2c;
-  --color-accent-soft: #fdf0eb;
+  --color-sand: #f7f7f7;
 
   /*
-    The fallback inside var() matters: `var(--font-manrope)` on its own
-    invalidates the entire font-family declaration if the variable is ever
-    missing, silently dropping the page to the browser default.
+    Kept so existing `text-accent` usages still compile, but mapped to ink: the
+    system is monochrome, and a stray tinted link would be the only coloured
+    thing on the page.
   */
-  --font-sans: var(--font-manrope, "Helvetica Neue"), system-ui, sans-serif;
+  --color-accent: #0d0d0d;
+  --color-accent-dark: #333333;
+  --color-accent-soft: #f1f1f1;
+
+  /*
+    The fallback inside var() matters: `var(--font-jakarta)` alone invalidates
+    the whole font-family declaration if the variable is ever missing, which
+    silently drops the page to the browser default.
+  */
+  --font-sans: var(--font-jakarta, "Helvetica Neue"), system-ui, sans-serif;
 }
 
 body {
@@ -49,15 +69,13 @@ body {
 }
 
 /*
-  German compound nouns — "Datenschutzerklärung", "Nutzungsbedingungen" — are
-  wider than a narrow phone column at display sizes and drag the whole document
-  sideways. Hyphenation needs a declared language, which <html lang="de">
-  provides.
+  Display type is set tight. German compound nouns need hyphenation or they
+  overflow narrow phone columns and drag the document sideways; hyphenation
+  needs a declared language, which <html lang="de"> provides.
 */
 h1,
 h2,
 h3 {
   hyphens: auto;
-  text-wrap: balance;
-  letter-spacing: -0.022em;
+  letter-spacing: -0.03em;
 }

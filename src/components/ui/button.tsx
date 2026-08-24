@@ -4,7 +4,11 @@ import { cn } from "@/lib/utils";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "ghost" | "destructive";
+  /**
+   * `inverse` is the primary action on a dark field — solid ink is invisible
+   * there, and tinting it would break the monochrome system.
+   */
+  variant?: "primary" | "secondary" | "ghost" | "destructive" | "inverse";
   size?: "sm" | "md" | "lg";
   loading?: boolean;
 }
@@ -27,26 +31,29 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          "inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed",
+          // Pills throughout. In a monochrome system the only levers for
+          // emphasis are fill and weight, so primary is solid ink and
+          // secondary is a hairline outline.
+          "inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-40 disabled:cursor-not-allowed",
           {
-            // Swiss red is the brand's single accent, and the primary action is
-            // where an accent belongs.
-            "bg-accent text-white hover:bg-accent-dark focus-visible:ring-accent":
+            "bg-neutral-900 text-white hover:bg-neutral-700 focus-visible:ring-neutral-900":
               variant === "primary",
-            "bg-white text-neutral-900 border border-neutral-200 hover:bg-neutral-50 focus-visible:ring-neutral-900":
+            "bg-white text-neutral-900 border border-neutral-200 hover:border-neutral-400 focus-visible:ring-neutral-900":
               variant === "secondary",
-            "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 focus-visible:ring-neutral-900":
+            "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 focus-visible:ring-neutral-900":
               variant === "ghost",
-            // Deliberately quieter than primary: a destructive action should be
-            // reachable, not the loudest thing on the screen — and a second
-            // solid red would make the accent ambiguous.
-            "bg-white text-accent border border-accent/30 hover:bg-accent-soft focus-visible:ring-accent":
+            // The primary action on a dark field, where solid ink is invisible.
+            "bg-white text-neutral-900 hover:bg-neutral-100 focus-visible:ring-white":
+              variant === "inverse",
+            // Quieter than primary on purpose: a destructive action should be
+            // reachable, not the loudest thing on screen.
+            "bg-white text-red-600 border border-red-200 hover:bg-red-50 focus-visible:ring-red-600":
               variant === "destructive",
           },
           {
-            "text-sm px-3 py-1.5": size === "sm",
-            "text-sm px-4 py-2.5": size === "md",
-            "text-base px-6 py-3": size === "lg",
+            "text-[0.8125rem] px-3.5 py-2": size === "sm",
+            "text-sm px-5 py-2.5": size === "md",
+            "text-[0.9375rem] px-6 py-3": size === "lg",
           },
           className
         )}
