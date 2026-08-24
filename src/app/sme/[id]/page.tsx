@@ -161,6 +161,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
             <Eye size={15} className="flex-shrink-0 text-neutral-400" />
             <p className="text-sm text-neutral-300">
               {profile.status === "pending_review" && "Preview — this profile is under review and not yet visible to the public."}
+              {profile.status === "approved" && "Preview — your application was approved. Add more photos to go live."}
               {profile.status === "rejected" && "Preview — this profile has been rejected and is not visible to the public."}
               {profile.status === "unpublished" && "Preview — this profile has been unpublished and is not visible to the public."}
               {profile.status === "draft" && "Preview — this profile is a draft and not yet visible to the public."}

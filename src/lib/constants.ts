@@ -1,8 +1,9 @@
 export const ONBOARDING_STEPS = [
-  { step: 1, label: "Basics" },
-  { step: 2, label: "Services" },
-  { step: 3, label: "Location" },
-  { step: 4, label: "Photo" },
+  { step: 1, label: "Business" },
+  { step: 2, label: "Story" },
+  { step: 3, label: "Details" },
+  { step: 4, label: "Fotos" },
+  { step: 5, label: "Absenden" },
 ] as const;
 
 export const MAX_AVATAR_SIZE = 5 * 1024 * 1024; // 5 MB

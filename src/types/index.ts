@@ -3,6 +3,7 @@ export type { Database } from "./database";
 export type ProfileStatus =
   | "draft"
   | "pending_review"
+  | "approved"
   | "published"
   | "rejected"
   | "unpublished";

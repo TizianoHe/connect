@@ -67,6 +67,7 @@ export default async function AdminProfilePage({ params }: AdminProfilePageProps
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const rawPhotos = (profile.sme_photos as any[]) ?? [];
+  const photoCount = rawPhotos.length;
   const primaryPhoto = rawPhotos.find((p: any) => p.is_primary);
   const heroImageUrl: string | null = primaryPhoto?.photo_url ?? profile.avatar_url;
   const galleryPhotos: { id: string; photo_url: string }[] = rawPhotos
@@ -126,6 +127,7 @@ export default async function AdminProfilePage({ params }: AdminProfilePageProps
             businessName={profile.business_name}
             rejectionReason={profile.rejection_reason}
             adminUserId={user.id}
+            photoCount={photoCount}
           />
 
           {/* Hero */}

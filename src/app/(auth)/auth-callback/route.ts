@@ -4,12 +4,20 @@ import { createClient } from "@/lib/supabase/server";
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
+  const type = searchParams.get("type");
 
   if (code) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
+      // Password recovery: the session is now established via cookie.
+      // Send the user to the reset form; ResetPasswordForm detects the
+      // session with getSession() and shows the password fields.
+      if (type === "recovery") {
+        return NextResponse.redirect(`${origin}/reset-password`);
+      }
+
       const {
         data: { user },
       } = await supabase.auth.getUser();

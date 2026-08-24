@@ -76,6 +76,7 @@ export function Step4AvatarUpload({
       })
       .eq("id", userId);
 
+
     if (profileError) {
       setError(profileError.message);
       setUploading(false);
@@ -104,7 +105,7 @@ export function Step4AvatarUpload({
       });
     }
 
-    router.push("/dashboard");
+    router.push("/onboarding/step-5");
   }
 
   const initials = businessName
@@ -157,7 +158,7 @@ export function Step4AvatarUpload({
 
         {!preview && (
           <p className="text-sm text-neutral-500 text-center">
-            A photo is required to submit your profile for review.
+            1 Foto reicht für die Bewerbung. Für die Veröffentlichung brauchen wir mindestens 3.
           </p>
         )}
       </div>
@@ -187,6 +188,27 @@ export function Step4AvatarUpload({
           >
             Upload & continue
           </Button>
+        ) : preview ? (
+          // Already has a photo — allow continuing without re-uploading
+          <>
+            <Button
+              type="button"
+              variant="secondary"
+              size="lg"
+              className="w-full"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              Change image
+            </Button>
+            <Button
+              type="button"
+              size="lg"
+              className="w-full"
+              onClick={() => router.push("/onboarding/step-5")}
+            >
+              Continue
+            </Button>
+          </>
         ) : (
           <Button
             type="button"

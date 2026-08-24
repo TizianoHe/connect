@@ -11,6 +11,7 @@ interface AdminReviewPanelProps {
   businessName: string;
   rejectionReason: string | null;
   adminUserId: string;
+  photoCount: number;
 }
 
 export function AdminReviewPanel({
@@ -19,6 +20,7 @@ export function AdminReviewPanel({
   businessName,
   rejectionReason,
   adminUserId,
+  photoCount,
 }: AdminReviewPanelProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -30,17 +32,18 @@ export function AdminReviewPanel({
     setLoading(true);
     setError(null);
     const supabase = createClient();
+    // If fewer than 3 photos: set 'approved' so SME can add more before going live.
+    // If 3+ photos: set directly to 'published'.
+    const newStatus = photoCount >= 3 ? "published" : "approved";
     const { error: err } = await supabase
       .from("sme_profiles")
       .update({
-        status: "published",
+        status: newStatus,
         reviewed_at: new Date().toISOString(),
         reviewed_by: adminUserId,
         rejection_reason: null,
       })
       .eq("id", profileId);
-
-    // TODO: send email notification to SME when status changes to 'published'
 
     if (err) { setError(err.message); setLoading(false); return; }
     router.push("/admin");
@@ -93,17 +96,27 @@ export function AdminReviewPanel({
           </p>
           <h2 className="font-semibold text-neutral-900">{businessName}</h2>
         </div>
-        <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-          profileStatus === "pending_review" ? "bg-neutral-900 text-white" :
-          profileStatus === "published"      ? "bg-emerald-100 text-emerald-700" :
-          profileStatus === "rejected"       ? "bg-amber-100 text-amber-700" :
-                                              "bg-neutral-100 text-neutral-600"
-        }`}>
-          {profileStatus === "pending_review" ? "Under review" :
-           profileStatus === "published"      ? "Published" :
-           profileStatus === "rejected"       ? "Rejected" :
-           profileStatus === "unpublished"    ? "Unpublished" : "Draft"}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-neutral-400">
+            {photoCount} {photoCount === 1 ? "photo" : "photos"}
+            {photoCount < 3 && (
+              <span className="text-amber-500 ml-1">(needs {3 - photoCount} more to publish)</span>
+            )}
+          </span>
+          <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+            profileStatus === "pending_review" ? "bg-neutral-900 text-white" :
+            profileStatus === "published"      ? "bg-emerald-100 text-emerald-700" :
+            profileStatus === "approved"       ? "bg-emerald-50 text-emerald-600" :
+            profileStatus === "rejected"       ? "bg-amber-100 text-amber-700" :
+                                                "bg-neutral-100 text-neutral-600"
+          }`}>
+            {profileStatus === "pending_review" ? "Under review" :
+             profileStatus === "published"      ? "Published" :
+             profileStatus === "approved"       ? "Approved" :
+             profileStatus === "rejected"       ? "Rejected" :
+             profileStatus === "unpublished"    ? "Unpublished" : "Draft"}
+          </span>
+        </div>
       </div>
 
       {error && (
@@ -157,6 +170,18 @@ export function AdminReviewPanel({
               Cancel
             </button>
           </div>
+        </div>
+      )}
+
+      {/* ── Approved actions (waiting for SME to add photos) ──────────── */}
+      {profileStatus === "approved" && (
+        <div className="flex items-center gap-4">
+          <Button variant="secondary" onClick={handleUnpublish} loading={loading}>
+            Revoke approval
+          </Button>
+          <p className="text-xs text-neutral-400">
+            Profile is approved but waiting for more photos before going live.
+          </p>
         </div>
       )}
 

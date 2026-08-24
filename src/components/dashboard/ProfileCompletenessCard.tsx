@@ -5,33 +5,54 @@ import { cn } from "@/lib/utils";
 
 interface ProfileCompletenessCardProps {
   profile: SMEProfile;
-  serviceCount: number;
   hasPhoto: boolean;
 }
 
 export function ProfileCompletenessCard({
   profile,
-  serviceCount,
   hasPhoto,
 }: ProfileCompletenessCardProps) {
+  const categoryIds = (profile.category_ids as string[] | null) ?? [];
+  const hasContact =
+    !!profile.phone?.trim() ||
+    !!profile.email_public?.trim() ||
+    !!profile.website_url?.trim();
+
   const checks = [
     {
-      label: "Business name & description",
-      done: !!profile.business_name && !!profile.description,
+      label: "Business name",
+      done: !!profile.business_name && profile.business_name.trim().length >= 2,
       href: "/onboarding/step-1",
     },
     {
-      label: "Services listed",
-      done: serviceCount > 0,
+      label: "Category selected",
+      done: categoryIds.length > 0,
+      href: "/onboarding/step-1",
+    },
+    {
+      label: "Location",
+      done: !!profile.location_city && !!profile.location_type,
+      href: "/onboarding/step-1",
+    },
+    {
+      label: "Contact info",
+      done: hasContact,
+      href: "/onboarding/step-1",
+    },
+    {
+      label: "Team size",
+      done: !!profile.team_size,
+      href: "/onboarding/step-1",
+    },
+    {
+      label: "Positioning line",
+      done:
+        !!profile.positioning_line &&
+        profile.positioning_line.trim().length >= 10,
       href: "/onboarding/step-2",
     },
     {
-      label: "Location & contact",
-      done: !!profile.location_city,
-      href: "/onboarding/step-3",
-    },
-    {
-      label: "Logo / photo",
+      label: "Profile photo",
       done: hasPhoto,
       href: "/onboarding/step-4",
     },
@@ -62,12 +83,19 @@ export function ProfileCompletenessCard({
               <div
                 className={cn(
                   "w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0",
-                  done ? "bg-emerald-100 text-emerald-600" : "bg-neutral-100 text-neutral-400"
+                  done
+                    ? "bg-emerald-100 text-emerald-600"
+                    : "bg-neutral-100 text-neutral-400"
                 )}
               >
                 {done ? <Check size={10} /> : <AlertCircle size={10} />}
               </div>
-              <span className={cn("text-sm", done ? "text-neutral-700" : "text-neutral-500")}>
+              <span
+                className={cn(
+                  "text-sm",
+                  done ? "text-neutral-700" : "text-neutral-500"
+                )}
+              >
                 {label}
               </span>
             </div>
