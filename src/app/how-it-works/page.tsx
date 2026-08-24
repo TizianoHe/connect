@@ -49,7 +49,7 @@ function StepList({ steps }: { steps: { title: string; body: string }[] }) {
     <ol className="flex flex-col gap-7">
       {steps.map(({ title, body }, i) => (
         <li key={title} className="grid grid-cols-[1.75rem_1fr] gap-x-3">
-          <span className="font-sans text-sm text-swiss tabular-nums pt-0.5">
+          <span className="text-sm text-accent tabular-nums pt-0.5">
             {String(i + 1).padStart(2, "0")}
           </span>
           <div>
@@ -64,13 +64,13 @@ function StepList({ steps }: { steps: { title: string; body: string }[] }) {
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-cream flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <SiteHeader />
 
       <main className="flex-1 w-full max-w-4xl mx-auto px-6 py-16">
         <Link
           href="/"
-          className="font-sans inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-swiss transition-colors mb-10 group"
+          className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-accent transition-colors mb-10 group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
           Zurück zur Startseite
@@ -86,13 +86,13 @@ export default function HowItWorksPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-16">
           <div>
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-7">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-7">
               Für Unternehmen
             </h2>
             <StepList steps={FOR_BUSINESSES} />
           </div>
           <div>
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-7">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-7">
               Für Suchende
             </h2>
             <StepList steps={FOR_CLIENTS} />

@@ -11,13 +11,13 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-cream flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <SiteHeader />
 
       <main className="flex-1 w-full max-w-2xl mx-auto px-6 py-16">
         <Link
           href="/"
-          className="font-sans inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-swiss transition-colors mb-10 group"
+          className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-accent transition-colors mb-10 group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
           Zurück zur Startseite

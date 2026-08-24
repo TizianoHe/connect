@@ -22,22 +22,22 @@ export function Footer() {
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-4">Entdecken</p>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/browse" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                <Link href="/browse" className="text-sm text-neutral-500 hover:text-accent transition-colors">
                   Auswahl ansehen
                 </Link>
               </li>
               <li>
-                <Link href="/signup" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                <Link href="/signup" className="text-sm text-neutral-500 hover:text-accent transition-colors">
                   Unternehmen vorstellen
                 </Link>
               </li>
               <li>
-                <Link href="/how-it-works" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                <Link href="/how-it-works" className="text-sm text-neutral-500 hover:text-accent transition-colors">
                   So funktioniert es
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                <Link href="/pricing" className="text-sm text-neutral-500 hover:text-accent transition-colors">
                   Preise
                 </Link>
               </li>
@@ -49,12 +49,12 @@ export function Footer() {
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-4">Über uns</p>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/about" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                <Link href="/about" className="text-sm text-neutral-500 hover:text-accent transition-colors">
                   Über Spotted
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                <Link href="/contact" className="text-sm text-neutral-500 hover:text-accent transition-colors">
                   Kontakt
                 </Link>
               </li>
@@ -66,17 +66,17 @@ export function Footer() {
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-4">Rechtliches</p>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/privacy" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                <Link href="/privacy" className="text-sm text-neutral-500 hover:text-accent transition-colors">
                   Datenschutz
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                <Link href="/terms" className="text-sm text-neutral-500 hover:text-accent transition-colors">
                   Nutzungsbedingungen
                 </Link>
               </li>
               <li>
-                <Link href="/imprint" className="text-sm text-neutral-500 hover:text-swiss transition-colors">
+                <Link href="/imprint" className="text-sm text-neutral-500 hover:text-accent transition-colors">
                   Impressum
                 </Link>
               </li>

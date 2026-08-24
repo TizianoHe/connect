@@ -19,7 +19,7 @@ interface LegalPageProps {
  */
 export function LegalPage({ title, intro, children }: LegalPageProps) {
   return (
-    <div className="min-h-screen bg-cream flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <SiteHeader />
 
       <main className="flex-1 w-full max-w-2xl mx-auto px-6 py-16">

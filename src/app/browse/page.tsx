@@ -141,7 +141,7 @@ function EmptyState({ hasFilters = false }: { hasFilters?: boolean }) {
         </svg>
       </div>
       <h3 className="text-lg text-neutral-900 mb-1">Nichts gefunden</h3>
-      <p className="font-sans text-sm text-neutral-500 mb-5">
+      <p className="text-sm text-neutral-500 mb-5">
         {hasFilters
           ? "Zu diesen Filtern gibt es noch keine Treffer."
           : "Die Auswahl wird gerade aufgebaut — schauen Sie bald wieder vorbei."}
@@ -188,7 +188,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
     ]);
 
   return (
-    <div className="min-h-screen bg-cream flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <SiteHeader
         signedIn={!!user}
         width="max-w-7xl"
@@ -201,7 +201,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
           <h1 className="text-3xl text-neutral-900 tracking-tight">
             Die Auswahl
           </h1>
-          <p className="font-sans text-sm text-neutral-500 mt-1">
+          <p className="text-sm text-neutral-500 mt-1">
             Geprüfte Schweizer Unternehmen — Kontakt läuft direkt, ohne
             Zwischenstelle.
           </p>

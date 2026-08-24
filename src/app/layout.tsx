@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
-import { Newsreader, Karla } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const karla = Karla({
-  variable: "--font-karla",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
 });
@@ -26,11 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="de"
-      className={`${newsreader.variable} ${karla.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col font-serif">{children}</body>
+    <html lang="de" className={`${manrope.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
 }

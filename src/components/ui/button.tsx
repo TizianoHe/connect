@@ -27,11 +27,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          "font-sans inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-cream disabled:opacity-50 disabled:cursor-not-allowed",
+          "inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed",
           {
             // Swiss red is the brand's single accent, and the primary action is
             // where an accent belongs.
-            "bg-swiss text-white hover:bg-swiss-dark focus-visible:ring-swiss":
+            "bg-accent text-white hover:bg-accent-dark focus-visible:ring-accent":
               variant === "primary",
             "bg-white text-neutral-900 border border-neutral-200 hover:bg-neutral-50 focus-visible:ring-neutral-900":
               variant === "secondary",
@@ -40,7 +40,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             // Deliberately quieter than primary: a destructive action should be
             // reachable, not the loudest thing on the screen — and a second
             // solid red would make the accent ambiguous.
-            "bg-white text-swiss border border-swiss/30 hover:bg-swiss-soft focus-visible:ring-swiss":
+            "bg-white text-accent border border-accent/30 hover:bg-accent-soft focus-visible:ring-accent":
               variant === "destructive",
           },
           {
