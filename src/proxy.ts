@@ -61,8 +61,29 @@ export async function proxy(request: NextRequest) {
   return supabaseResponse;
 }
 
+/**
+ * Only run on routes whose rendering actually depends on who is signed in.
+ *
+ * The previous matcher ran on every request that wasn't a static asset, and
+ * this proxy calls `supabase.auth.getUser()` — which is a network round-trip to
+ * Supabase's auth server, not a local token decode. That put a Supabase call in
+ * front of every navigation on the site, including the fully static Impressum
+ * and Datenschutzerklärung pages, which need no session at all.
+ *
+ * Next's own guidance is explicit that Proxy "is not intended for slow data
+ * fetching" and should not be a full session-management solution.
+ *
+ * Trade-off worth knowing: Supabase refreshes the session as a side effect of
+ * this call, so with a narrower matcher the refresh now happens only when a
+ * visitor touches one of these routes. For a site that is mostly public pages
+ * that is the right side of the trade — but it is a trade, not a free win.
+ */
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/dashboard/:path*",
+    "/onboarding/:path*",
+    "/admin/:path*",
+    "/login",
+    "/signup",
   ],
 };

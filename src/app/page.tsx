@@ -2,11 +2,18 @@ import Link from "next/link";
 import { Logo } from "@/components/shared/Logo";
 import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import { SMECard, type SMECardData } from "@/components/browse/SMECard";
 
+/**
+ * The featured list only ever shows published profiles, which are the same for
+ * every visitor. Render it once and refresh every 5 minutes instead of hitting
+ * Supabase on every page load.
+ */
+export const revalidate = 300;
+
 export default async function HomePage() {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   const { data: rawProfiles } = await supabase
     .from("sme_profiles")
