@@ -99,14 +99,25 @@ export default function HowItWorksPage() {
           </div>
         </div>
 
+        {/*
+          This block used to restate the three steps above it and close on "the
+          goal is a list you can trust", which is a slogan rather than
+          information. Naming what gets turned away is the only thing on this
+          page a reader cannot guess, and it is what makes the curation claim
+          checkable instead of asserted.
+        */}
         <div className="mt-16 pt-10 border-t border-neutral-200 max-w-2xl">
-          <h2 className="text-2xl text-neutral-900 mb-4">Warum das funktioniert</h2>
+          <h2 className="text-2xl font-bold text-neutral-900 mb-4">
+            Was nicht aufgenommen wird
+          </h2>
           <p className="text-neutral-600 leading-relaxed">
-            Spotted lebt nicht von Anzeigen, bezahlten Platzierungen oder
-            Provisionen. Genau deshalb kann die Auswahl klein und geprüft
-            bleiben. Das Ziel ist keine möglichst lange Liste, sondern eine, der
-            man vertrauen kann — für die Unternehmen darin und für die Menschen,
-            die sie nutzen.
+            Profile, die aus Schlagworten bestehen und nach dem Lesen nicht
+            klarer sind als vorher. Unternehmen, die auf eine Anfrage nicht
+            reagieren. Angaben, die sich nicht überprüfen lassen. Und alle, die
+            fragen, was ein besserer Platz kostet.
+          </p>
+          <p className="text-neutral-600 leading-relaxed mt-4">
+            Eine Auswahl ist genau so viel wert wie das, was nicht drinsteht.
           </p>
         </div>
       </main>
