@@ -3,7 +3,7 @@ import { LegalPage, LegalSection } from "@/components/legal/LegalPage";
 import { OPERATOR } from "@/lib/legal";
 
 export const metadata = {
-  title: "Nutzungsbedingungen — Spotted",
+  title: "Nutzungsbedingungen",
   description:
     "Bedingungen für die Nutzung von Spotted und für die Aufnahme eines Unternehmens.",
 };
@@ -23,18 +23,18 @@ export default function TermsPage() {
         </p>
       </LegalSection>
 
-      <LegalSection heading="2. Was Spotted ist — und was nicht">
+      <LegalSection heading="2. Was Spotted ist und was nicht">
         <p>
-          Spotted ist eine kuratierte Auswahl von Unternehmen. Wir prüfen jedes
-          eingereichte Profil redaktionell, bevor es veröffentlicht wird. Diese
-          Prüfung betrifft Vollständigkeit, Verständlichkeit und Plausibilität
-          der Angaben.
+          Spotted ist ein Verzeichnis von Unternehmen mit geprüften Profilen.
+          Wir prüfen jedes eingereichte Profil, bevor es veröffentlicht wird.
+          Diese Prüfung betrifft Vollständigkeit, Verständlichkeit und
+          Plausibilität der Angaben.
         </p>
         <p>
           Spotted vermittelt keine Verträge und wird nicht Partei von
           Vereinbarungen zwischen Nutzerinnen, Nutzern und aufgeführten
-          Unternehmen. Die Aufnahme in die Auswahl ist keine Zusicherung von
-          Qualität, Verfügbarkeit oder Eignung für einen bestimmten Zweck.
+          Unternehmen. Die Aufnahme ist keine Zusicherung von Qualität,
+          Verfügbarkeit oder Eignung für einen bestimmten Zweck.
         </p>
       </LegalSection>
 
@@ -73,7 +73,7 @@ export default function TermsPage() {
 
       <LegalSection heading="5. Aufnahme, Ablehnung und Entfernung">
         <p>
-          Es besteht kein Anspruch auf Aufnahme in die Auswahl. Wir können die
+          Es besteht kein Anspruch auf Aufnahme. Wir können die
           Veröffentlichung eines Profils ohne Angabe von Gründen ablehnen oder
           ein veröffentlichtes Profil wieder entfernen, insbesondere wenn
           Angaben unrichtig sind, Rechte Dritter verletzt werden oder das

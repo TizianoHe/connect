@@ -25,9 +25,9 @@ interface ProfilePageProps {
 
 const TEAM_SIZE_LABELS: Record<string, string> = {
   solo: "Just me",
-  "2-5": "2–5 people",
-  "6-20": "6–20 people",
-  "21-50": "21–50 people",
+  "2-5": "2-5 people",
+  "6-20": "6-20 people",
+  "21-50": "21-50 people",
   "50+": "50+ people",
 };
 
@@ -63,9 +63,9 @@ export async function generateMetadata({ params }: ProfilePageProps) {
     .select("business_name, positioning_line, tagline, status")
     .eq("id", id)
     .single();
-  if (!data || data.status !== "published") return { title: "Business not found — Spotted" };
+  if (!data || data.status !== "published") return { title: "Profil nicht gefunden" };
   return {
-    title: `${data.business_name} — Spotted`,
+    title: data.business_name,
     description: data.positioning_line ?? data.tagline ?? undefined,
   };
 }
@@ -165,10 +165,10 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           <div className="max-w-3xl mx-auto px-6 py-3 flex items-center gap-2.5">
             <Eye size={15} className="flex-shrink-0 text-neutral-400" />
             <p className="text-sm text-neutral-300">
-              {profile.status === "pending_review" && "Preview — this profile is under review and not yet visible to the public."}
-              {profile.status === "rejected" && "Preview — this profile has been rejected and is not visible to the public."}
-              {profile.status === "unpublished" && "Preview — this profile has been unpublished and is not visible to the public."}
-              {profile.status === "draft" && "Preview — this profile is a draft and not yet visible to the public."}
+              {profile.status === "pending_review" && "Vorschau: Dieses Profil ist in Prüfung und noch nicht öffentlich sichtbar."}
+              {profile.status === "rejected" && "Vorschau: Dieses Profil wurde abgelehnt und ist nicht öffentlich sichtbar."}
+              {profile.status === "unpublished" && "Vorschau: Dieses Profil ist offline und nicht öffentlich sichtbar."}
+              {profile.status === "draft" && "Vorschau: Dieses Profil ist ein Entwurf und noch nicht öffentlich sichtbar."}
             </p>
             {isOwner && (
               <Link href="/dashboard" className="ml-auto text-xs text-neutral-400 hover:text-white flex-shrink-0">
@@ -364,7 +364,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
               <div>
                 <p className="font-semibold">Interested in working together?</p>
                 <p className="text-sm text-neutral-400 mt-0.5">
-                  Reach out directly — no middleman.
+                  Reach out directly, no middleman.
                 </p>
               </div>
               <a

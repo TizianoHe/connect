@@ -11,9 +11,9 @@ export function ContactForm() {
   if (state.status === "success") {
     return (
       <div className="rounded-xl bg-neutral-50 border border-neutral-200 px-6 py-8 text-center">
-        <p className="font-medium text-neutral-900 mb-1">Message sent</p>
+        <p className="font-medium text-neutral-900 mb-1">Nachricht gesendet</p>
         <p className="text-sm text-neutral-500">
-          Thanks — your message has been sent. We&apos;ll get back to you soon.
+          Danke, Ihre Nachricht ist angekommen. Wir melden uns so schnell wie möglich.
         </p>
       </div>
     );
@@ -38,13 +38,13 @@ export function ContactForm() {
             type="text"
             required
             className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
-            placeholder="Your name"
+            placeholder="Ihr Name"
           />
         </div>
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1.5">
-            Email <span className="text-red-500">*</span>
+            E-Mail <span className="text-red-500">*</span>
           </label>
           <input
             id="email"
@@ -59,7 +59,7 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="user_type" className="block text-sm font-medium text-neutral-700 mb-1.5">
-          I am a&hellip;
+          Ich bin&hellip;
         </label>
         <select
           id="user_type"
@@ -67,17 +67,17 @@ export function ContactForm() {
           className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm text-neutral-900 bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
           defaultValue=""
         >
-          <option value="">Select (optional)</option>
-          <option value="Client">Client</option>
-          <option value="Business">Business</option>
-          <option value="Press">Press</option>
-          <option value="Other">Other</option>
+          <option value="">Bitte wählen (optional)</option>
+          <option value="Client">Auf der Suche nach einem Unternehmen</option>
+          <option value="Business">Unternehmen</option>
+          <option value="Press">Presse</option>
+          <option value="Other">Anderes</option>
         </select>
       </div>
 
       <div>
         <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-1.5">
-          Subject <span className="text-red-500">*</span>
+          Betreff <span className="text-red-500">*</span>
         </label>
         <input
           id="subject"
@@ -85,13 +85,13 @@ export function ContactForm() {
           type="text"
           required
           className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
-          placeholder="What's this about?"
+          placeholder="Worum geht es?"
         />
       </div>
 
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-1.5">
-          Message <span className="text-red-500">*</span>
+          Nachricht <span className="text-red-500">*</span>
         </label>
         <textarea
           id="message"
@@ -100,7 +100,7 @@ export function ContactForm() {
           minLength={10}
           rows={6}
           className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent resize-none"
-          placeholder="Your message…"
+          placeholder="Ihre Nachricht…"
         />
       </div>
 
@@ -109,7 +109,7 @@ export function ContactForm() {
         disabled={pending}
         className="w-full sm:w-auto px-6 py-2.5 bg-neutral-900 text-white text-sm font-semibold rounded-lg hover:bg-neutral-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {pending ? "Sending…" : "Send message"}
+        {pending ? "Wird gesendet…" : "Nachricht senden"}
       </button>
     </form>
   );

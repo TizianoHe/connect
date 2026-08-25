@@ -1,7 +1,7 @@
 import { Logo } from "@/components/shared/Logo";
 import { ResetPasswordForm } from "@/components/auth/ResetPasswordForm";
 
-export const metadata = { title: "Neues Passwort — Spotted" };
+export const metadata = { title: "Neues Passwort" };
 
 export default function ResetPasswordPage() {
   return (

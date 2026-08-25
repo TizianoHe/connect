@@ -3,9 +3,9 @@ import { LegalPage, LegalSection } from "@/components/legal/LegalPage";
 import { OPERATOR, PROCESSORS } from "@/lib/legal";
 
 export const metadata = {
-  title: "Datenschutzerklärung — Spotted",
+  title: "Datenschutzerklärung",
   description:
-    "Wie Spotted Personendaten bearbeitet — nach schweizerischem Datenschutzgesetz (DSG).",
+    "Wie Spotted Personendaten bearbeitet, nach schweizerischem Datenschutzgesetz (DSG).",
 };
 
 export default function PrivacyPage() {
@@ -58,8 +58,8 @@ export default function PrivacyPage() {
         </p>
         <p>
           <span className="font-medium text-neutral-900">Kontaktformular.</span>{" "}
-          Über das Kontaktformular übermittelte Angaben — Name, E-Mail-Adresse,
-          Rolle, Betreff und Nachricht — werden zur Bearbeitung Ihrer Anfrage
+          Über das Kontaktformular übermittelte Angaben (Name, E-Mail-Adresse,
+          Rolle, Betreff und Nachricht) werden zur Bearbeitung Ihrer Anfrage
           gespeichert.
         </p>
         <p>
@@ -120,7 +120,7 @@ export default function PrivacyPage() {
           Einzelne der oben genannten Dienstleister bearbeiten Daten ausserhalb
           der Schweiz, namentlich in den Vereinigten Staaten. Die Bekanntgabe
           erfolgt gestützt auf Standardvertragsklauseln beziehungsweise auf die
-          Teilnahme des Anbieters am Swiss–U.S. Data Privacy Framework. Trotz
+          Teilnahme des Anbieters am Swiss-U.S. Data Privacy Framework. Trotz
           dieser Massnahmen kann ein dem schweizerischen Recht gleichwertiger
           Schutz im Ausland nicht in jedem Fall garantiert werden.
         </p>

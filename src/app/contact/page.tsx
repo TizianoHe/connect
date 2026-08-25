@@ -5,8 +5,8 @@ import { SiteHeader } from "@/components/shared/SiteHeader";
 import { ContactForm } from "./ContactForm";
 
 export const metadata = {
-  title: "Kontakt — Spotted",
-  description: "Fragen, Hinweise oder ein Unternehmen vorschlagen — schreiben Sie uns.",
+  title: "Kontakt",
+  description: "Fragen, Hinweise oder ein Unternehmen vorschlagen. Schreiben Sie uns.",
 };
 
 export default function ContactPage() {
@@ -26,8 +26,8 @@ export default function ContactPage() {
         <h1 className="text-4xl text-neutral-900 tracking-tight mb-3">Kontakt</h1>
         <p className="text-lg text-neutral-600 leading-relaxed mb-10">
           Eine Frage, ein Hinweis, oder ein Unternehmen, das hierher gehört?
-          Schreiben Sie uns — wir lesen jede Nachricht und antworten, so schnell
-          es geht.
+          Schreiben Sie uns. Wir lesen jede Nachricht und antworten so schnell
+          wie möglich.
         </p>
 
         <ContactForm />

@@ -1,39 +1,44 @@
 import { ContentPage, type ContentSection } from "@/components/shared/ContentPage";
 
 export const metadata = {
-  title: "Über Spotted",
+  title: "Über uns",
   description:
-    "Warum es Spotted gibt: eine kuratierte Auswahl Schweizer KMU statt eines weiteren Verzeichnisses.",
+    "Warum es Spotted gibt: damit auch kleinere Schweizer Unternehmen online gefunden werden.",
 };
 
+/**
+ * Order matters here. "Was Spotted ist" comes first because a business owner
+ * opening this page on a phone wants to know what this is and what it costs,
+ * not a market analysis. The analysis follows for anyone who keeps reading.
+ */
 const SECTIONS: ContentSection[] = [
-  {
-    heading: "Was sich verändert hat",
-    paragraphs: [
-      "Ein gutes lokales Unternehmen online zu finden ist schwieriger geworden, nicht einfacher. Sichtbarkeit im Netz wird heute weitgehend gekauft oder für Algorithmen optimiert. Alles sieht gleich aus.",
-      "Die Folge: Die Druckerei in Familienbesitz, die Treuhänderin um die Ecke, der Fotograf zwei Strassen weiter verschwinden hinter Unternehmen, die das System einfach besser bespielen. Wenn Sichtbarkeit Optimierung stärker belohnt als Vertrauen, werden gute Unternehmen unauffindbar.",
-    ],
-  },
   {
     heading: "Was Spotted ist",
     paragraphs: [
-      "Spotted ist eine kuratierte Auswahl von Schweizer KMU. Unternehmen zeigen hier, wer sie sind, was sie tun und wie man sie erreicht. Kundinnen und Kunden suchen nach Kategorie und Ort und nehmen direkt Kontakt auf.",
-      "Spotted ist keine Werbeplattform, kein Marktplatz und kein System, das auf bezahlter Reichweite aufbaut. Es ist ein Ort, an dem sich Unternehmen einmal richtig vorstellen — mit ihren eigenen Worten.",
-      "Jedes Profil wird vor der Veröffentlichung geprüft. Auf Klarheit und Substanz, nicht auf Marketingpolitur.",
+      "Spotted ist eine Plattform, auf der Schweizer KMU zeigen, wer sie sind, was sie anbieten und wie man sie erreicht. Kundinnen und Kunden suchen nach Kategorie und Ort und nehmen direkt Kontakt auf.",
+      "Jedes Profil wird geprüft, bevor es online geht. Wir schauen, ob verständlich ist, was das Unternehmen macht, und ob die Angaben stimmen können. Das ist keine Bewertung der Qualität. Es sorgt dafür, dass hier keine leeren oder irreführenden Einträge stehen.",
+      "Spotted ist keine Werbeplattform und kein Marktplatz. Wer hier oben steht, hat nicht dafür bezahlt.",
     ],
   },
   {
-    heading: "Woran wir glauben",
+    heading: "Wofür wir das machen",
     paragraphs: [
-      "Digitale Sichtbarkeit sollte die Qualität eines Unternehmens abbilden, nicht die Qualität seines Marketings. Ein gutes lokales Unternehmen sollte gefunden werden wegen seiner Arbeit, seines Rufs und des Vertrauens, das es schafft — nicht weil es am meisten Inhalte produziert oder am meisten für Anzeigen ausgibt.",
-      "Und wir glauben, dass die Erschöpfung wächst: zu viele Optionen, zu viele geschliffene Empfehlungen, die sich alle gleich anfühlen. Die meisten Menschen suchen keine weitere Liste. Sie suchen Orientierung und Unternehmen, denen sie tatsächlich vertrauen können.",
+      "Viele kleine Unternehmen bekommen ihre Kundschaft über Mundpropaganda. Das funktioniert gut, hört aber dort auf, wo der Bekanntenkreis aufhört. Online sichtbar zu werden kostet heute Zeit, Geld oder beides.",
+      "Spotted soll diesen Unternehmen einen Ort geben, an dem sie gefunden werden, ohne ein Werbebudget zu brauchen. Ein gutes Unternehmen sollte auffindbar sein, weil es gute Arbeit macht, nicht weil es am meisten für Anzeigen ausgibt.",
+    ],
+  },
+  {
+    heading: "Was sich verändert hat",
+    paragraphs: [
+      "Ein gutes lokales Unternehmen online zu finden ist schwieriger geworden, nicht einfacher. Sichtbarkeit wird heute weitgehend gekauft oder für Algorithmen optimiert.",
+      "Die Folge: Die Druckerei in Familienbesitz, die Treuhänderin um die Ecke, der Fotograf zwei Strassen weiter verschwinden hinter Unternehmen, die das System besser bespielen. Wenn Sichtbarkeit Optimierung stärker belohnt als Vertrauen, werden gute Unternehmen unauffindbar.",
     ],
   },
   {
     heading: "Wo wir stehen",
     paragraphs: [
-      "Spotted startet in St. Gallen und befindet sich im Aufbau. In dieser Phase ist die Aufnahme kostenlos, während die Plattform gemeinsam mit den Unternehmen wächst, die sie nutzen.",
-      "Gemacht von jemandem, der überzeugt ist, dass Schweizer KMU eine glaubwürdigere und menschlichere Art verdienen, entdeckt zu werden.",
+      "Spotted startet in St. Gallen und befindet sich im Aufbau. Solange wir aufbauen, ist die Aufnahme kostenlos.",
+      "Hinter Spotted steht Tiziano, Student in St. Gallen.",
     ],
   },
 ];
@@ -42,7 +47,7 @@ export default function AboutPage() {
   return (
     <ContentPage
       title="Über Spotted"
-      intro="Unternehmen, die man kennen sollte — und warum es dafür etwas anderes braucht als ein Verzeichnis."
+      intro="Damit auch kleinere Schweizer Unternehmen online gefunden werden."
       sections={SECTIONS}
     />
   );

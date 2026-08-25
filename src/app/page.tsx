@@ -16,23 +16,23 @@ export const revalidate = 300;
 const TRUST = [
   {
     icon: ShieldCheck,
-    title: "Persönlich geprüft",
-    body: "Jedes Unternehmen wird angeschaut, bevor es aufgenommen wird.",
+    title: "Geprüfte Profile",
+    body: "Jedes Profil wird geprüft, bevor es online geht.",
   },
   {
     icon: Sparkles,
-    title: "Kuratiert, nicht vollständig",
-    body: "Wir führen nicht alle. Wir führen die, die man kennen sollte.",
+    title: "Auch ohne Werbebudget",
+    body: "Sichtbarkeit hängt hier nicht davon ab, wer am meisten für Anzeigen ausgibt.",
   },
   {
     icon: HandCoins,
     title: "Keine Provisionen",
-    body: "Sie arbeiten direkt mit Ihren Kundinnen und Kunden.",
+    body: "Anfragen gehen direkt an das Unternehmen. Wir verdienen nichts daran.",
   },
   {
     icon: MapPin,
-    title: "Aus der Ostschweiz",
-    body: "Gestartet in St. Gallen, mit Unternehmen aus der Region.",
+    title: "Kostenlos starten",
+    body: "Solange wir aufbauen, kostet die Aufnahme nichts.",
   },
 ];
 
@@ -102,8 +102,9 @@ export default async function HomePage() {
             </h1>
 
             <p className="text-lg text-neutral-600 mt-7 max-w-md leading-relaxed">
-              Spotted ist kein Verzeichnis, sondern eine kuratierte Auswahl von
-              Schweizer KMU — jedes einzelne persönlich geprüft.
+              Geprüfte Profile von Schweizer KMU. Damit auch kleinere
+              Unternehmen online gefunden werden, nicht nur die mit dem
+              grössten Werbebudget.
             </p>
 
             <form
@@ -201,15 +202,15 @@ export default async function HomePage() {
             ) : (
               <div className="rounded-3xl bg-neutral-50 p-7">
                 <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-neutral-400 mb-4">
-                  Die Auswahl entsteht gerade
+                  Wir bauen gerade auf
                 </p>
                 <p className="text-xl font-bold text-neutral-900 leading-snug mb-4">
-                  Noch ist hier nichts zu sehen — und das ist Absicht.
+                  Die ersten Unternehmen kommen bald.
                 </p>
                 <p className="text-sm text-neutral-600 leading-relaxed mb-6">
-                  Wir nehmen die ersten Unternehmen einzeln auf und sprechen mit
-                  jedem persönlich. Sobald die ersten Profile geprüft sind,
-                  stehen sie hier.
+                  Wir starten gerade mit den ersten Profilen. Sobald sie
+                  geprüft sind, erscheinen sie hier. Solange wir aufbauen, ist
+                  die Aufnahme kostenlos.
                 </p>
                 <Link href="/signup">
                   <Button size="sm">Ihr Unternehmen vorstellen</Button>
@@ -250,9 +251,9 @@ export default async function HomePage() {
               Gehören Sie dazu?
             </h2>
             <p className="text-neutral-600 leading-relaxed max-w-md">
-              Die Aufnahme ist kostenlos. Stellen Sie Ihr Unternehmen vor — wir
-              melden uns für die persönliche Prüfung. Kein Ranking, keine
-              bezahlten Plätze, keine Provision auf Ihre Aufträge.
+              Profil erstellen, wir prüfen es, dann geht es online. Solange wir
+              aufbauen, kostet das nichts. Keine bezahlten Plätze und keine
+              Provision auf Ihre Aufträge.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 lg:justify-end">

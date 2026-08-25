@@ -16,9 +16,9 @@ interface AdminProfilePageProps {
 
 const TEAM_SIZE_LABELS: Record<string, string> = {
   solo: "Just me",
-  "2-5": "2–5 people",
-  "6-20": "6–20 people",
-  "21-50": "21–50 people",
+  "2-5": "2-5 people",
+  "6-20": "6-20 people",
+  "21-50": "21-50 people",
   "50+": "50+ people",
 };
 
@@ -341,7 +341,7 @@ export default async function AdminProfilePage({ params }: AdminProfilePageProps
             <div className="bg-neutral-900 rounded-2xl p-6 text-white flex items-center justify-between">
               <div>
                 <p className="font-semibold">Interested in working together?</p>
-                <p className="text-sm text-neutral-400 mt-0.5">Reach out directly — no middleman.</p>
+                <p className="text-sm text-neutral-400 mt-0.5">Reach out directly, no middleman.</p>
               </div>
               <a
                 href={`mailto:${profile.email_public}`}

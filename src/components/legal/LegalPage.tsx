@@ -34,7 +34,7 @@ export function LegalPage({ title, intro, children }: LegalPageProps) {
         {!LEGAL_DETAILS_COMPLETE && (
           <div className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 mb-10">
             <p className="text-sm font-semibold text-amber-800 mb-1">
-              Entwurf — noch nicht startbereit
+              Entwurf, noch nicht startbereit
             </p>
             <p className="text-sm text-amber-700">
               Die Betreiberangaben in <code className="font-mono text-xs">src/lib/legal.ts</code>{" "}

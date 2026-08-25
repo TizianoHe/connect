@@ -3,7 +3,7 @@ import { ForgotPasswordForm } from "@/components/auth/ForgotPasswordForm";
 
 // TODO: When spotted.ch domain is configured with custom email (Resend/SendGrid), update Supabase Auth settings to use custom SMTP and customize the reset password email template.
 
-export const metadata = { title: "Passwort zurücksetzen — Spotted" };
+export const metadata = { title: "Passwort zurücksetzen" };
 
 export default function ForgotPasswordPage() {
   return (

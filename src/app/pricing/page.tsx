@@ -1,29 +1,39 @@
 import { ContentPage, type ContentSection } from "@/components/shared/ContentPage";
 
 export const metadata = {
-  title: "Preise — Spotted",
+  title: "Preise",
   description:
-    "Die Aufnahme bei Spotted ist während der Aufbauphase kostenlos. Keine Provisionen, keine bezahlten Platzierungen.",
+    "Solange Spotted aufgebaut wird, ist die Aufnahme kostenlos. Suchen ist immer kostenlos.",
 };
 
+/**
+ * "Womit Spotted Geld verdient" comes before the free-tier details on purpose.
+ * A free platform with no visible business model makes a careful business owner
+ * suspicious, and those are exactly the people this page has to convince.
+ *
+ * Deliberately no promise that early businesses stay free forever. That would
+ * be unretractable once published, and the pricing model is not decided yet.
+ */
 const SECTIONS: ContentSection[] = [
+  {
+    heading: "Womit Spotted Geld verdient",
+    paragraphs: [
+      "Im Moment gar nichts. Spotted ist ein Projekt neben dem Studium, und die laufenden Kosten sind gering.",
+      "Später wird es einen Abo-Plan geben. Bevor sich etwas ändert, steht es hier auf dieser Seite, und niemand wird automatisch in ein Abonnement überführt.",
+      "Für bessere Platzierungen wird es nie ein Angebot geben. Wer hier weiter oben steht, hat nicht dafür bezahlt.",
+    ],
+  },
   {
     heading: "Kostenlos während der Aufbauphase",
     paragraphs: [
-      "Spotted befindet sich im Aufbau, und die Aufnahme eines Unternehmens ist vollständig kostenlos. Keine Gebühren, keine Provisionen und keine bezahlten Platzierungen, die andere Unternehmen nach hinten schieben.",
+      "Solange Spotted aufgebaut wird, kostet die Aufnahme nichts. Keine Gebühren, keine Provisionen, keine bezahlten Platzierungen.",
+      "Wer früh dabei ist, wenn hier noch wenig los ist, soll dafür nicht auch noch zahlen.",
     ],
   },
   {
-    heading: "Was später dazukommen kann",
+    heading: "Für Suchende immer kostenlos",
     paragraphs: [
-      "Zu einem späteren Zeitpunkt kann Spotted optionale Abonnements für Unternehmen einführen, die zusätzliche Funktionen möchten. Preise werden frühzeitig kommuniziert, und Änderungen werden allen bestehenden Nutzerinnen und Nutzern angekündigt, bevor sie in Kraft treten.",
-      "Kostenpflichtige Leistungen setzen immer eine ausdrückliche Zustimmung voraus. Niemand wird automatisch in ein Abonnement überführt.",
-    ],
-  },
-  {
-    heading: "Was immer kostenlos bleibt",
-    paragraphs: [
-      "Das Durchsuchen von Spotted bleibt für Kundinnen und Kunden dauerhaft kostenlos. Es wird keine versteckten Gebühren geben, keine Bezahlschranken und kein System, bei dem man für den Kontakt zu einem Unternehmen bezahlen muss.",
+      "Spotted zu durchsuchen und ein Unternehmen zu kontaktieren bleibt dauerhaft kostenlos. Es wird keine versteckten Gebühren geben, keine Bezahlschranken und kein System, bei dem man für den Kontakt zu einem Unternehmen bezahlen muss.",
     ],
   },
 ];
@@ -32,7 +42,7 @@ export default function PricingPage() {
   return (
     <ContentPage
       title="Preise"
-      intro="Kurz gesagt: Die Aufnahme kostet derzeit nichts, und Suchen kostet nie etwas."
+      intro="Solange wir aufbauen, kostet die Aufnahme nichts. Suchen kostet nie etwas."
       sections={SECTIONS}
     />
   );

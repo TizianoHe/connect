@@ -11,8 +11,8 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <Logo size="h-14" />
             <p className="text-sm text-neutral-600 leading-relaxed">
-              Eine kuratierte Auswahl von Schweizer KMU. Jedes Unternehmen
-              persönlich geprüft.
+              Schweizer KMU finden. Jedes Profil wird geprüft, bevor es online
+              geht.
             </p>
             <p className="text-xs text-neutral-400">Gemacht in St. Gallen</p>
           </div>
