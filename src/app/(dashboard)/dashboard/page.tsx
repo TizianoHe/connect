@@ -8,7 +8,7 @@ import { SubmitForReviewButton } from "@/components/dashboard/SubmitForReviewBut
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Pencil, Plus, AlertTriangle, Clock, CheckCircle2, EyeOff, Circle } from "lucide-react";
 
-export const metadata = { title: "Dashboard — Spotted" };
+export const metadata = { title: "Dashboard" };
 
 const EDITABLE_STATUSES = ["draft", "rejected", "unpublished"];
 

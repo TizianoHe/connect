@@ -3,7 +3,7 @@ import { LegalPage, LegalSection } from "@/components/legal/LegalPage";
 import { OPERATOR } from "@/lib/legal";
 
 export const metadata = {
-  title: "Impressum — Spotted",
+  title: "Impressum",
   description:
     "Angaben zum Betreiber von Spotted gemäss Art. 3 Abs. 1 lit. s UWG.",
 };

@@ -1,7 +1,7 @@
 import { Logo } from "@/components/shared/Logo";
 import { LoginForm } from "@/components/auth/LoginForm";
 
-export const metadata = { title: "Anmelden — Spotted" };
+export const metadata = { title: "Anmelden" };
 
 export default function LoginPage() {
   return (

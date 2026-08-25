@@ -8,8 +8,8 @@ import { SiteHeader } from "@/components/shared/SiteHeader";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Auswahl ansehen — Spotted",
-  description: "Geprüfte Schweizer KMU nach Kategorie und Ort durchsuchen.",
+  title: "Auswahl ansehen",
+  description: "Schweizer KMU mit geprüften Profilen nach Kategorie und Ort durchsuchen.",
 };
 
 interface BrowsePageProps {
@@ -144,7 +144,7 @@ function EmptyState({ hasFilters = false }: { hasFilters?: boolean }) {
       <p className="text-sm text-neutral-500 mb-5">
         {hasFilters
           ? "Zu diesen Filtern gibt es noch keine Treffer."
-          : "Die Auswahl wird gerade aufgebaut — schauen Sie bald wieder vorbei."}
+          : "Wir bauen gerade auf. Schauen Sie bald wieder vorbei."}
       </p>
       {hasFilters && (
         <Link href="/browse">
@@ -202,8 +202,8 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
             Die Auswahl
           </h1>
           <p className="text-sm text-neutral-500 mt-1">
-            Geprüfte Schweizer Unternehmen — Kontakt läuft direkt, ohne
-            Zwischenstelle.
+            Alle Profile sind geprüft. Anfragen gehen direkt an das
+            Unternehmen.
           </p>
         </div>
 

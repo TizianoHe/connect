@@ -13,10 +13,17 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+/**
+ * The title template is what keeps every page tab reading "Kontakt | Spotted"
+ * without each page repeating the brand name. Page files set a bare title.
+ */
 export const metadata: Metadata = {
-  title: "Spotted — Unternehmen, die man kennen sollte",
+  title: {
+    default: "Spotted. Unternehmen, die man kennen sollte.",
+    template: "%s | Spotted",
+  },
   description:
-    "Eine kuratierte Auswahl von Schweizer KMU. Jedes Unternehmen wird vor der Aufnahme persönlich geprüft.",
+    "Schweizer KMU finden. Jedes Profil wird geprüft, bevor es online geht, damit auch kleinere Unternehmen online gefunden werden.",
 };
 
 export default function RootLayout({

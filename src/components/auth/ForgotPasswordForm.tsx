@@ -49,7 +49,7 @@ export function ForgotPasswordForm() {
           </svg>
         </div>
         <p className="text-neutral-700 text-sm mb-6">
-          If an account exists with that email, you&apos;ll receive a reset link shortly. Check your inbox — including the spam folder.
+          If an account exists with that email, you&apos;ll receive a reset link shortly. Check your inbox, including the spam folder.
         </p>
         <Link href="/login" className="text-sm text-neutral-500 hover:text-neutral-700">
           Back to login

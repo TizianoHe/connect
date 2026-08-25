@@ -4,9 +4,9 @@ import { Footer } from "@/components/shared/Footer";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 
 export const metadata = {
-  title: "So funktioniert es — Spotted",
+  title: "So funktioniert es",
   description:
-    "Vom Profil über die persönliche Prüfung bis zur direkten Anfrage — wie Spotted für Unternehmen und für Suchende funktioniert.",
+    "Vom Profil über die Prüfung bis zur direkten Anfrage: wie Spotted für Unternehmen und für Suchende funktioniert.",
 };
 
 /**
@@ -17,15 +17,15 @@ export const metadata = {
 const FOR_BUSINESSES = [
   {
     title: "Profil erstellen",
-    body: "Kostenlos registrieren und zeigen, was Sie tun, für wen und wie Sie arbeiten. Keine Vorlagen, kein Marketingsprech — eine klare Darstellung Ihrer Arbeit.",
+    body: "Registrieren und eintragen, was Sie anbieten, für wen und wie man Sie erreicht. Solange wir aufbauen, kostet das nichts.",
   },
   {
-    title: "Persönliche Prüfung",
-    body: "Wir schauen uns jedes eingereichte Profil an, bevor es online geht. Geprüft wird auf Klarheit und Substanz, nicht auf Hochglanz.",
+    title: "Wir prüfen das Profil",
+    body: "Jedes eingereichte Profil wird geprüft, bevor es online geht. Wir schauen, ob verständlich ist, was Sie anbieten, und ob die Angaben stimmen können.",
   },
   {
     title: "Direkte Anfragen erhalten",
-    body: "Wer mit Ihnen arbeiten will, meldet sich direkt bei Ihnen. Kein Zwischenhändler, keine Provision, kein Algorithmus, der entscheidet, wer gesehen wird.",
+    body: "Anfragen kommen direkt bei Ihnen an, nicht bei uns. Wir nehmen keine Provision auf Ihre Aufträge.",
   },
 ];
 
@@ -36,7 +36,7 @@ const FOR_CLIENTS = [
   },
   {
     title: "Echte Profile lesen",
-    body: "Jedes Profil zeigt, was ein Unternehmen tut, worin es besonders gut ist und wie es arbeitet — damit Sie einschätzen können, ob es passt.",
+    body: "Jedes Profil zeigt, was ein Unternehmen anbietet und wie es arbeitet, damit Sie einschätzen können, ob es passt.",
   },
   {
     title: "Direkt Kontakt aufnehmen",
@@ -80,8 +80,8 @@ export default function HowItWorksPage() {
           So funktioniert es
         </h1>
         <p className="text-lg text-neutral-600 leading-relaxed mb-14 max-w-2xl">
-          Zwei Seiten, ein Ablauf: Unternehmen stellen sich vor und werden
-          geprüft, Suchende finden sie und melden sich direkt.
+          Unternehmen tragen sich ein, wir prüfen das Profil, danach ist es
+          online und Anfragen kommen direkt an.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-16">
@@ -100,24 +100,23 @@ export default function HowItWorksPage() {
         </div>
 
         {/*
-          This block used to restate the three steps above it and close on "the
-          goal is a list you can trust", which is a slogan rather than
-          information. Naming what gets turned away is the only thing on this
-          page a reader cannot guess, and it is what makes the curation claim
-          checkable instead of asserted.
+          Naming concretely what the check covers is the one thing on this page
+          a reader cannot guess, and it is what makes "geprüft" mean something
+          rather than being a label.
         */}
         <div className="mt-16 pt-10 border-t border-neutral-200 max-w-2xl">
           <h2 className="text-2xl font-bold text-neutral-900 mb-4">
-            Was nicht aufgenommen wird
+            Was wir prüfen
           </h2>
           <p className="text-neutral-600 leading-relaxed">
-            Profile, die aus Schlagworten bestehen und nach dem Lesen nicht
-            klarer sind als vorher. Unternehmen, die auf eine Anfrage nicht
-            reagieren. Angaben, die sich nicht überprüfen lassen. Und alle, die
-            fragen, was ein besserer Platz kostet.
+            Ob aus dem Profil hervorgeht, was das Unternehmen tatsächlich
+            anbietet. Ob Firmenname, Ort und Kontaktangaben zusammenpassen und
+            erreichbar sind. Ob die Angaben plausibel sind.
           </p>
           <p className="text-neutral-600 leading-relaxed mt-4">
-            Eine Auswahl ist genau so viel wert wie das, was nicht drinsteht.
+            Die Qualität der Arbeit bewerten wir nicht, das können wir nicht.
+            Wir sorgen dafür, dass hier keine leeren oder irreführenden Einträge
+            stehen.
           </p>
         </div>
       </main>

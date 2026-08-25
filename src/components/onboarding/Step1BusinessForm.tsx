@@ -169,9 +169,9 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
         >
           <option value="">Select...</option>
           <option value="solo">Just me</option>
-          <option value="2-5">2–5</option>
-          <option value="6-20">6–20</option>
-          <option value="21-50">21–50</option>
+          <option value="2-5">2-5</option>
+          <option value="6-20">6-20</option>
+          <option value="21-50">21-50</option>
           <option value="50+">50+</option>
         </select>
         {errors.team_size && (

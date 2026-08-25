@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { StepIndicator } from "@/components/onboarding/StepIndicator";
 import { Step2ServicesForm } from "@/components/onboarding/Step2ServicesForm";
 
-export const metadata = { title: "Step 2 — Services" };
+export const metadata = { title: "Schritt 2: Leistungen" };
 
 export default async function OnboardingStep2() {
   const supabase = await createClient();

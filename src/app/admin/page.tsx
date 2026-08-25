@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Logo } from "@/components/shared/Logo";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Admin — Spotted" };
+export const metadata = { title: "Admin" };
 
 interface AdminPageProps {
   searchParams: Promise<{ tab?: string }>;

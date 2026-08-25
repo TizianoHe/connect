@@ -18,15 +18,15 @@ export async function submitContactForm(
   const message = (formData.get("message") as string | null)?.trim() ?? "";
 
   if (!name || !email || !subject || !message) {
-    return { status: "error", message: "Please fill in all required fields." };
+    return { status: "error", message: "Bitte füllen Sie alle Pflichtfelder aus." };
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return { status: "error", message: "Please enter a valid email address." };
+    return { status: "error", message: "Bitte geben Sie eine gültige E-Mail-Adresse ein." };
   }
 
   if (message.length < 10) {
-    return { status: "error", message: "Message must be at least 10 characters." };
+    return { status: "error", message: "Die Nachricht muss mindestens 10 Zeichen lang sein." };
   }
 
   const supabase = await createClient();
@@ -43,7 +43,7 @@ export async function submitContactForm(
     console.error("Contact form submission error:", error);
     return {
       status: "error",
-      message: "Something went wrong. Please try again or email us directly.",
+      message: "Da ist etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt eine E-Mail.",
     };
   }
 
