@@ -34,7 +34,7 @@ export function LoginForm() {
     });
 
     if (error) {
-      setServerError("Invalid email or password. Please try again.");
+      setServerError("E-Mail-Adresse oder Passwort stimmt nicht. Bitte versuchen Sie es erneut.");
       return;
     }
 
@@ -46,9 +46,9 @@ export function LoginForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <Input
         id="email"
-        label="Email"
+        label="E-Mail"
         type="email"
-        placeholder="jane@company.com"
+        placeholder="name@firma.ch"
         autoComplete="email"
         error={errors.email?.message}
         {...register("email")}
@@ -56,9 +56,9 @@ export function LoginForm() {
       <div className="relative">
         <Input
           id="password"
-          label="Password"
+          label="Passwort"
           type={showPassword ? "text" : "password"}
-          placeholder="Your password"
+          placeholder="Ihr Passwort"
           autoComplete="current-password"
           error={errors.password?.message}
           {...register("password")}
@@ -75,7 +75,7 @@ export function LoginForm() {
 
       <div className="flex justify-end">
         <Link href="/forgot-password" className="text-sm text-neutral-500 hover:text-neutral-700">
-          Forgot your password?
+          Passwort vergessen?
         </Link>
       </div>
 
@@ -86,13 +86,13 @@ export function LoginForm() {
       )}
 
       <Button type="submit" size="lg" loading={isSubmitting} className="w-full">
-        Sign in
+        Anmelden
       </Button>
 
       <p className="text-center text-sm text-neutral-500">
-        Don&apos;t have an account?{" "}
+        Noch kein Konto?{" "}
         <Link href="/signup" className="text-neutral-900 font-medium hover:underline">
-          Create one
+          Jetzt erstellen
         </Link>
       </p>
     </form>

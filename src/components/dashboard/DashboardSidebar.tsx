@@ -15,9 +15,9 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, active: true },
-  { href: "/onboarding/step-1", label: "My Profile", icon: User, active: true },
-  { href: "/browse", label: "Browse", icon: Search, active: true },
-  { href: "/settings", label: "Settings", icon: Settings, active: false },
+  { href: "/onboarding/step-1", label: "Mein Profil", icon: User, active: true },
+  { href: "/browse", label: "Unternehmen entdecken", icon: Search, active: true },
+  { href: "/settings", label: "Einstellungen", icon: Settings, active: false },
 ];
 
 interface DashboardSidebarProps {
@@ -49,7 +49,7 @@ export function DashboardSidebar({ userEmail, businessName }: DashboardSidebarPr
             return (
               <span
                 key={href}
-                title="Coming soon"
+                title="Kommt bald"
                 className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-neutral-300 cursor-not-allowed"
               >
                 <Icon size={16} />
@@ -89,7 +89,7 @@ export function DashboardSidebar({ userEmail, businessName }: DashboardSidebarPr
           className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 w-full transition-colors"
         >
           <LogOut size={16} />
-          Sign out
+          Abmelden
         </button>
       </div>
     </aside>

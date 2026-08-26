@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/shared/SiteHeader";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Auswahl ansehen",
+  title: "Unternehmen entdecken",
   description: "Schweizer KMU mit geprüften Profilen nach Kategorie und Ort durchsuchen.",
 };
 
@@ -98,7 +98,7 @@ async function BrowseContent({
   });
 
   const n = cards.length;
-  const countLabel = `Showing ${n} ${n === 1 ? "business" : "businesses"}`;
+  const countLabel = `${n} Unternehmen`;
 
   return (
     <>
@@ -109,7 +109,7 @@ async function BrowseContent({
             href="/browse"
             className="text-xs text-neutral-500 hover:text-neutral-900 transition-colors"
           >
-            Clear filters
+            Filter zurücksetzen
           </Link>
         )}
       </div>
@@ -199,12 +199,8 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
         {/* Page title */}
         <div className="mb-5">
           <h1 className="text-3xl text-neutral-900 tracking-tight">
-            Die Auswahl
+            Unternehmen
           </h1>
-          <p className="text-sm text-neutral-500 mt-1">
-            Alle Profile sind geprüft. Anfragen gehen direkt an das
-            Unternehmen.
-          </p>
         </div>
 
         {/* Filters */}

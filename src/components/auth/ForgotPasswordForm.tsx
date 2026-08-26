@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const schema = z.object({
-  email: z.string().email("Invalid email address"),
+  email: z.string().email("Bitte geben Sie eine gültige E-Mail-Adresse ein."),
 });
 type FormData = z.infer<typeof schema>;
 
@@ -33,7 +33,7 @@ export function ForgotPasswordForm() {
     });
 
     if (error) {
-      setServerError("Something went wrong. Please try again.");
+      setServerError("Da ist etwas schiefgelaufen. Bitte versuchen Sie es erneut.");
       return;
     }
 
@@ -49,10 +49,10 @@ export function ForgotPasswordForm() {
           </svg>
         </div>
         <p className="text-neutral-700 text-sm mb-6">
-          If an account exists with that email, you&apos;ll receive a reset link shortly. Check your inbox, including the spam folder.
+          Falls zu dieser Adresse ein Konto besteht, erhalten Sie gleich einen Link zum Zurücksetzen. Schauen Sie auch im Spam-Ordner nach.
         </p>
         <Link href="/login" className="text-sm text-neutral-500 hover:text-neutral-700">
-          Back to login
+          Zurück zur Anmeldung
         </Link>
       </div>
     );
@@ -62,9 +62,9 @@ export function ForgotPasswordForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <Input
         id="email"
-        label="Email"
+        label="E-Mail"
         type="email"
-        placeholder="jane@company.com"
+        placeholder="name@firma.ch"
         autoComplete="email"
         error={errors.email?.message}
         {...register("email")}
@@ -77,12 +77,12 @@ export function ForgotPasswordForm() {
       )}
 
       <Button type="submit" size="lg" loading={isSubmitting} className="w-full">
-        Send reset link
+        Link senden
       </Button>
 
       <p className="text-center text-sm text-neutral-500">
         <Link href="/login" className="text-neutral-900 font-medium hover:underline">
-          Back to login
+          Zurück zur Anmeldung
         </Link>
       </p>
     </form>

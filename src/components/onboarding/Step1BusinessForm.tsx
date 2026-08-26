@@ -66,17 +66,17 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
       <Input
         id="business_name"
-        label="Business name"
-        placeholder="Acme Design Studio"
+        label="Firmenname"
+        placeholder="Muster Schreinerei AG"
         error={errors.business_name?.message}
         {...register("business_name")}
       />
       <div>
         <Input
           id="tagline"
-          label="Tagline"
-          placeholder="One sentence that sells your business"
-          hint="Max 120 characters. Shown on your listing card."
+          label="Kurzbeschrieb"
+          placeholder="Ein Satz, der Ihr Unternehmen auf den Punkt bringt"
+          hint="Höchstens 120 Zeichen. Erscheint auf Ihrer Karte in der Übersicht."
           error={errors.tagline?.message}
           {...register("tagline")}
         />
@@ -86,8 +86,8 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
       </div>
       <Textarea
         id="description"
-        label="Description"
-        placeholder="Tell potential clients what makes your business unique, what you specialise in, and who you work with..."
+        label="Beschreibung"
+        placeholder="Was macht Ihr Unternehmen aus, worauf sind Sie spezialisiert und mit wem arbeiten Sie zusammen?"
         rows={5}
         characterCount={descriptionValue.length}
         maxCharacters={1000}
@@ -98,7 +98,7 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
         id="website_url"
         label="Website"
         type="url"
-        placeholder="https://yourcompany.com"
+        placeholder="https://ihrefirma.ch"
         error={errors.website_url?.message}
         {...register("website_url")}
       />
@@ -112,8 +112,8 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
 
       <Textarea
         id="positioning_line"
-        label="In one sentence, what is your business?"
-        placeholder="Architecture studio focused on small residential renovations in Eastern Switzerland."
+        label="Was macht Ihr Unternehmen, in einem Satz?"
+        placeholder="Architekturbüro für kleine Wohnungssanierungen in der Ostschweiz."
         hint='A specific, concrete description. Avoid marketing speak.'
         rows={2}
         characterCount={positioningValue.length}
@@ -124,9 +124,9 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
 
       <Textarea
         id="best_suited_for"
-        label="What kind of clients are you best suited for?"
-        placeholder="Small businesses and solo founders who need..."
-        hint="Be honest about who you serve well. Specificity builds trust."
+        label="Für welche Kundschaft passen Sie besonders gut?"
+        placeholder="Kleine Betriebe und Selbstständige, die …"
+        hint="Seien Sie ehrlich, für wen Sie wirklich passen. Konkretes schafft Vertrauen."
         rows={3}
         characterCount={bestSuitedValue.length}
         maxCharacters={500}
@@ -136,9 +136,9 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
 
       <Textarea
         id="how_they_work"
-        label="How do you usually work with clients?"
-        placeholder="We start with a scoping call, then..."
-        hint="Process, communication style, project rhythm. What can clients expect?"
+        label="Wie läuft die Zusammenarbeit normalerweise ab?"
+        placeholder="Wir beginnen mit einem Gespräch, danach …"
+        hint="Ablauf, Kommunikation, Tempo. Womit kann Ihre Kundschaft rechnen?"
         rows={3}
         characterCount={howTheyWorkValue.length}
         maxCharacters={500}
@@ -148,9 +148,9 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
 
       <Textarea
         id="clients_appreciate"
-        label="What do clients usually appreciate about working with you?"
-        placeholder="Clients often mention that we..."
-        hint="In your own words. No generic claims."
+        label="Was schätzen Ihre Kundinnen und Kunden an Ihnen?"
+        placeholder="Oft hören wir, dass wir …"
+        hint="In Ihren eigenen Worten. Keine Floskeln."
         rows={3}
         characterCount={clientsAppreciateValue.length}
         maxCharacters={500}
@@ -160,15 +160,15 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
 
       <div className="flex flex-col gap-1.5">
         <label htmlFor="team_size" className="text-sm font-medium text-neutral-700">
-          How many people are in your team?
+          Wie viele Personen arbeiten bei Ihnen?
         </label>
         <select
           id="team_size"
           className="w-full rounded-xl border px-4 py-2.5 text-sm text-neutral-900 bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent border-neutral-200 hover:border-neutral-300 appearance-none"
           {...register("team_size")}
         >
-          <option value="">Select...</option>
-          <option value="solo">Just me</option>
+          <option value="">Bitte wählen …</option>
+          <option value="solo">Eine Person</option>
           <option value="2-5">2-5</option>
           <option value="6-20">6-20</option>
           <option value="21-50">21-50</option>
@@ -187,7 +187,7 @@ export function Step1BusinessForm({ userId, defaultValues }: Step1BusinessFormPr
 
       <div className="flex justify-end pt-2">
         <Button type="submit" size="lg" loading={isSubmitting}>
-          Continue
+          Weiter
         </Button>
       </div>
     </form>

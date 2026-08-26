@@ -16,22 +16,22 @@ export function ProfileCompletenessCard({
 }: ProfileCompletenessCardProps) {
   const checks = [
     {
-      label: "Business name & description",
+      label: "Name und Beschreibung",
       done: !!profile.business_name && !!profile.description,
       href: "/onboarding/step-1",
     },
     {
-      label: "Services listed",
+      label: "Leistungen",
       done: serviceCount > 0,
       href: "/onboarding/step-2",
     },
     {
-      label: "Location & contact",
+      label: "Ort und Kontakt",
       done: !!profile.location_city,
       href: "/onboarding/step-3",
     },
     {
-      label: "Logo / photo",
+      label: "Logo oder Foto",
       done: hasPhoto,
       href: "/onboarding/step-4",
     },
@@ -43,7 +43,7 @@ export function ProfileCompletenessCard({
   return (
     <div className="bg-white rounded-2xl border border-neutral-200 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-semibold text-neutral-900">Profile completeness</h2>
+        <h2 className="font-semibold text-neutral-900">Profil vollständig</h2>
         <span className="text-sm font-medium text-neutral-500">{percentage}%</span>
       </div>
       <div className="w-full bg-neutral-100 rounded-full h-2 mb-6">
@@ -76,7 +76,7 @@ export function ProfileCompletenessCard({
                 href={href}
                 className="text-xs text-neutral-900 font-medium hover:underline"
               >
-                Add →
+                Ergänzen →
               </Link>
             )}
           </div>

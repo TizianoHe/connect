@@ -47,11 +47,11 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
 
   function validateFile(file: File): boolean {
     if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
-      setError("Please select a JPEG, PNG, or WebP image.");
+      setError("Bitte wählen Sie ein Bild im Format JPEG, PNG oder WebP.");
       return false;
     }
     if (file.size > MAX_AVATAR_SIZE) {
-      setError("Image must be 5 MB or smaller.");
+      setError("Das Bild darf höchstens 5 MB gross sein.");
       return false;
     }
     return true;
@@ -145,7 +145,7 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
     if (!file || !validateFile(file)) return;
 
     if (galleryPhotos.length >= GALLERY_MAX) {
-      setError("You can upload up to 10 gallery photos.");
+      setError("Sie können bis zu 10 Fotos in die Galerie laden.");
       return;
     }
 
@@ -182,7 +182,7 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
   }
 
   async function handleGalleryDelete(photo: Photo) {
-    if (!confirm("Delete this photo? This cannot be undone.")) return;
+    if (!confirm("Dieses Foto löschen? Das lässt sich nicht rückgängig machen.")) return;
 
     const supabase = createClient();
     const { error: deleteError } = await supabase
@@ -213,13 +213,13 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
 
       {/* ── Section 1: Profile picture ─────────────────────────────────────── */}
       <div className="bg-white rounded-2xl border border-neutral-200 p-6">
-        <h2 className="font-semibold text-neutral-900 mb-4">Profile picture</h2>
+        <h2 className="font-semibold text-neutral-900 mb-4">Profilbild</h2>
         <div className="flex items-center gap-5">
           <div className="relative w-48 h-48 flex-shrink-0 rounded-xl overflow-hidden bg-neutral-100">
             {primaryPhoto ? (
               <Image
                 src={primaryPhoto.photo_url}
-                alt="Profile picture"
+                alt="Profilbild"
                 fill
                 className="object-cover"
                 sizes="192px"
@@ -240,7 +240,7 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
             disabled={primaryUploading}
             className="text-sm font-medium text-neutral-700 hover:text-neutral-900 border border-neutral-200 hover:border-neutral-300 px-4 py-2 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {primaryPhoto ? "Change profile picture" : "Upload profile picture"}
+            {primaryPhoto ? "Profilbild ändern" : "Profilbild hochladen"}
           </button>
         </div>
         <input
@@ -255,13 +255,13 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
       {/* ── Section 2: Gallery ─────────────────────────────────────────────── */}
       <div className="bg-white rounded-2xl border border-neutral-200 p-6">
         <div className="flex items-center justify-between mb-1">
-          <h2 className="font-semibold text-neutral-900">Gallery</h2>
+          <h2 className="font-semibold text-neutral-900">Galerie</h2>
           <span className="text-xs text-neutral-400">
-            {galleryPhotos.length} of {GALLERY_MAX}
+            {galleryPhotos.length} von {GALLERY_MAX}
           </span>
         </div>
         <p className="text-xs text-neutral-500 mb-4">
-          Up to 10 additional photos shown on your public profile.
+          Bis zu 10 weitere Fotos, die auf Ihrem öffentlichen Profil erscheinen.
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -272,7 +272,7 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
             >
               <Image
                 src={photo.photo_url}
-                alt="Gallery photo"
+                alt="Foto aus der Galerie"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 33vw"
@@ -280,7 +280,7 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <button
                   onClick={() => handleGalleryDelete(photo)}
-                  title="Delete photo"
+                  title="Foto löschen"
                   className="w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition-colors"
                 >
                   <X size={14} className="text-neutral-700" />
@@ -300,7 +300,7 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
               ) : (
                 <>
                   <Plus size={20} />
-                  <span className="text-xs">Add photo</span>
+                  <span className="text-xs">Foto hinzufügen</span>
                 </>
               )}
             </button>

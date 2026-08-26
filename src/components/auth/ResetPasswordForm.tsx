@@ -13,11 +13,11 @@ import { Input } from "@/components/ui/input";
 
 const schema = z
   .object({
-    password: z.string().min(8, "Password must be at least 8 characters"),
+    password: z.string().min(8, "Das Passwort muss mindestens 8 Zeichen lang sein."),
     confirmPassword: z.string(),
   })
   .refine((d) => d.password === d.confirmPassword, {
-    message: "Passwords do not match",
+    message: "Die Passwörter stimmen nicht überein.",
     path: ["confirmPassword"],
   });
 
@@ -29,6 +29,12 @@ export function ResetPasswordForm() {
   const [pageState, setPageState] = useState<PageState>("loading");
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  /**
+   * Tracked separately from the message. The follow-up link used to appear
+   * based on the string containing "expired", which stops working the moment
+   * the message is translated.
+   */
+  const [linkExpired, setLinkExpired] = useState(false);
   const router = useRouter();
 
   const {
@@ -63,13 +69,15 @@ export function ResetPasswordForm() {
 
   async function onSubmit(data: FormData) {
     setServerError(null);
+    setLinkExpired(false);
     const supabase = createClient();
 
     const { error } = await supabase.auth.updateUser({ password: data.password });
 
     if (error) {
       if (error.message.toLowerCase().includes("expired") || error.message.toLowerCase().includes("invalid")) {
-        setServerError("Reset link expired. Please request a new one.");
+        setLinkExpired(true);
+        setServerError("Der Link ist abgelaufen. Bitte fordern Sie einen neuen an.");
       } else {
         setServerError(error.message);
       }
@@ -92,10 +100,10 @@ export function ResetPasswordForm() {
     return (
       <div className="text-center py-4">
         <p className="text-neutral-700 text-sm mb-4">
-          This page requires a valid reset link. If you need to reset your password, request a new link.
+          Diese Seite braucht einen gültigen Link zum Zurücksetzen. Fordern Sie bei Bedarf einen neuen an.
         </p>
         <Link href="/forgot-password" className="text-sm text-neutral-900 font-medium hover:underline">
-          Request a new reset link
+          Neuen Link anfordern
         </Link>
       </div>
     );
@@ -110,10 +118,10 @@ export function ResetPasswordForm() {
           </svg>
         </div>
         <p className="text-neutral-700 text-sm mb-6">
-          Password updated. You can now log in with your new password.
+          Passwort geändert. Sie können sich jetzt mit dem neuen Passwort anmelden.
         </p>
         <Link href="/login">
-          <Button size="lg">Go to login</Button>
+          <Button size="lg">Zur Anmeldung</Button>
         </Link>
       </div>
     );
@@ -124,9 +132,9 @@ export function ResetPasswordForm() {
       <div className="relative">
         <Input
           id="password"
-          label="New password"
+          label="Neues Passwort"
           type={showPassword ? "text" : "password"}
-          placeholder="Min. 8 characters"
+          placeholder="Mindestens 8 Zeichen"
           autoComplete="new-password"
           error={errors.password?.message}
           {...register("password")}
@@ -142,9 +150,9 @@ export function ResetPasswordForm() {
       </div>
       <Input
         id="confirmPassword"
-        label="Confirm new password"
+        label="Neues Passwort bestätigen"
         type={showPassword ? "text" : "password"}
-        placeholder="Repeat password"
+        placeholder="Passwort wiederholen"
         autoComplete="new-password"
         error={errors.confirmPassword?.message}
         {...register("confirmPassword")}
@@ -153,21 +161,21 @@ export function ResetPasswordForm() {
       {serverError && (
         <p className="text-sm text-red-500 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
           {serverError}{" "}
-          {serverError.includes("expired") && (
+          {linkExpired && (
             <Link href="/forgot-password" className="underline">
-              Request a new link
+              Neuen Link anfordern
             </Link>
           )}
         </p>
       )}
 
       <Button type="submit" size="lg" loading={isSubmitting} className="w-full">
-        Update password
+        Passwort speichern
       </Button>
 
       <p className="text-center text-sm text-neutral-500">
         <Link href="/login" className="text-neutral-900 font-medium hover:underline">
-          Back to login
+          Zurück zur Anmeldung
         </Link>
       </p>
     </form>

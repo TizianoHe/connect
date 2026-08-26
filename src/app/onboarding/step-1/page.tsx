@@ -22,9 +22,9 @@ export default async function OnboardingStep1() {
         <StepIndicator currentStep={1} />
       </div>
       <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm p-8">
-        <h1 className="text-2xl font-semibold text-neutral-900 mb-1">Tell us about your business</h1>
+        <h1 className="text-2xl font-semibold text-neutral-900 mb-1">Erzählen Sie von Ihrem Unternehmen</h1>
         <p className="text-sm text-neutral-500 mb-8">
-          This information appears on your public profile.
+          Diese Angaben erscheinen auf Ihrem öffentlichen Profil.
         </p>
         <Step1BusinessForm
           userId={user.id}

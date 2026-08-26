@@ -114,7 +114,7 @@ export default async function HomePage() {
                 type="search"
                 name="search"
                 placeholder="Unternehmen, Dienstleistung oder Ort"
-                aria-label="Auswahl durchsuchen"
+                aria-label="Unternehmen durchsuchen"
                 className="flex-1 min-w-0 bg-transparent text-[0.9375rem] text-neutral-900 placeholder:text-neutral-400 outline-none py-2.5"
               />
               <Button type="submit" size="sm" className="flex-shrink-0 px-4 py-2.5">

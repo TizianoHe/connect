@@ -61,8 +61,8 @@ export function Step3LocationForm({
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
       <Input
         id="location_city"
-        label="City"
-        placeholder="Zurich"
+        label="Ort"
+        placeholder="St. Gallen"
         error={errors.location_city?.message}
         {...register("location_city")}
       />
@@ -71,7 +71,7 @@ export function Step3LocationForm({
           htmlFor="location_country"
           className="text-sm font-medium text-neutral-700 block mb-1.5"
         >
-          Country
+          Land
         </label>
         <select
           id="location_country"
@@ -93,22 +93,22 @@ export function Step3LocationForm({
 
       <div className="border-t border-neutral-100 pt-5">
         <p className="text-sm font-medium text-neutral-700 mb-4">
-          Contact information{" "}
-          <span className="font-normal text-neutral-400">(shown on your profile)</span>
+          Kontaktangaben{" "}
+          <span className="font-normal text-neutral-400">(erscheinen auf Ihrem Profil)</span>
         </p>
         <div className="flex flex-col gap-4">
           <Input
             id="email_public"
-            label="Public email"
+            label="E-Mail für Anfragen"
             type="email"
-            placeholder="hello@yourcompany.com"
-            hint="Can differ from your login email"
+            placeholder="kontakt@ihrefirma.ch"
+            hint="Darf sich von Ihrer Anmelde-Adresse unterscheiden"
             error={errors.email_public?.message}
             {...register("email_public")}
           />
           <Input
             id="phone"
-            label="Phone number"
+            label="Telefonnummer"
             type="tel"
             placeholder="+41 79 123 45 67"
             error={errors.phone?.message}
@@ -129,10 +129,10 @@ export function Step3LocationForm({
           onClick={() => router.push("/onboarding/step-2")}
           className="text-sm text-neutral-500 hover:text-neutral-900"
         >
-          ← Back
+          ← Zurück
         </button>
         <Button type="submit" size="lg" loading={isSubmitting}>
-          Continue
+          Weiter
         </Button>
       </div>
     </form>

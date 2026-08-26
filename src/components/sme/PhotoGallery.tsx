@@ -32,7 +32,7 @@ export function PhotoGallery({ photos }: { photos: Photo[] }) {
           >
             <Image
               src={photo.photo_url}
-              alt="Business photo"
+              alt="Foto des Unternehmens"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 50vw, 33vw"
@@ -55,7 +55,7 @@ export function PhotoGallery({ photos }: { photos: Photo[] }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={lightboxUrl}
-            alt="Full size photo"
+            alt="Foto in voller Grösse"
             className="max-w-full max-h-[85vh] object-contain rounded-lg"
           />
         </div>

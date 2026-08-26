@@ -25,10 +25,10 @@ export default async function OnboardingStep4() {
       </div>
       <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm p-8">
         <h1 className="text-2xl font-semibold text-neutral-900 mb-1">
-          Add your logo or photo
+          Logo oder Foto hinzufügen
         </h1>
         <p className="text-sm text-neutral-500 mb-8">
-          Profiles with a photo get significantly more clicks. JPEG, PNG, or WebP up to 5 MB.
+          Profile mit Bild werden deutlich häufiger angeklickt. JPEG, PNG oder WebP, bis 5 MB.
         </p>
         <Step4AvatarUpload
           userId={user.id}

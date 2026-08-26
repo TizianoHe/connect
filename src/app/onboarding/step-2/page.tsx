@@ -32,10 +32,10 @@ export default async function OnboardingStep2() {
       </div>
       <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm p-8">
         <h1 className="text-2xl font-semibold text-neutral-900 mb-1">
-          What services do you offer?
+          Welche Leistungen bieten Sie an?
         </h1>
         <p className="text-sm text-neutral-500 mb-8">
-          Select categories and add individual services. Clients will filter by these.
+          Wählen Sie Kategorien und erfassen Sie einzelne Leistungen. Danach wird gesucht und gefiltert.
         </p>
         <Step2ServicesForm
           userId={user.id}

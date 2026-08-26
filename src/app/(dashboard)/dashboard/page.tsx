@@ -71,10 +71,10 @@ export default async function DashboardPage() {
     status === "rejected" ? "muted" : "muted";
 
   const statusLabel =
-    status === "published" ? "Published" :
-    status === "pending_review" ? "Under review" :
-    status === "rejected" ? "Changes needed" :
-    status === "unpublished" ? "Unpublished" : "Draft";
+    status === "published" ? "Veröffentlicht" :
+    status === "pending_review" ? "In Prüfung" :
+    status === "rejected" ? "Änderungen nötig" :
+    status === "unpublished" ? "Offline" : "Entwurf";
 
   return (
     <div className="flex flex-col gap-8">
@@ -88,17 +88,17 @@ export default async function DashboardPage() {
           </Badge>
         </div>
         <p className="text-sm text-neutral-500">
-          Manage your business profile and track your visibility.
+          Hier verwalten Sie Ihr Profil und sehen, wie es auf Spotted erscheint.
         </p>
       </div>
 
       {/* Stats strip */}
       <div className="grid grid-cols-2 gap-4">
         {[
-          { label: "Services listed", value: serviceCount ?? 0 },
+          { label: "Erfasste Leistungen", value: serviceCount ?? 0 },
           {
-            label: "Member since",
-            value: new Date(profile.created_at).toLocaleDateString("en-GB", {
+            label: "Dabei seit",
+            value: new Date(profile.created_at).toLocaleDateString("de-CH", {
               month: "short",
               year: "numeric",
             }),
@@ -117,9 +117,9 @@ export default async function DashboardPage() {
         <div className="bg-neutral-50 border border-neutral-200 rounded-2xl px-5 py-4 flex items-start gap-3">
           <Clock size={18} className="text-neutral-500 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="font-medium text-neutral-900 text-sm">Your profile is under review</p>
+            <p className="font-medium text-neutral-900 text-sm">Ihr Profil wird geprüft</p>
             <p className="text-sm text-neutral-500 mt-0.5">
-              We&apos;ll review it shortly. Your profile is not yet visible to the public.
+              Wir schauen es uns in Kürze an. Bis dahin ist es nicht öffentlich sichtbar.
             </p>
           </div>
         </div>
@@ -129,16 +129,16 @@ export default async function DashboardPage() {
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 flex items-start gap-3">
           <CheckCircle2 size={18} className="text-emerald-600 flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <p className="font-medium text-emerald-900 text-sm">Your profile is live on Spotted</p>
+            <p className="font-medium text-emerald-900 text-sm">Ihr Profil ist online</p>
             <p className="text-sm text-emerald-700 mt-0.5">
-              Clients can discover and contact you directly.
+              Interessentinnen und Interessenten finden Sie jetzt und können Sie direkt kontaktieren.
             </p>
           </div>
           <Link
             href={`/sme/${user.id}`}
             className="flex items-center gap-1.5 text-xs font-medium text-emerald-700 hover:text-emerald-900 flex-shrink-0"
           >
-            View profile <ExternalLink size={12} />
+            Profil ansehen <ExternalLink size={12} />
           </Link>
         </div>
       )}
@@ -147,14 +147,14 @@ export default async function DashboardPage() {
         <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 flex items-start gap-3">
           <AlertTriangle size={18} className="text-amber-600 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="font-medium text-amber-900 text-sm">Changes needed before publication</p>
+            <p className="font-medium text-amber-900 text-sm">Vor der Veröffentlichung sind Änderungen nötig</p>
             {profile.rejection_reason && (
               <p className="text-sm text-amber-800 mt-1.5 leading-relaxed">
                 {profile.rejection_reason}
               </p>
             )}
             <p className="text-xs text-amber-600 mt-2">
-              Update your profile and resubmit for review.
+              Passen Sie Ihr Profil an und reichen Sie es erneut ein.
             </p>
           </div>
         </div>
@@ -164,9 +164,9 @@ export default async function DashboardPage() {
         <div className="bg-neutral-50 border border-neutral-200 rounded-2xl px-5 py-4 flex items-start gap-3">
           <EyeOff size={18} className="text-neutral-500 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="font-medium text-neutral-900 text-sm">Your profile has been unpublished</p>
+            <p className="font-medium text-neutral-900 text-sm">Ihr Profil ist offline</p>
             <p className="text-sm text-neutral-500 mt-0.5">
-              Update your profile and resubmit for review to go live again.
+              Passen Sie es an und reichen Sie es erneut ein, damit es wieder online geht.
             </p>
           </div>
         </div>
@@ -175,9 +175,9 @@ export default async function DashboardPage() {
       {/* ── Missing items banner (draft or rejected/unpublished + incomplete) ── */}
       {(status === "draft" || status === "rejected" || status === "unpublished") && !isComplete && (
         <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4">
-          <p className="font-medium text-amber-900 text-sm mb-1">Your profile is almost ready</p>
+          <p className="font-medium text-amber-900 text-sm mb-1">Ihr Profil ist fast fertig</p>
           <p className="text-sm text-amber-700 mb-3">
-            Before you can submit for review, please complete:
+            Das fehlt noch, bevor Sie es einreichen können:
           </p>
           <ul className="flex flex-col gap-2">
             {missingItems.map((item) => (
@@ -190,7 +190,7 @@ export default async function DashboardPage() {
                   href={item.href}
                   className="text-xs font-medium text-amber-900 hover:underline flex-shrink-0"
                 >
-                  Fix this →
+                  Ergänzen →
                 </Link>
               </li>
             ))}
@@ -202,9 +202,9 @@ export default async function DashboardPage() {
       {status === "draft" && isComplete && (
         <div className="bg-white border border-neutral-200 rounded-2xl px-5 py-4 flex items-center justify-between gap-4">
           <div>
-            <p className="font-medium text-neutral-900 text-sm">Ready to submit for review</p>
+            <p className="font-medium text-neutral-900 text-sm">Bereit zum Einreichen</p>
             <p className="text-sm text-neutral-500 mt-0.5">
-              Your profile is complete. Submit it and we&apos;ll review it shortly.
+              Ihr Profil ist vollständig. Reichen Sie es ein, wir schauen es uns in Kürze an.
             </p>
           </div>
           <SubmitForReviewButton userId={user.id} />
@@ -215,7 +215,7 @@ export default async function DashboardPage() {
         <div className="flex items-center gap-3">
           <SubmitForReviewButton
             userId={user.id}
-            label={status === "rejected" ? "Resubmit for review" : "Submit for review"}
+            label={status === "rejected" ? "Erneut einreichen" : "Zur Prüfung einreichen"}
           />
         </div>
       )}
@@ -230,24 +230,24 @@ export default async function DashboardPage() {
           />
 
           <div className="bg-white rounded-2xl border border-neutral-200 p-6">
-            <h2 className="font-semibold text-neutral-900 mb-4">Quick actions</h2>
+            <h2 className="font-semibold text-neutral-900 mb-4">Schnellzugriff</h2>
             <div className="flex flex-col gap-2">
               {[
                 {
-                  label: "Edit profile",
-                  description: "Update your business information",
+                  label: "Profil bearbeiten",
+                  description: "Angaben zu Ihrem Unternehmen ändern",
                   href: "/onboarding/step-1",
                   icon: Pencil,
                 },
                 {
-                  label: "Add services",
-                  description: "List more services you offer",
+                  label: "Leistungen ergänzen",
+                  description: "Weitere Leistungen erfassen",
                   href: "/onboarding/step-2",
                   icon: Plus,
                 },
                 {
-                  label: "Preview public listing",
-                  description: "See how clients see you",
+                  label: "Öffentliches Profil ansehen",
+                  description: "So sehen Suchende Ihr Unternehmen",
                   href: `/sme/${user.id}`,
                   icon: ExternalLink,
                 },
