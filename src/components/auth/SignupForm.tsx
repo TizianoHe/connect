@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -14,6 +14,50 @@ export function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+
+  /**
+   * The address is kept after submitting so the confirmation mail can be sent
+   * again without making the person fill the form a second time. Signing up
+   * twice does not help: it burns the hourly send quota and can lock them out
+   * for the rest of the hour.
+   */
+  const [signedUpEmail, setSignedUpEmail] = useState("");
+  const [resendState, setResendState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [resendError, setResendError] = useState<string | null>(null);
+  /** Seconds until the button is usable again, to stop rapid repeat sends. */
+  const [cooldown, setCooldown] = useState(0);
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const id = setTimeout(() => setCooldown((s) => s - 1), 1000);
+    return () => clearTimeout(id);
+  }, [cooldown]);
+
+  async function handleResend() {
+    if (cooldown > 0 || resendState === "sending") return;
+    setResendState("sending");
+    setResendError(null);
+
+    const supabase = createClient();
+    const { error } = await supabase.auth.resend({
+      type: "signup",
+      email: signedUpEmail,
+      options: { emailRedirectTo: `${window.location.origin}/auth-callback` },
+    });
+
+    if (error) {
+      setResendState("error");
+      setResendError(
+        error.message.toLowerCase().includes("rate")
+          ? "Zu viele Anfragen. Bitte warten Sie eine Stunde und versuchen Sie es dann erneut."
+          : error.message
+      );
+      return;
+    }
+
+    setResendState("sent");
+    setCooldown(60);
+  }
 
   const {
     register,
@@ -41,6 +85,7 @@ export function SignupForm() {
       return;
     }
 
+    setSignedUpEmail(data.email);
     setSubmitted(true);
   }
 
@@ -54,8 +99,46 @@ export function SignupForm() {
         </div>
         <h2 className="text-xl font-semibold text-neutral-900 mb-2">Bitte bestätigen Sie Ihre E-Mail-Adresse</h2>
         <p className="text-neutral-500 text-sm">
-          Wir haben Ihnen einen Bestätigungslink geschickt. Klicken Sie darauf, um Ihr Konto zu aktivieren und Ihr Profil anzulegen.
+          Wir haben einen Bestätigungslink an{" "}
+          <span className="font-medium text-neutral-700">{signedUpEmail}</span>{" "}
+          geschickt. Klicken Sie darauf, um Ihr Konto zu aktivieren und Ihr
+          Profil anzulegen.
         </p>
+        <p className="text-neutral-400 text-xs mt-3">
+          Schauen Sie auch im Spam-Ordner nach. Die Zustellung kann ein paar
+          Minuten dauern.
+        </p>
+
+        <div className="mt-6 flex flex-col items-center gap-2">
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            loading={resendState === "sending"}
+            disabled={cooldown > 0}
+            onClick={handleResend}
+          >
+            {cooldown > 0
+              ? `Erneut senden in ${cooldown}s`
+              : "E-Mail erneut senden"}
+          </Button>
+
+          {resendState === "sent" && (
+            <p className="text-xs text-emerald-600">
+              Die E-Mail wurde erneut verschickt.
+            </p>
+          )}
+          {resendState === "error" && resendError && (
+            <p className="text-xs text-red-500 max-w-xs">{resendError}</p>
+          )}
+
+          <p className="text-xs text-neutral-400 mt-1">
+            Falsche Adresse eingegeben?{" "}
+            <Link href="/signup" className="text-neutral-700 hover:underline">
+              Nochmal von vorn
+            </Link>
+          </p>
+        </div>
       </div>
     );
   }
@@ -79,25 +162,26 @@ export function SignupForm() {
         error={errors.email?.message}
         {...register("email")}
       />
-      <div className="relative">
-        <Input
-          id="password"
-          label="Passwort"
-          type={showPassword ? "text" : "password"}
-          placeholder="Mindestens 8 Zeichen"
-          autoComplete="new-password"
-          error={errors.password?.message}
-          {...register("password")}
-        />
-        <button
-          type="button"
-          onClick={() => setShowPassword(!showPassword)}
-          className="absolute right-3 top-8 text-neutral-400 hover:text-neutral-600"
-          tabIndex={-1}
-        >
-          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-        </button>
-      </div>
+      <Input
+        id="password"
+        label="Passwort"
+        type={showPassword ? "text" : "password"}
+        placeholder="Mindestens 8 Zeichen"
+        autoComplete="new-password"
+        error={errors.password?.message}
+        trailing={
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
+            className="text-neutral-400 hover:text-neutral-600 transition-colors"
+            tabIndex={-1}
+          >
+            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+          </button>
+        }
+        {...register("password")}
+      />
       <Input
         id="confirmPassword"
         label="Passwort bestätigen"

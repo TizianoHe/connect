@@ -129,25 +129,26 @@ export function ResetPasswordForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <div className="relative">
-        <Input
-          id="password"
-          label="Neues Passwort"
-          type={showPassword ? "text" : "password"}
-          placeholder="Mindestens 8 Zeichen"
-          autoComplete="new-password"
-          error={errors.password?.message}
-          {...register("password")}
-        />
-        <button
-          type="button"
-          onClick={() => setShowPassword(!showPassword)}
-          className="absolute right-3 top-8 text-neutral-400 hover:text-neutral-600"
-          tabIndex={-1}
-        >
-          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-        </button>
-      </div>
+      <Input
+        id="password"
+        label="Neues Passwort"
+        type={showPassword ? "text" : "password"}
+        placeholder="Mindestens 8 Zeichen"
+        autoComplete="new-password"
+        error={errors.password?.message}
+        trailing={
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
+            className="text-neutral-400 hover:text-neutral-600 transition-colors"
+            tabIndex={-1}
+          >
+            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+          </button>
+        }
+        {...register("password")}
+      />
       <Input
         id="confirmPassword"
         label="Neues Passwort bestätigen"
