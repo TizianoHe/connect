@@ -52,9 +52,9 @@ export function SignupForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-xl font-semibold text-neutral-900 mb-2">Check your email</h2>
+        <h2 className="text-xl font-semibold text-neutral-900 mb-2">Bitte bestätigen Sie Ihre E-Mail-Adresse</h2>
         <p className="text-neutral-500 text-sm">
-          We sent a confirmation link to your email address. Click it to activate your account and start building your profile.
+          Wir haben Ihnen einen Bestätigungslink geschickt. Klicken Sie darauf, um Ihr Konto zu aktivieren und Ihr Profil anzulegen.
         </p>
       </div>
     );
@@ -64,17 +64,17 @@ export function SignupForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <Input
         id="fullName"
-        label="Full name"
-        placeholder="Jane Smith"
+        label="Vor- und Nachname"
+        placeholder="Maria Muster"
         autoComplete="name"
         error={errors.fullName?.message}
         {...register("fullName")}
       />
       <Input
         id="email"
-        label="Email"
+        label="E-Mail"
         type="email"
-        placeholder="jane@company.com"
+        placeholder="name@firma.ch"
         autoComplete="email"
         error={errors.email?.message}
         {...register("email")}
@@ -82,9 +82,9 @@ export function SignupForm() {
       <div className="relative">
         <Input
           id="password"
-          label="Password"
+          label="Passwort"
           type={showPassword ? "text" : "password"}
-          placeholder="Min. 8 characters"
+          placeholder="Mindestens 8 Zeichen"
           autoComplete="new-password"
           error={errors.password?.message}
           {...register("password")}
@@ -100,9 +100,9 @@ export function SignupForm() {
       </div>
       <Input
         id="confirmPassword"
-        label="Confirm password"
+        label="Passwort bestätigen"
         type={showPassword ? "text" : "password"}
-        placeholder="Repeat password"
+        placeholder="Passwort wiederholen"
         autoComplete="new-password"
         error={errors.confirmPassword?.message}
         {...register("confirmPassword")}
@@ -115,13 +115,13 @@ export function SignupForm() {
       )}
 
       <Button type="submit" size="lg" loading={isSubmitting} className="mt-2 w-full">
-        Create account
+        Konto erstellen
       </Button>
 
       <p className="text-center text-sm text-neutral-500">
-        Already have an account?{" "}
+        Sie haben bereits ein Konto?{" "}
         <Link href="/login" className="text-neutral-900 font-medium hover:underline">
-          Sign in
+          Anmelden
         </Link>
       </p>
     </form>

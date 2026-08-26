@@ -12,7 +12,7 @@ interface SubmitForReviewButtonProps {
 
 export function SubmitForReviewButton({
   userId,
-  label = "Submit for review",
+  label = "Zur Prüfung einreichen",
 }: SubmitForReviewButtonProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);

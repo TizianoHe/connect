@@ -23,10 +23,10 @@ export default async function OnboardingStep3() {
       </div>
       <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm p-8">
         <h1 className="text-2xl font-semibold text-neutral-900 mb-1">
-          Where are you based?
+          Wo sind Sie zu Hause?
         </h1>
         <p className="text-sm text-neutral-500 mb-8">
-          Clients search by location, so make sure this is accurate.
+          Es wird nach Ort gesucht, achten Sie also darauf, dass die Angabe stimmt.
         </p>
         <Step3LocationForm
           userId={user.id}

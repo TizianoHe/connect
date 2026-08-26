@@ -30,11 +30,11 @@ export function Step4AvatarUpload({
     if (!selected) return;
 
     if (!ACCEPTED_IMAGE_TYPES.includes(selected.type)) {
-      setError("Please select a JPEG, PNG, or WebP image.");
+      setError("Bitte wählen Sie ein Bild im Format JPEG, PNG oder WebP.");
       return;
     }
     if (selected.size > MAX_AVATAR_SIZE) {
-      setError("Image must be 5 MB or smaller.");
+      setError("Das Bild darf höchstens 5 MB gross sein.");
       return;
     }
 
@@ -119,7 +119,7 @@ export function Step4AvatarUpload({
           {preview ? (
             <Image
               src={preview}
-              alt="Business logo preview"
+              alt="Vorschau von Logo oder Foto"
               width={128}
               height={128}
               className="w-full h-full object-cover"
@@ -142,13 +142,13 @@ export function Step4AvatarUpload({
             }}
             className="flex items-center gap-1 text-xs text-neutral-500 hover:text-red-500"
           >
-            <X size={12} /> Remove
+            <X size={12} /> Entfernen
           </button>
         )}
 
         {!preview && (
           <p className="text-sm text-neutral-500 text-center">
-            A photo is required to submit your profile for review.
+            Ohne Bild kann das Profil nicht zur Prüfung eingereicht werden.
           </p>
         )}
       </div>
@@ -176,7 +176,7 @@ export function Step4AvatarUpload({
             loading={uploading}
             onClick={handleUpload}
           >
-            Upload & continue
+            Hochladen und weiter
           </Button>
         ) : (
           <Button
@@ -186,7 +186,7 @@ export function Step4AvatarUpload({
             className="w-full"
             onClick={() => fileInputRef.current?.click()}
           >
-            Choose image
+            Bild auswählen
           </Button>
         )}
 
@@ -196,7 +196,7 @@ export function Step4AvatarUpload({
             onClick={() => router.push("/onboarding/step-3")}
             className="text-sm text-neutral-500 hover:text-neutral-900"
           >
-            ← Back
+            ← Zurück
           </button>
         </div>
       </div>

@@ -84,7 +84,7 @@ export default function TermsPage() {
       <LegalSection heading="6. Unzulässige Nutzung">
         <p>
           Untersagt sind insbesondere das automatisierte Auslesen von Inhalten,
-          das systematische Kopieren der Auswahl, Versuche, Sicherheitsmassnahmen
+          das systematische Kopieren der Einträge, Versuche, Sicherheitsmassnahmen
           zu umgehen, sowie jede Nutzung, die den Betrieb der Plattform
           beeinträchtigt.
         </p>

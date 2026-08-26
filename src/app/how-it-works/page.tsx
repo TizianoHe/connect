@@ -31,7 +31,7 @@ const FOR_BUSINESSES = [
 
 const FOR_CLIENTS = [
   {
-    title: "Auswahl durchsuchen",
+    title: "Unternehmen entdecken",
     body: "Nach Kategorie, Ort oder Stichwort suchen und Schweizer Unternehmen in Ihrer Nähe entdecken.",
   },
   {

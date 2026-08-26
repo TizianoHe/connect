@@ -3,40 +3,40 @@ import { z } from "zod";
 export const step1Schema = z.object({
   business_name: z
     .string()
-    .min(2, "Business name must be at least 2 characters")
-    .max(100, "Business name must be 100 characters or fewer"),
+    .min(2, "Der Firmenname muss mindestens 2 Zeichen lang sein.")
+    .max(100, "Der Firmenname darf höchstens 100 Zeichen lang sein."),
   tagline: z
     .string()
-    .max(120, "Tagline must be 120 characters or fewer")
+    .max(120, "Der Kurzbeschrieb darf höchstens 120 Zeichen lang sein.")
     .optional()
     .or(z.literal("")),
   description: z
     .string()
-    .min(20, "Please write at least 20 characters")
-    .max(1000, "Description must be 1000 characters or fewer"),
+    .min(20, "Bitte schreiben Sie mindestens 20 Zeichen.")
+    .max(1000, "Die Beschreibung darf höchstens 1000 Zeichen lang sein."),
   website_url: z
     .string()
-    .url("Please enter a valid URL (e.g. https://example.com)")
+    .url("Bitte geben Sie eine gültige Adresse ein, zum Beispiel https://ihrefirma.ch")
     .optional()
     .or(z.literal("")),
   positioning_line: z
     .string()
-    .max(200, "Must be 200 characters or fewer")
+    .max(200, "Höchstens 200 Zeichen.")
     .optional()
     .or(z.literal("")),
   best_suited_for: z
     .string()
-    .max(500, "Must be 500 characters or fewer")
+    .max(500, "Höchstens 500 Zeichen.")
     .optional()
     .or(z.literal("")),
   how_they_work: z
     .string()
-    .max(500, "Must be 500 characters or fewer")
+    .max(500, "Höchstens 500 Zeichen.")
     .optional()
     .or(z.literal("")),
   clients_appreciate: z
     .string()
-    .max(500, "Must be 500 characters or fewer")
+    .max(500, "Höchstens 500 Zeichen.")
     .optional()
     .or(z.literal("")),
   team_size: z
@@ -47,7 +47,7 @@ export const step1Schema = z.object({
 
 export const step2ServiceSchema = z.object({
   category_id: z.string().uuid(),
-  title: z.string().min(2, "Service title is required"),
+  title: z.string().min(2, "Bitte geben Sie der Leistung einen Titel."),
   description: z.string().optional().or(z.literal("")),
   price_from: z.string().optional(),
   price_currency: z.string(),
@@ -56,17 +56,17 @@ export const step2ServiceSchema = z.object({
 export const step2Schema = z.object({
   selected_category_ids: z
     .array(z.string().uuid())
-    .min(1, "Select at least one service category")
-    .max(5, "You can select up to 5 categories"),
+    .min(1, "Bitte wählen Sie mindestens eine Kategorie.")
+    .max(5, "Sie können bis zu 5 Kategorien wählen."),
   services: z.array(step2ServiceSchema),
 });
 
 export const step3Schema = z.object({
-  location_city: z.string().min(1, "City is required"),
+  location_city: z.string().min(1, "Bitte geben Sie den Ort an."),
   location_country: z.string().min(2).max(2),
   email_public: z
     .string()
-    .email("Invalid email address")
+    .email("Bitte geben Sie eine gültige E-Mail-Adresse ein.")
     .optional()
     .or(z.literal("")),
   phone: z.string().optional().or(z.literal("")),

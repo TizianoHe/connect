@@ -13,8 +13,8 @@ export default function SignupPage() {
         <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm p-8">
           <h1 className="text-3xl text-neutral-900 mb-1">Unternehmen vorstellen</h1>
           <p className="text-sm text-neutral-500 mb-8">
-            Konto erstellen, Profil ausfüllen, danach schauen wir es uns
-            persönlich an.
+            Konto erstellen, Profil ausfüllen, danach prüfen wir es und
+            schalten es frei.
           </p>
           <SignupForm />
         </div>

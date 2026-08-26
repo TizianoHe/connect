@@ -24,11 +24,11 @@ interface ProfilePageProps {
 }
 
 const TEAM_SIZE_LABELS: Record<string, string> = {
-  solo: "Just me",
-  "2-5": "2-5 people",
-  "6-20": "6-20 people",
-  "21-50": "21-50 people",
-  "50+": "50+ people",
+  solo: "Eine Person",
+  "2-5": "2-5 Personen",
+  "6-20": "6-20 Personen",
+  "21-50": "21-50 Personen",
+  "50+": "über 50 Personen",
 };
 
 function AvatarFallback({ name }: { name: string }) {
@@ -148,10 +148,10 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
             ) : (
               <>
                 <Link href="/login">
-                  <Button variant="ghost" size="sm">Sign in</Button>
+                  <Button variant="ghost" size="sm">Anmelden</Button>
                 </Link>
                 <Link href="/signup">
-                  <Button size="sm">List your business</Button>
+                  <Button size="sm">Unternehmen vorstellen</Button>
                 </Link>
               </>
             )}
@@ -172,7 +172,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
             </p>
             {isOwner && (
               <Link href="/dashboard" className="ml-auto text-xs text-neutral-400 hover:text-white flex-shrink-0">
-                Go to dashboard →
+                Zum Dashboard →
               </Link>
             )}
           </div>
@@ -186,7 +186,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 mb-8 group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
-          Back to browse
+          Zurück zur Übersicht
         </Link>
 
         <div className="flex flex-col gap-6">
@@ -236,7 +236,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           {/* About */}
           {profile.description && (
             <div className="bg-white rounded-2xl border border-neutral-200 p-6">
-              <h2 className="text-sm font-semibold text-neutral-900 mb-3">About</h2>
+              <h2 className="text-sm font-semibold text-neutral-900 mb-3">Über uns</h2>
               <p className="text-sm text-neutral-600 leading-relaxed whitespace-pre-line">
                 {profile.description}
               </p>
@@ -246,7 +246,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           {/* Best suited for */}
           {profile.best_suited_for && (
             <div className="bg-white rounded-2xl border border-neutral-200 p-6">
-              <h2 className="text-sm font-semibold text-neutral-900 mb-3">Best suited for</h2>
+              <h2 className="text-sm font-semibold text-neutral-900 mb-3">Passt besonders gut für</h2>
               <p className="text-sm text-neutral-600 leading-relaxed whitespace-pre-line">
                 {profile.best_suited_for}
               </p>
@@ -256,7 +256,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           {/* How we work */}
           {profile.how_they_work && (
             <div className="bg-white rounded-2xl border border-neutral-200 p-6">
-              <h2 className="text-sm font-semibold text-neutral-900 mb-3">How we work</h2>
+              <h2 className="text-sm font-semibold text-neutral-900 mb-3">So arbeiten wir</h2>
               <p className="text-sm text-neutral-600 leading-relaxed whitespace-pre-line">
                 {profile.how_they_work}
               </p>
@@ -266,7 +266,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           {/* What clients appreciate */}
           {profile.clients_appreciate && (
             <div className="bg-neutral-50 rounded-2xl border border-neutral-100 p-6">
-              <h2 className="text-sm font-semibold text-neutral-900 mb-3">What clients appreciate</h2>
+              <h2 className="text-sm font-semibold text-neutral-900 mb-3">Was Kundinnen und Kunden schätzen</h2>
               <p className="text-sm text-neutral-600 leading-relaxed whitespace-pre-line italic">
                 {profile.clients_appreciate}
               </p>
@@ -276,7 +276,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           {/* Photo gallery — shown only when there are non-primary photos */}
           {galleryPhotos.length > 0 && (
             <div className="bg-white rounded-2xl border border-neutral-200 p-6">
-              <h2 className="text-sm font-semibold text-neutral-900 mb-4">Photos</h2>
+              <h2 className="text-sm font-semibold text-neutral-900 mb-4">Fotos</h2>
               <PhotoGallery photos={galleryPhotos} />
             </div>
           )}
@@ -284,7 +284,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           {/* Services */}
           {byCategory.size > 0 && (
             <div className="flex flex-col gap-4">
-              <h2 className="text-sm font-semibold text-neutral-900">Services</h2>
+              <h2 className="text-sm font-semibold text-neutral-900">Leistungen</h2>
               {[...byCategory.entries()].map(([catId, { categoryName, services }]) => (
                 <div key={catId}>
                   <div className="flex items-center gap-2 mb-3">
@@ -307,7 +307,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
                         {svc.price_from != null && (
                           <div className="flex-shrink-0 text-right">
                             <p className="text-sm font-semibold text-neutral-900">
-                              From {svc.price_currency}{" "}
+                              ab {svc.price_currency}{" "}
                               {Number(svc.price_from).toLocaleString()}
                             </p>
                           </div>
@@ -362,16 +362,16 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           {profile.email_public && (
             <div className="bg-neutral-900 rounded-2xl p-6 text-white flex items-center justify-between">
               <div>
-                <p className="font-semibold">Interested in working together?</p>
+                <p className="font-semibold">Interesse an einer Zusammenarbeit?</p>
                 <p className="text-sm text-neutral-400 mt-0.5">
-                  Reach out directly, no middleman.
+                  Ihre Anfrage geht direkt an uns, ohne Zwischenstelle.
                 </p>
               </div>
               <a
                 href={`mailto:${profile.email_public}`}
                 className="flex items-center gap-1.5 bg-white text-neutral-900 text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-neutral-100 transition-colors flex-shrink-0"
               >
-                Contact <ChevronRight size={14} />
+                Kontakt aufnehmen <ChevronRight size={14} />
               </a>
             </div>
           )}

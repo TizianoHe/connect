@@ -23,7 +23,7 @@ export function Footer() {
             <ul className="flex flex-col gap-3">
               <li>
                 <Link href="/browse" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                  Auswahl ansehen
+                  Unternehmen entdecken
                 </Link>
               </li>
               <li>

@@ -75,7 +75,7 @@ export function Step2ServicesForm({
   const onSubmit: SubmitHandler<Step2FormData> = async (data) => {
     setServicesError(null);
     if (fields.length === 0) {
-      setServicesError("Add at least one service before continuing.");
+      setServicesError("Bitte erfassen Sie mindestens eine Leistung, bevor Sie weitergehen.");
       return;
     }
     setServerError(null);
@@ -118,8 +118,8 @@ export function Step2ServicesForm({
       {/* Category selection */}
       <div>
         <p className="text-sm font-medium text-neutral-700 mb-3">
-          Select categories{" "}
-          <span className="font-normal text-neutral-400">(up to 5)</span>
+          Kategorien wählen{" "}
+          <span className="font-normal text-neutral-400">(bis zu 5)</span>
         </p>
         <div className="grid grid-cols-2 gap-2">
           {categories.map((cat) => {
@@ -152,13 +152,13 @@ export function Step2ServicesForm({
       {selectedIds.length > 0 && (
         <div>
           <div className="flex items-center justify-between mb-3">
-            <p className="text-sm font-medium text-neutral-700">Your services</p>
+            <p className="text-sm font-medium text-neutral-700">Ihre Leistungen</p>
             <button
               type="button"
               onClick={() => addService(selectedIds[0])}
               className="flex items-center gap-1 text-xs text-neutral-500 hover:text-neutral-900"
             >
-              <Plus size={12} /> Add service
+              <Plus size={12} /> Leistung hinzufügen
             </button>
           </div>
           <div className="flex flex-col gap-2">
@@ -179,7 +179,7 @@ export function Step2ServicesForm({
                     onClick={() => setExpandedIndex(isExpanded ? null : index)}
                   >
                     <span className="text-sm font-medium text-neutral-700">
-                      {field.title || `Service ${index + 1}`}
+                      {field.title || `Leistung ${index + 1}`}
                       {category && (
                         <span className="ml-2 text-xs font-normal text-neutral-400">
                           · {category.name}
@@ -211,7 +211,7 @@ export function Step2ServicesForm({
                       <div className="grid grid-cols-2 gap-3">
                         <div className="col-span-2">
                           <label className="text-xs font-medium text-neutral-600 block mb-1">
-                            Category
+                            Kategorie
                           </label>
                           <select
                             className="w-full rounded-xl border border-neutral-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
@@ -229,20 +229,20 @@ export function Step2ServicesForm({
                         </div>
                       </div>
                       <Input
-                        label="Service title"
-                        placeholder="e.g. Brand identity design"
+                        label="Titel der Leistung"
+                        placeholder="zum Beispiel Küchenmontage"
                         error={errors.services?.[index]?.title?.message}
                         {...register(`services.${index}.title`)}
                       />
                       <Textarea
-                        label="Description"
-                        placeholder="What's included in this service?"
+                        label="Beschreibung"
+                        placeholder="Was ist in dieser Leistung enthalten?"
                         rows={3}
                         {...register(`services.${index}.description`)}
                       />
                       <div className="grid grid-cols-2 gap-3">
                         <Input
-                          label="Starting price (optional)"
+                          label="Ab-Preis (optional)"
                           type="number"
                           placeholder="1500"
                           min={0}
@@ -250,7 +250,7 @@ export function Step2ServicesForm({
                         />
                         <div>
                           <label className="text-sm font-medium text-neutral-700 block mb-1.5">
-                            Currency
+                            Währung
                           </label>
                           <select
                             className="w-full rounded-xl border border-neutral-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
@@ -282,7 +282,7 @@ export function Step2ServicesForm({
                     : "border-neutral-200 text-neutral-400 hover:border-neutral-300 hover:text-neutral-600"
                 )}
               >
-                <Plus size={14} /> Add your first service
+                <Plus size={14} /> Erste Leistung erfassen
               </button>
               {servicesError && (
                 <p className="text-xs text-red-500">{servicesError}</p>
@@ -304,10 +304,10 @@ export function Step2ServicesForm({
           onClick={() => router.push("/onboarding/step-1")}
           className="text-sm text-neutral-500 hover:text-neutral-900"
         >
-          ← Back
+          ← Zurück
         </button>
         <Button type="submit" size="lg" loading={isSubmitting}>
-          Continue
+          Weiter
         </Button>
       </div>
     </form>
