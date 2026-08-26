@@ -78,6 +78,17 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
     return { url: publicUrl, path };
   }
 
+  /**
+   * sme_profiles.avatar_url is the fallback used wherever no primary row in
+   * sme_photos exists. Replacing the primary photo here used to leave it
+   * pointing at the file from onboarding, which is then deleted from storage —
+   * a dangling URL waiting for any code path that reads the fallback first.
+   */
+  async function syncProfileAvatar(url: string) {
+    const supabase = createClient();
+    await supabase.from("sme_profiles").update({ avatar_url: url }).eq("id", userId);
+  }
+
   async function handlePrimarySelect(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (primaryInputRef.current) primaryInputRef.current.value = "";
@@ -114,6 +125,7 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
       }
 
       setPrimaryPhoto({ ...primaryPhoto, photo_url: uploaded.url });
+      await syncProfileAvatar(uploaded.url);
     } else {
       const { data: newRow, error: insertError } = await supabase
         .from("sme_photos")
@@ -134,6 +146,7 @@ export function PhotosManager({ userId, initialPhotos }: PhotosManagerProps) {
       }
 
       setPrimaryPhoto(newRow as Photo);
+      await syncProfileAvatar(uploaded.url);
     }
 
     setPrimaryUploading(false);

@@ -28,8 +28,18 @@ export function ForgotPasswordForm() {
     setServerError(null);
     const supabase = createClient();
 
+    /**
+     * Through /auth-callback, not straight to /reset-password.
+     *
+     * createBrowserClient uses the PKCE flow, so the recovery link comes back
+     * as `?code=...`. Nothing on /reset-password exchanged that code — the page
+     * only listened for the PASSWORD_RECOVERY event, which belongs to the older
+     * implicit flow and never fired. The form sat there for 1.5 seconds and
+     * then declared the link invalid, for every reset. The callback redeems the
+     * code server-side, writes the session cookie, and forwards.
+     */
     const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
-      redirectTo: `${window.location.origin}/reset-password`,
+      redirectTo: `${window.location.origin}/auth-callback?next=/reset-password`,
     });
 
     if (error) {

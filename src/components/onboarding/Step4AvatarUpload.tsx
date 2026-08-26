@@ -66,10 +66,19 @@ export function Step4AvatarUpload({
       .from("avatars")
       .getPublicUrl(path);
 
+    /**
+     * The storage path is fixed per user, so a replacement lands on the same
+     * URL and browsers serve the old file from cache. The cache-buster has to
+     * go into both tables: sme_profiles.avatar_url used to carry it while
+     * sme_photos.photo_url did not, and the public profile page reads
+     * sme_photos — so replacing a logo appeared to do nothing there.
+     */
+    const bustedUrl = `${publicUrl}?t=${Date.now()}`;
+
     const { error: profileError } = await supabase
       .from("sme_profiles")
       .update({
-        avatar_url: `${publicUrl}?t=${Date.now()}`,
+        avatar_url: bustedUrl,
         onboarding_step: 5,
       })
       .eq("id", userId);
@@ -91,12 +100,12 @@ export function Step4AvatarUpload({
     if (existingPrimary) {
       await supabase
         .from("sme_photos")
-        .update({ photo_url: publicUrl })
+        .update({ photo_url: bustedUrl })
         .eq("id", existingPrimary.id);
     } else {
       await supabase.from("sme_photos").insert({
         sme_profile_id: userId,
-        photo_url: publicUrl,
+        photo_url: bustedUrl,
         is_primary: true,
         display_order: 0,
       });
