@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Search, ShieldCheck, Sparkles, HandCoins, MapPin } from "lucide-react";
+import { Search, ShieldCheck, Scale, HandCoins, Sparkles } from "lucide-react";
 import { Footer } from "@/components/shared/Footer";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { Button } from "@/components/ui/button";
@@ -20,19 +20,19 @@ const TRUST = [
     body: "Jedes Profil wird geprüft, bevor es online geht.",
   },
   {
-    icon: Sparkles,
-    title: "Auch ohne Werbebudget",
-    body: "Sichtbarkeit hängt hier nicht davon ab, wer am meisten für Anzeigen ausgibt.",
+    icon: Scale,
+    title: "Ohne bezahlte Platzierungen",
+    body: "Sichtbarkeit lässt sich bei Spotted nicht kaufen.",
   },
   {
     icon: HandCoins,
     title: "Keine Provisionen",
-    body: "Anfragen gehen direkt an das Unternehmen. Wir verdienen nichts daran.",
+    body: "Anfragen gehen direkt an das Unternehmen. Spotted erhält keine Provision.",
   },
   {
-    icon: MapPin,
+    icon: Sparkles,
     title: "Kostenlos starten",
-    body: "Solange wir aufbauen, kostet die Aufnahme nichts.",
+    body: "Während der Aufbauphase ist die Aufnahme kostenlos.",
   },
 ];
 
@@ -102,9 +102,7 @@ export default async function HomePage() {
             </h1>
 
             <p className="text-lg text-neutral-600 mt-7 max-w-md leading-relaxed">
-              Geprüfte Profile von Schweizer KMU. Damit auch kleinere
-              Unternehmen online gefunden werden, nicht nur die mit dem
-              grössten Werbebudget.
+              Entdecken Sie Schweizer KMU, die zu Ihrem Anliegen passen.
             </p>
 
             <form
@@ -221,12 +219,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Neu in der Auswahl ──────────────────────────────────── */}
+      {/* ── Neu auf Spotted ─────────────────────────────────────── */}
       {featuredSMEs.length > 1 && (
         <section className="w-full max-w-6xl mx-auto px-6 py-14">
           <div className="flex items-end justify-between mb-7 gap-4">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900">
-              Neu in der Auswahl
+              Neu auf Spotted
             </h2>
             <Link
               href="/browse"
@@ -251,9 +249,9 @@ export default async function HomePage() {
               Gehören Sie dazu?
             </h2>
             <p className="text-neutral-600 leading-relaxed max-w-md">
-              Profil erstellen, wir prüfen es, dann geht es online. Solange wir
-              aufbauen, kostet das nichts. Keine bezahlten Plätze und keine
-              Provision auf Ihre Aufträge.
+              Zeigen Sie, was Ihr Unternehmen ausmacht. Erstellen Sie Ihr
+              Profil, wir prüfen es und schalten es frei. In der Aufbauphase
+              kostenlos, ohne bezahlte Platzierungen oder Provision.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 lg:justify-end">
