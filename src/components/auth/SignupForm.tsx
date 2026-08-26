@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { Eye, EyeOff } from "lucide-react";
+import { AlertCircle, Eye, EyeOff } from "lucide-react";
 import { signupSchema, type SignupFormData } from "@/lib/validations/auth";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ export function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [alreadyRegistered, setAlreadyRegistered] = useState(false);
 
   /**
    * The address is kept after submitting so the confirmation mail can be sent
@@ -71,7 +72,7 @@ export function SignupForm() {
     setServerError(null);
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signUp({
+    const { data: result, error } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
       options: {
@@ -85,8 +86,49 @@ export function SignupForm() {
       return;
     }
 
+    /**
+     * Supabase does not report an existing address as an error. It returns a
+     * user object with an empty `identities` array and sends nothing, so the
+     * form used to show "check your email" for a mail that never arrives. That
+     * silence is deliberate on their side: an error here would let anyone test
+     * which addresses are registered. On a directory whose profiles publish a
+     * contact address anyway, that protection buys little, and the confusion it
+     * causes is real, so this says plainly what happened.
+     */
+    if (result.user && result.user.identities?.length === 0) {
+      setAlreadyRegistered(true);
+      return;
+    }
+
     setSignedUpEmail(data.email);
     setSubmitted(true);
+  }
+
+  if (alreadyRegistered) {
+    return (
+      <div className="text-center py-8">
+        <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <AlertCircle size={22} className="text-amber-600" />
+        </div>
+        <h2 className="text-xl font-semibold text-neutral-900 mb-2">
+          Für diese Adresse gibt es bereits ein Konto
+        </h2>
+        <p className="text-neutral-500 text-sm">
+          Melden Sie sich mit Ihrem bestehenden Passwort an. Wenn Sie es nicht
+          mehr wissen, setzen Sie es zurück.
+        </p>
+        <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+          <Link href="/login">
+            <Button size="sm" className="w-full sm:w-auto">Anmelden</Button>
+          </Link>
+          <Link href="/forgot-password">
+            <Button variant="secondary" size="sm" className="w-full sm:w-auto">
+              Passwort zurücksetzen
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   if (submitted) {
