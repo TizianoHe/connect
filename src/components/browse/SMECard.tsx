@@ -132,7 +132,7 @@ export function SMECard({ sme, className, compact = false }: SMECardProps) {
   // ── Default (browse page): horizontal layout ─────────────────────────────
   const svcCount = sme.service_count ?? 0;
   const svcLabel =
-    svcCount > 0 ? `${svcCount} ${svcCount === 1 ? "service" : "services"}` : null;
+    svcCount > 0 ? `${svcCount} ${svcCount === 1 ? "Leistung" : "Leistungen"}` : null;
 
   return (
     <Link

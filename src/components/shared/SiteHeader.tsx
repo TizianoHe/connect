@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/shared/Logo";
 import { Button } from "@/components/ui/button";
+import { SHELL_PADDING, SHELL_WIDTH } from "@/lib/layout";
 import { cn } from "@/lib/utils";
 
 interface SiteHeaderProps {
@@ -24,15 +25,16 @@ interface SiteHeaderProps {
  */
 export function SiteHeader({
   signedIn = false,
-  width = "max-w-6xl",
+  width = SHELL_WIDTH,
   className,
 }: SiteHeaderProps) {
   return (
     <header className={cn("border-b border-neutral-100 bg-white", className)}>
       <div
         className={cn(
-          "mx-auto px-4 sm:px-6 h-[4.5rem] flex items-center justify-between gap-3",
-          width
+          "mx-auto h-[4.5rem] flex items-center justify-between gap-3",
+          width,
+          SHELL_PADDING
         )}
       >
         <Logo />
