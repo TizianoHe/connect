@@ -1,10 +1,20 @@
 import Link from "next/link";
 import { Logo } from "@/components/shared/Logo";
+import { SHELL_PADDING, SHELL_WIDTH } from "@/lib/layout";
+import { cn } from "@/lib/utils";
 
-export function Footer() {
+interface FooterProps {
+  /**
+   * Must match the width the page above it uses, otherwise the footer starts
+   * at a different left edge than the content. /browse passes max-w-7xl.
+   */
+  width?: string;
+}
+
+export function Footer({ width = SHELL_WIDTH }: FooterProps) {
   return (
     <footer className="bg-white border-t border-neutral-100 font-sans">
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className={cn("mx-auto py-16", width, SHELL_PADDING)}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
 
           {/* Brand */}
@@ -88,7 +98,7 @@ export function Footer() {
 
       {/* Bottom strip */}
       <div className="border-t border-neutral-100">
-        <div className="max-w-6xl mx-auto px-6 py-5">
+        <div className={cn("mx-auto py-5", width, SHELL_PADDING)}>
           <p className="text-xs text-neutral-400">
             © {new Date().getFullYear()} Spotted. Alle Rechte vorbehalten.
           </p>

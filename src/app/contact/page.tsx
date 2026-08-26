@@ -14,7 +14,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-canvas flex flex-col">
       <SiteHeader />
 
-      <main className="flex-1 w-full max-w-2xl mx-auto px-6 py-16">
+      <main className="flex-1 w-full max-w-2xl mx-auto px-4 sm:px-6 py-16">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-accent transition-colors mb-10 group"

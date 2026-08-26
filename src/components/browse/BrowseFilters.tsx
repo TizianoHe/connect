@@ -55,7 +55,7 @@ export function BrowseFilters({ categories }: { categories: ServiceCategory[] })
               : "bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400"
           )}
         >
-          All
+          Alle
         </button>
         {categories.map((cat) => (
           <button

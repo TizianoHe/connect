@@ -87,7 +87,7 @@ export default async function HomePage() {
       <SiteHeader />
 
       {/* ── Hero ────────────────────────────────────────────────── */}
-      <section className="w-full max-w-6xl mx-auto px-6 pt-12 pb-16 sm:pt-20">
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16 sm:pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,25rem)] gap-12 lg:gap-16 items-start">
           <div>
             {/*
@@ -221,7 +221,7 @@ export default async function HomePage() {
 
       {/* ── Neu auf Spotted ─────────────────────────────────────── */}
       {featuredSMEs.length > 1 && (
-        <section className="w-full max-w-6xl mx-auto px-6 py-14">
+        <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-14">
           <div className="flex items-end justify-between mb-7 gap-4">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900">
               Neu auf Spotted
@@ -243,7 +243,7 @@ export default async function HomePage() {
 
       {/* ── For businesses ──────────────────────────────────────── */}
       <section className="bg-neutral-50">
-        <div className="w-full max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mb-4">
               Gehören Sie dazu?
@@ -270,7 +270,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── Trust row ───────────────────────────────────────────── */}
-      <section className="w-full max-w-6xl mx-auto px-6 py-16">
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {TRUST.map(({ icon: Icon, title, body }) => (
             <div key={title} className="flex gap-3.5">

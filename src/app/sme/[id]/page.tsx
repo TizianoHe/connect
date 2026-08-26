@@ -138,7 +138,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
     <div className="min-h-screen bg-neutral-50">
       {/* Nav */}
       <header className="bg-white border-b border-neutral-100 sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Logo />
           <div className="flex items-center gap-3">
             {user ? (
@@ -162,7 +162,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
       {/* Preview banner for non-published profiles */}
       {isPreview && (
         <div className="bg-neutral-900 text-white">
-          <div className="max-w-3xl mx-auto px-6 py-3 flex items-center gap-2.5">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-2.5">
             <Eye size={15} className="flex-shrink-0 text-neutral-400" />
             <p className="text-sm text-neutral-300">
               {profile.status === "pending_review" && "Vorschau: Dieses Profil ist in Prüfung und noch nicht öffentlich sichtbar."}
@@ -179,7 +179,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
         </div>
       )}
 
-      <main className="max-w-3xl mx-auto px-6 py-8">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         {/* Back link */}
         <Link
           href="/browse"
@@ -377,7 +377,7 @@ export default async function SMEProfilePage({ params }: ProfilePageProps) {
           )}
         </div>
       </main>
-      <Footer />
+      <Footer width="max-w-3xl" />
     </div>
   );
 }

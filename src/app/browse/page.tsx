@@ -4,8 +4,16 @@ import { createClient } from "@/lib/supabase/server";
 import { BrowseFilters } from "@/components/browse/BrowseFilters";
 import { SMECard, type SMECardData } from "@/components/browse/SMECard";
 import { Footer } from "@/components/shared/Footer";
+import { SHELL_PADDING } from "@/lib/layout";
+import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { Button } from "@/components/ui/button";
+
+/**
+ * Wider than the rest of the site: three cards per row need the extra room.
+ * Header, main and footer all take this value so they keep one left edge.
+ */
+const BROWSE_WIDTH = "max-w-7xl";
 
 export const metadata = {
   title: "Unternehmen entdecken",
@@ -191,11 +199,11 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
     <div className="min-h-screen bg-canvas flex flex-col">
       <SiteHeader
         signedIn={!!user}
-        width="max-w-7xl"
+        width={BROWSE_WIDTH}
         className="sticky top-0 z-10"
       />
 
-      <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-8">
+      <main className={cn("flex-1 mx-auto w-full py-8", BROWSE_WIDTH, SHELL_PADDING)}>
         {/* Page title */}
         <div className="mb-5">
           <h1 className="text-3xl text-neutral-900 tracking-tight">
@@ -224,7 +232,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
         </Suspense>
       </main>
 
-      <Footer />
+      <Footer width={BROWSE_WIDTH} />
     </div>
   );
 }
