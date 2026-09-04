@@ -48,12 +48,12 @@ export function SiteHeader({
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/login"
-              className="hidden sm:block text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors px-2"
+              className="hidden sm:block text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors px-2 py-3"
             >
               Anmelden
             </Link>
             <Link href="/signup">
-              <Button size="sm" className="whitespace-nowrap">
+              <Button size="lg" className="whitespace-nowrap">
                 <span className="sm:hidden">Vorstellen</span>
                 <span className="hidden sm:inline">Unternehmen vorstellen</span>
               </Button>

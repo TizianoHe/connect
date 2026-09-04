@@ -115,16 +115,16 @@ export default async function HomePage() {
                 name="search"
                 placeholder="Unternehmen, Dienstleistung oder Ort"
                 aria-label="Unternehmen durchsuchen"
-                className="flex-1 min-w-0 bg-transparent text-[0.9375rem] text-neutral-900 placeholder:text-neutral-400 outline-none py-2.5"
+                className="flex-1 min-w-0 bg-transparent text-[0.9375rem] text-neutral-900 placeholder:text-neutral-500 outline-none py-2.5"
               />
-              <Button type="submit" size="sm" className="flex-shrink-0 px-4 py-2.5">
+              <Button type="submit" size="sm" className="flex-shrink-0 px-4 py-3 text-sm">
                 Suchen
               </Button>
             </form>
 
             {(categories?.length ?? 0) > 0 && (
               <div className="mt-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-neutral-400 mb-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-neutral-500 mb-3">
                   Wonach suchen Sie?
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -179,7 +179,7 @@ export default async function HomePage() {
                   )}
                 </div>
                 <div className="p-5">
-                  <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-neutral-400 mb-2">
+                  <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-neutral-500 mb-2">
                     Spotted
                   </p>
                   <p className="text-xl font-bold text-neutral-900 transition-colors">
@@ -199,7 +199,7 @@ export default async function HomePage() {
               </Link>
             ) : (
               <div className="rounded-3xl bg-neutral-50 p-7">
-                <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-neutral-400 mb-4">
+                <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-neutral-500 mb-4">
                   Wir bauen gerade auf
                 </p>
                 <p className="text-xl font-bold text-neutral-900 leading-snug mb-4">
@@ -228,7 +228,7 @@ export default async function HomePage() {
             </h2>
             <Link
               href="/browse"
-              className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors whitespace-nowrap"
+              className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors whitespace-nowrap py-3"
             >
               Alle ansehen →
             </Link>

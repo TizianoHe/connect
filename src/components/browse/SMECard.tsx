@@ -107,7 +107,7 @@ export function SMECard({ sme, className, compact = false }: SMECardProps) {
             )}
           </div>
           {locationLabel && (
-            <div className="flex items-center gap-1 text-xs text-neutral-400">
+            <div className="flex items-center gap-1 text-xs text-neutral-500">
               <MapPin size={11} className="flex-shrink-0" />
               <span className="truncate">{locationLabel}</span>
             </div>

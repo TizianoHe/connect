@@ -36,7 +36,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           // secondary is a hairline outline.
           "inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-40 disabled:cursor-not-allowed",
           {
-            "bg-neutral-900 text-white hover:bg-neutral-700 focus-visible:ring-neutral-900":
+            "bg-neutral-900 text-white border border-transparent hover:bg-neutral-700 focus-visible:ring-neutral-900":
               variant === "primary",
             "bg-white text-neutral-900 border border-neutral-200 hover:border-neutral-400 focus-visible:ring-neutral-900":
               variant === "secondary",
